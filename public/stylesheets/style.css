@@ -1,0 +1,23 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
+
+ul.wifi{
+  padding: 0;
+  border: 1px solid black;
+  list-style-type: none;
+}
+
+.selected-network-bg{
+  background-color: rgba(86,61,124,.15);
+}
