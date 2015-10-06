@@ -8,7 +8,13 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+livereload = require('express-livereload');
+
+
+
+
 var app = express();
+livereload(app, config={});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
