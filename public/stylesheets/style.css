@@ -21,3 +21,66 @@ ul.wifi{
 .selected-network-bg{
   background-color: rgba(86,61,124,.15);
 }
+
+div#topbar {
+  background-color: white;
+  min-height: 70px;
+}
+
+nav.navbar.navbar-inverse.navbar-fixed-top {
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
+}
+
+.background_y {
+  background-color: #edc03c;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.background_y .title_y {
+  padding: 10px 10px 10px 10px;
+  font-family: quicksand;
+  background-color: #fbcb47;
+  display: block;
+  /* position: absolute; */
+  left: 0px;
+  width: 50%;
+  height: 100%;
+}
+
+.title_sections {
+  color: #ffffff;
+  font-family: quicksand;
+  font-size: 28px;
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+
+.row {
+  margin-top: 25px;
+}
+
+input.btn.btn-default.btn-lg.pull-right.ng-scope {
+  font-weight: bold;
+  border: 3px solid #2bde73;
+  background: rgba(255,255,255,1);
+  margin-left: 15px;
+  color: #2bde73;
+  font-size: 14px;
+}
+
+input.btn.btn-default.btn-lg.pull-right.ng-scope:hover {
+  color: #ffffff;
+  font-weight: bold;
+  border: 3px solid #2bde73;
+  background-color: #2bde73;
+}
+
+input.btn.btn-default.btn-lg.pull-right.ng-scope:focus {
+  color: #2bde73;
+}
+
+input.btn.btn-default.btn-lg.pull-right.ng-scope:hover:focus {
+  color: #ffffff;
+}
