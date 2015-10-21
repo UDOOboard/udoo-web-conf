@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "install" : "git clone -b gh-pages --single-branch https://github.com/UDOOboard/Neo-Docs docs",
     "start": "node ./bin/www"
   },
   "dependencies": {
