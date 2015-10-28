@@ -33,9 +33,7 @@ socket.on('motion', function(data){
 
 function notifyMotionData(data){
 
-    document.getElementById('Accelerometer').innerHTML=data.a;
-    document.getElementById('Gyroscope').innerHTML=data.g;
-    document.getElementById('Magnetometer').innerHTML=data.m;
+
     var accwidth=(data.a);
     var gyrowidth=(data.g);
     var magnwidth=(data.m);

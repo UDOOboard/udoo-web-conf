@@ -213,7 +213,7 @@ function getsysteminfos(){
       acc1 = Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))).toFixed(0);
       acc2 = acc1/1630;
       acc3 = acc2.toFixed(0);
-      acc = acc3*acc3;
+      acc = acc3*acc3-90;
       //console.log('acc'+acc);
     });
     fs.readFile('/sys/class/misc/FreescaleGyroscope/data', 'utf8', function (err,gyrosc) {
