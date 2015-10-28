@@ -7,12 +7,16 @@
 var app = require('../app');
 var debug = require('debug')('udoo-cfg:server');
 var http = require('http');
+// Utilities
+var ifconfig = require('wireless-tools/ifconfig');
+var exec = require('child_process').exec;
+fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
 /**
@@ -23,15 +27,17 @@ var server = http.createServer(app);
 
 /**
  * socket.io
-
+*/
 var io = require('socket.io')(server);
 io.on('connection', function(socket){
-  console.log('connected event');
+  console.log('Frontend Connected');
+  getsysteminfos();
+
   socket.on('chat message', function(msg){
     console.log('test message: ' + msg);
   });
 });
- */
+
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -124,3 +130,125 @@ wireless.enable(function(error) {
   wireless.start();
 });
 console.log("fine");*/
+
+
+/* TODO UDOO Neo's Controller Related functions, to be eventually moved outta here */
+
+function getsysteminfos(){
+  var self = this;
+
+
+  setInterval(function () {
+  var ethip = 'none';
+  var wlanip = 'none';
+  var usbip = 'none';
+
+  ifconfig.status('eth0', function(err, status) {
+
+    if (status.ipv4_address != undefined ) {
+      var self = this;
+      ethip = status.ipv4_address;
+      io.emit('ethstatus', ethip);
+    }
+  });
+
+  ifconfig.status('wlan', function(err, status) {
+    var self = this;
+    if (status.ipv4_address != undefined ) {
+      wlanip = status.ipv4_address;
+      io.emit('ethstatus', wlanip);
+    }
+  });
+
+  ifconfig.status('usb0', function(err, status) {
+    var self = this;
+    if (status.ipv4_address != undefined ) {
+      usbip = status.ipv4_address;
+      io.emit('usbstatus', wlanip);
+    }
+  });
+  }, 10000)
+
+
+// Motion Sensors
+
+  var acc = 0;
+  var gyro = 0;
+  var magn =0;
+  console.log('Reading Motion Sensors Values');
+  exec("echo 1 > /sys/class/misc/FreescaleGyroscope/enable", function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('Cannot Enable Gyroscope: '+error);
+    }
+    else {
+      console.log('Gyroscope enabled');
+    }
+  });
+  exec("echo 1 > /sys/class/misc/FreescaleAccelerometer/enable", function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('Cannot Enable Accelerometer: '+error);
+    }
+    else {
+      console.log('Accelerometer enabled');
+    }
+  });
+  exec("echo 1 > /sys/class/misc/FreescaleMagnetometer/enable", function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('Cannot Enable Magnetometer: '+error);
+    }
+    else {
+      console.log('Magnetometer enabled');
+    }
+  });
+  setInterval(function () {
+
+    fs.readFile('/sys/class/misc/FreescaleAccelerometer/data', 'utf8', function (err,accel) {
+      var self=this;
+      if (err) {
+        return console.log(err);
+      }
+      str = accel;
+      var arr = str.split(",");
+      arr = arr.map(function (val) { return +val + 1; });
+      acc1 = Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))).toFixed(0);
+      acc2 = acc1/1630;
+      acc3 = acc2.toFixed(0);
+      acc = acc3*acc3;
+      //console.log('acc'+acc);
+    });
+    fs.readFile('/sys/class/misc/FreescaleGyroscope/data', 'utf8', function (err,gyrosc) {
+      var self=this;
+      if (err) {
+        return console.log(err);
+      }
+      str = gyrosc;
+      var arr = str.split(",");
+      arr = arr.map(function (val) { return +val + 1; });
+      gyro2 = Math.floor(Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))));
+      if (gyro2 > 150) {
+        gyro = 150
+      } else gyro = gyro2;
+      //console.log(data);
+    });
+
+    fs.readFile('/sys/class/misc/FreescaleMagnetometer/data', 'utf8', function (err,magnet) {
+      var self=this;
+      if (err) {
+        return console.log(err);
+      }
+      str = magnet;
+      var arr = str.split(",");
+      arr = arr.map(function (val) { return +val + 1; });
+      magn1 = Math.floor(Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))));
+      magn2 = magn1/100;
+      magn3 = magn2.toFixed(0);
+      if (magn3 > 150) {
+        magn = 150
+      } else magn = magn3;
+
+      //console.log(data);
+    });
+    io.emit('motion', {a:acc, g:gyro, m:magn})
+  }, 300)
+}
+

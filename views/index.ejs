@@ -19,6 +19,10 @@
    <script type="text/javascript" src="/js/controllers.js"></script>
    <script type="text/javascript" src="/js/directives.js"></script>
    <script type='text/javascript' src='/js/angular-wizard.js'></script>
+   <script type='text/javascript' src='/socket.io/socket.io.js'></script>
+   <script type='text/javascript' src='/js/ui.js'>
+   </script><script type='text/javascript' src='./js/jquery-2.1.4.min.js'></script>
+
 
      <!--    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
          <script>
@@ -56,55 +60,106 @@
 
     <div class="col-sm-offset-4 col-md-offset-2 col-md-10">
 
-      <div class="background_y">
-        <div class="title_y">
-          <p class="title_sections">FIRST CONFIGURATION WIZARD</p>
+      <div class="background_v">
+        <div class="title_v">
+          <p class="title_sections">OVERVIEW</p>
         </div>
       </div>
+        <div class="tile tile-clouds col-md-12 col-xs-12">
+            <div class="col-md-4 col-xs-4">
+                <table>
+                    <tr>
+                        <td id="motionicons"><img class="iconnet" src="/images/iconacc.png" alt=""></td>
+                        <td id="Accelerometer"></td>
+                        <td id="AccelerometerGr"><div id="progress_bar_acc" style="height:30px; background:#2ecc71; display:block;"></div></td>
+                    </tr>
+                    <tr>
+                        <td id="motionicons"><img class="iconnet" src="/images/icongyro.png" alt=""></td>
+                        <td id="Gyroscope"></td>
+                        <td id="GyroscopeGr"><div id="progress_bar_gyro" style="height:30px; background:#f1c40f; display:block;"></div></td>
+                    </tr>
+                    <tr>
+                        <td id="motionicons"><img class="iconnet" src="/images/iconmagn.png" alt=""></td>
+                        <td id="Magnetometer"></td>
+                        <td id="MagnetometerGr"><div id="progress_bar_magn" style="height:30px; background:red; display:block;"></div></td>
+
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <img class="neoimg" src="/images/neo_header_front.png" alt="">
+            </div>
+            <div class="col-md-4 col-xs-4">
+                <table>
+                <tr>
+                    <td id="networkicons"><img class="iconnet" src="/images/ethicon.png" alt=""></td>
+                    <td id="ethstatus">Not Connected</td>
+                </tr>
+                <tr>
+                    <td id="networkicons"><img class="iconnet" src="/images/usbicon.png" alt=""></td>
+                    <td id="usbstatus">  USB Tethering Not Connected</td>
 
 
-    <wizard on-finish="finishedWizard()">
-      <wz-step title="General settings">
+                </tr>
+                <tr>
+                    <td id="networkicons"><img class="iconnet" src="/images/wifi-icon.png" alt=""></td>
+                    <td id="wlanstatus">  Wireless Network Not Connected</td>
+                </tr>
+
+                    <tr>
+                        <td id="networkicons"><img class="iconnet" src="/images/bticon.png" alt=""></td></td>
+                        <td id="btstatus"> Bluetooth Not Connected</td>
+                    </tr>
+                </table>
+
+            </div>
 
 
-        <br/>
-        <hostname-input hostname="ctrl.hostname"></hostname-input>
-        <br/>
+        </div>
+        <div class="tile tile-emerald col-md-6 col-xs-12">
+            <h3 class="tile-text">
+                First Start</h3>
+            <div class="tile-content">
+                ASD
+            </div>
 
-        <!--<select name="kbinput">
-          <option ng-repeat="o in ctrl.result" value="{{o}}" class="form-control" ng-model="ctrl.selectedOption">{{o}}</option>
-        </select>-->
+        </div>
+        <div class="tile tile-peter-river col-md-6 col-xs-12">
+            <h3 class="tile-text">
+                Tutorials</h3>
+            <div class="tile-content">
+               ASD
+            </div>
 
-        <label>Keyboard layout:
-          <select name="mySelect" id="mySelect"
-                ng-options="option.name for option in ctrl.kbData.availableOptions track by option.id"
-                ng-model="ctrl.kbData.selectedOption"></select>
-        </label>
-        <br/>
-          <input type="submit" wz-next value="Next" class="btn btn-default btn-lg pull-right"/>
-        <br/>
-      </wz-step>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <a href="/ssh" >
+            <div class="thumbnail tile tile-wide tile-pomegranate">
+                    <h2 class="tile-text">
+                        Remote Terminal</h2>
+            </div>
+            </a>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <a href="/vnc" >
+            <div class="thumbnail tile tile-wide tile-carrot">
+                    <h2 class="tile-text">
+                        Remote Desktop</h2>
+            </div>
+            </a>
+        </div>
+        <div class="col-sm-4 col-md-4">
+            <a href="/docs" >
+            <div class="thumbnail tile tile-wide tile-purple">
+                    <h2 class="tile-text">
+                        Documentation</h2>
+            </div>
+            </a>
+        </div>
 
-      <wz-step title="Continuing">
-        <h1>Network</h1>
-          <label>Wifi networks:
-              <ul class="wifi">
-                  <li ng-repeat="item in ctrl.finalList">
-                      <div ng-click="ctrl.selectNetwork(item)" ng-class="{'selected-network-bg': item.isSelected}">
-                          {{item.networkName}}<img src="images/lock.png" ng-show="item.isProtected" height="15" class="pull-right"/>
-                      </div>
-                  </li>
-              </ul>
-              Password: <input type="password" ng-model="ctrl.wifiPassword" ng-disabled="!ctrl.selectedNetwork.isProtected">
-          </label>
-          <br/>
-        <input type="submit" ng-click="ctrl.connectToNetwork()" value="Finish" ng-disabled="!ctrl.selectedNetwork.isSelected" class="btn btn-default btn-lg pull-right"/><br/>
-      </wz-step>
-<!--      <wz-step title="More steps">
-        <p>Even more steps!!</p>
-        <input type="submit" wz-next value="Finish now" class="btn btn-default btn-lg pull-right"/></p>
-      </wz-step>-->
-    </wizard>
+
+
   </div>
 
 </div>
