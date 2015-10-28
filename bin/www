@@ -33,8 +33,22 @@ io.on('connection', function(socket){
   console.log('Frontend Connected');
   getsysteminfos();
 
+  socket.on('fade', function(){
+    console.log('Fade');
+    uploadsketchfade();
+
+  });
+
+  socket.on('blink', function(){
+    console.log('Blink');
+    uploadsketchblink();
+
+  });
+
   socket.on('chat message', function(msg){
     console.log('test message: ' + msg);
+
+
   });
 });
 
@@ -252,3 +266,24 @@ function getsysteminfos(){
   }, 300)
 }
 
+function uploadsketchblink() {
+  exec("/usr/bin/udooneo-m4uploader /opt/udoo-web-conf/arduino_examples/Blink.cpp.bin", function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('Cannot Upload Sketch' +error);
+    }
+    else {
+      console.log('Fade Blink Properly Uploaded ');
+    }
+  });
+}
+
+function uploadsketchfade(){
+  exec("/usr/bin/udooneo-m4uploader /opt/udoo-web-conf/arduino_examples/Fade.cpp.bin", function (error, stdout, stderr) {
+    if (error !== null) {
+      console.log('Cannot Upload Sketch' +error);
+    }
+    else {
+      console.log('Fade Sketch Properly Uploaded ');
+    }
+  });
+}

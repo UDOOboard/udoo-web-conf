@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html ng-app="udooCfgApp">
+<head>
+    <title>Udoo - First configuration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
+    <link rel='stylesheet' href='/stylesheets/clock.css' />
+    <link rel='stylesheet' href='/stylesheets/angular-wizard.min.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!--http://bootflat.github.io/-->
+    <link rel='stylesheet' href='/stylesheets/bootflat.css' />
+    <!--http://getbootstrap.com/examples/dashboard/-->
+    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
+    <script type="text/javascript" src="js/lodash.min.js"></script>
+    <script type="text/javascript" src="/js/angular.min.js"></script>
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/controllers.js"></script>
+    <script type="text/javascript" src="/js/directives.js"></script>
+    <script type='text/javascript' src='/js/angular-wizard.js'></script>
+    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
+    <!--<script type='text/javascript' src='/js/ui.js'>-->
+    </script><script type='text/javascript' src='./js/jquery-2.1.4.min.js'></script>
+
+
+    <!--    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+        <script>
+          var socket = io();
+        </script>-->
+</head>
+<body ng-controller="MainController as ctrl">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid" id="topbar">
+        <div class="navbar-header">
+            <a href="http://www.udoo.org" title="UDOO">
+                <img src="/images/logo_small.png" alt="">
+            </a>
+        </div>
+
+    </div>
+</nav>
+
+<!-- header -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/">Overview</a></li>
+                <li><a href="/arduino">Arduino</a></li>
+                <li><a href="/docs">Docs</a></li>
+                <li><a href="/firstconfig">Configuration</a></li>
+            </ul>
+
+        </div>
+
+
+        <div class="col-sm-offset-4 col-md-offset-2 col-md-10">
+
+            <div class="background_r">
+                <div class="title_r">
+                    <p class="title_sections">ARDUINO</p>
+                </div>
+            </div>
+            <div class="tile tile-yellow col-md-12 col-xs-12" style="opacity: 1;">
+                &nbsp;
+            <h4>3 easy examples to get your started using UDOO Neo's integrated Arduino compatible processor. Just follow the instructions and hit run!</h4>
+
+            </div>
+            <div class="tile tile-green-sea col-md-6 col-xs-6" style="opacity: 1;">
+                &nbsp;
+<h4>Blink</h4>
+                <h6>Connect a LED to PIN 13 and see it blinking!</h6>
+            </div>
+            <div class="tile tile-green-sea col-md-6 col-xs-6" style="opacity: 1;">
+                &nbsp;
+                <h4>Fade</h4>
+                <h6>Connect a LED to PIN 9 and see it fade in and out!</h6>
+            </div>
+
+
+            <div class="tile tile-clouds col-md-6 col-xs-6" style="opacity: 1;">
+                <pre>
+
+void setup() {
+
+  pinMode(13, OUTPUT);
+}
+
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}
+                </pre>
+                <button type="button" id="blink" class="btn btn-success btn-block">Run!</button>
+            </div>
+
+            <div class="tile tile-clouds col-md-6 col-xs-6" style="opacity: 1;">
+                <pre>
+int led = 9;
+int brightness = 0;
+int fadeAmount = 5;
+
+
+void setup() {
+
+  pinMode(led, OUTPUT);
+}
+
+
+void loop() {
+
+  analogWrite(led, brightness);
+
+
+  brightness = brightness + fadeAmount;
+
+
+  if (brightness == 0 || brightness == 255) {
+    fadeAmount = -fadeAmount ;
+  }
+
+  delay(30);
+}
+                </pre>
+                <button type="button" id="fade" class="btn btn-success btn-block">Run!</button>
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+    <script>
+        var socket = io();
+        document.getElementById('fade').onclick = function() {
+            socket.emit('fade','')
+        }
+
+        document.getElementById('blink').onclick = function() {
+            socket.emit('blink','')
+        }
+    </script>
+</div>
+
+</body>
+</html>
