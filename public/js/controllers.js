@@ -12,6 +12,7 @@
         that.selectedNetwork = {isProtected: false};
         that.originalKbLayout = { id: "us", name: "us"};
         that.originalHostname = "";
+        that.timezone = "";
 
         $http.get('/date').success(function(data){
             that.dateData = data.dateData;
