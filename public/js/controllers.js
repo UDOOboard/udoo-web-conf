@@ -92,7 +92,7 @@
             if (that.selectedNetwork.isProtected){
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName + '/' + that.wifiPassword).success(function(data){
                     console.log(data.wifiConnectionOutput);
-                    if (data.wifiConnectionOutput[1] === 'undefined'){ //Errore
+                    if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
                         that.finito = "nein";
                         console.log("NON Connesso con password")
                     }
@@ -105,7 +105,7 @@
             } else {
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName).success(function(data){
                     console.log(data.wifiConnectionOutput);
-                    if (data.wifiConnectionOutput[1] === 'undefined'){ //Errore
+                    if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
                         that.finito = "nein";
                         console.log(data.wifiConnectionOutput);
                         console.log('NON Connesso');
