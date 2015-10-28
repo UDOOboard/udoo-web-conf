@@ -7,10 +7,10 @@ var execAsync = Promise.promisify(require('child_process').exec);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var util = require('util');
-  var Promise = require('bluebird');
+  //var util = require('util');
+  //var Promise = require('bluebird');
   /*var child_process = Promise.promisifyAll(require('child_process'));*/
-  var execAsync = Promise.promisify(require('child_process').exec);
+  //var execAsync = Promise.promisify(require('child_process').exec);
   /*var spawn = require('child_process').spawn;*/
   /*var child = spawn('date');*/
   //var dateRes = execAsync('date').then(function(r){ res.render('index', {title: r })});
@@ -20,6 +20,10 @@ router.get('/', function(req, res, next) {
 
   /*res.render('index', { title:  'asd'});*/
   res.render('index');
+});
+
+router.get('/firstconfig', function(req, res, next) {
+  res.render('first-config');
 });
 
 router.get('/date', function(req, res, next) {
