@@ -4,6 +4,7 @@ var router = express.Router();
 var util = require('util');
 var Promise = require('bluebird');
 var execAsync = Promise.promisify(require('child_process').exec);
+var shScriptsPath = '/srv/node/udoo-web-conf/shscripts/';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -44,13 +45,13 @@ router.get('/timezone', function(req, res, next){
   //var execFileAsync = Promise.promisify(require('child_process').execFile());
   //execFileAsync('bash', ['timezone.sh']).then(function(r){ res.json({messaggio: r })}).catch(function(r){ res.json({messaggio: r }) });
 
-  execAsync('sudo /srv/node/udoo-cfg/shscripts/timezone.sh').then(function(r){ res.json({messaggio: r })}).catch(function(r){ res.json({messaggio: r }) });
+  execAsync('sudo ' + shScriptsPath + 'timezone.sh').then(function(r){ res.json({messaggio: r })}).catch(function(r){ res.json({messaggio: r }) });
 
 });
 
 router.get('/hostname/:newName', function(req, res, next){
     var newName = req.params.newName;
-    execAsync('sudo /srv/node/udoo-cfg/shscripts/sethostname.sh ' + newName).then(function(r){ res.json({hostname: r })}).catch(function(r){ res.json({hostname: r }) });
+    execAsync('sudo ' + shScriptsPath + 'sethostname.sh ' + newName).then(function(r){ res.json({hostname: r })}).catch(function(r){ res.json({hostname: r }) });
     /*util.inspect(child.stdout, {showHidden: false, depth: null})*/
 });
 
@@ -60,12 +61,12 @@ router.get('/hostname', function(req, res, next){
 });
 
 router.get('/keyboardlayouts', function(req, res, next){
-    execAsync('sudo /srv/node/udoo-cfg/shscripts/getkblayouts.sh').then(function(r){ res.json({kblayouts: r })}).catch(function(r){ res.json({kblayouts: r }) });
+    execAsync('sudo ' + shScriptsPath + 'getkblayouts.sh').then(function(r){ res.json({kblayouts: r })}).catch(function(r){ res.json({kblayouts: r }) });
 });
 
 router.get('/keyboardlayouts/:newLayout', function(req, res, next){
   var newLayout = req.params.newLayout;
-  execAsync('sudo /srv/node/udoo-cfg/shscripts/setkblayouts.sh ' + newLayout).then(function(r){ res.json({kblayouts: r })}).catch(function(r){ res.json({kblayouts: r }) });
+  execAsync('sudo ' + shScriptsPath + 'setkblayouts.sh ' + newLayout).then(function(r){ res.json({kblayouts: r })}).catch(function(r){ res.json({kblayouts: r }) });
 });
 
 router.get('/wifiList', function(req, res, next){
