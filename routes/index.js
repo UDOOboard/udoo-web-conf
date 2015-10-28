@@ -4,7 +4,7 @@ var router = express.Router();
 var util = require('util');
 var Promise = require('bluebird');
 var execAsync = Promise.promisify(require('child_process').exec);
-var shScriptsPath = '/srv/node/udoo-web-conf/shscripts/';
+var shScriptsPath = '/opt/udoo-web-conf/shscripts/';
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,6 +25,10 @@ router.get('/', function(req, res, next) {
 
 router.get('/firstconfig', function(req, res, next) {
   res.render('first-config');
+});
+
+router.get('/arduino', function(req, res, next) {
+  res.render('arduino');
 });
 
 router.get('/date', function(req, res, next) {

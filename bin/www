@@ -156,7 +156,7 @@ function getsysteminfos(){
     var self = this;
     if (status.ipv4_address != undefined ) {
       wlanip = status.ipv4_address;
-      io.emit('ethstatus', wlanip);
+      io.emit('wlanstatus', wlanip);
     }
   });
 

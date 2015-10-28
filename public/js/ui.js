@@ -50,11 +50,11 @@ function ethStatusData(data){
     document.getElementById('ethstatus').innerHTML=data;
 }
 function usbStatusData(data){
-    document.getElementById('ethstatus').innerHTML=data;
+    document.getElementById('usbstatus').innerHTML=data;
 }
 function wlanStatusData(data){
-    document.getElementById('ethstatus').innerHTML=data;
+    document.getElementById('wlanstatus').innerHTML=data;
 }
 function btStatusData(data){
-    document.getElementById('ethstatus').innerHTML=data;
+    document.getElementById('bgstatus').innerHTML=data;
 }
