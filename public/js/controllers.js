@@ -91,10 +91,12 @@
         that.connectToNetwork = function() {
 
             $http.get('/hostname/' + that.hostname).success(function(data){
-                console.log('new hostname: ' + that.hostname)
+                console.log('new hostname: ' + that.hostname);
+                console.log(data);
                if (typeof(data.hostname[1]) == 'undefined') {
                    console.log('Errore nel cambio hostname');
                    $window.alert('Unexpected error during hostname change. Please, try again.');
+                   return;
                }
                 else {
                    console.log('Cambio hostname ok');
@@ -103,9 +105,11 @@
 
             $http.get('/keyboardlayouts/' + that.kbData["selectedOption"].id).success(function(data){
                 console.log('KbLayout ' + that.kbData["selectedOption"].id);
+                console.log(data);
                 if (typeof(data.kblayouts[1]) == 'undefined') {
                     console.log('Errore nel cambio kb layout');
                     $window.alert('Unexpected error during keyboard layout change. Please, try again.');
+                    return;
                 }
                 else {
                     console.log('Cambio kblayout ok');
