@@ -6,7 +6,7 @@
 (function(){
     var app = angular.module('udooCfgControllers', []);
 
-    app.controller('MainController', [ '$http', /*'socket',*/ function($http, WizardHandler /*,socket*/){
+    app.controller('MainController', [ '$http', '$window', /*'socket',*/ function($http, $window, WizardHandler /*,socket*/){
         var that = this;
         that.wifiPassword = "";
         that.selectedNetwork = {isProtected: false};
@@ -91,9 +91,7 @@
         that.connectToNetwork = function() {
             if (that.selectedNetwork.isProtected){
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName + '/' + that.wifiPassword).success(function(data){
-                    console.log(data.wifiConnectionOutput);
                     if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
-                        that.finito = "nein";
                         console.log("NON Connesso con password")
                     }
                     else{
@@ -104,14 +102,12 @@
                 });
             } else {
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName).success(function(data){
-                    console.log(data.wifiConnectionOutput);
                     if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
-                        that.finito = "nein";
                         console.log(data.wifiConnectionOutput);
-                        console.log('NON Connesso');
+                        console.log('NON Connesso senza pwd');
                     }
                     else{
-                        console.log('Connesso');
+                        console.log('Connesso senza pwd');
                         that.finishedWizard();
                         //WizardHandler.wizard().finish();
                     }
@@ -120,7 +116,7 @@
         };
 
         that.finishedWizard = function() {
-            that.finito = "fatto";
+            $window.location.href = '/';
         }
 
 
