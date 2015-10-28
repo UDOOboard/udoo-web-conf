@@ -9,7 +9,11 @@
     <link rel='stylesheet' href='/stylesheets/clock.css' />
     <link rel='stylesheet' href='/stylesheets/angular-wizard.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <!--http://bootflat.github.io/-->
+      <link rel='stylesheet' href='/stylesheets/angular-timezone-selector.css' />
+      <link rel='stylesheet' href='/stylesheets/bootstrap-chosen.css' />
+      <link rel='stylesheet' href='/stylesheets/chosen.css' />
+      <script type='text/javascript' src='js/jquery-2.1.4.min.js'></script>
+      <!--http://bootflat.github.io/-->
     <link rel='stylesheet' href='/stylesheets/bootflat.css' />
     <!--http://getbootstrap.com/examples/dashboard/-->
    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
@@ -19,6 +23,13 @@
    <script type="text/javascript" src="/js/controllers.js"></script>
    <script type="text/javascript" src="/js/directives.js"></script>
    <script type='text/javascript' src='/js/angular-wizard.js'></script>
+
+      <!-- timezone stuff -->
+      <script type='text/javascript' src='/js/chosen.jquery.min.js'></script>
+      <script type='text/javascript' src='/js/chosen.proto.min.js'></script>
+      <script type='text/javascript' src='/js/moment.js'></script>
+      <script type='text/javascript' src='/js/moment-timezone.js'></script>
+      <script type='text/javascript' src='/js/angular-timezone-selector.js'></script>
 
      <!--    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
          <script>
@@ -80,6 +91,11 @@
                 ng-options="option.name for option in ctrl.kbData.availableOptions track by option.id"
                 ng-model="ctrl.kbData.selectedOption"></select>
         </label>
+
+          <label>Timezone:
+              <timezone-selector ng-model="ctrl.timezone">
+          </label>
+
         <br/>
           <input type="submit" wz-next value="Next" class="btn btn-default btn-lg pull-right"/>
         <br/>
