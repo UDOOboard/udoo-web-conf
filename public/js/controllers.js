@@ -89,10 +89,34 @@
         };
 
         that.connectToNetwork = function() {
+
+            $http.get('/hostname/' + that.hostname).success(function(data){
+                console.log('new hostname: ' + that.hostname)
+               if (typeof(data.hostname[1]) == 'undefined') {
+                   console.log('Errore nel cambio hostname');
+                   $window.alert('Unexpected error during hostname change. Please, try again.');
+               }
+                else {
+                   console.log('Cambio hostname ok');
+               }
+            });
+
+            $http.get('/keyboardlayouts/' + that.kbData["selectedOption"].id).success(function(data){
+                console.log('KbLayout ' + that.kbData["selectedOption"].id);
+                if (typeof(data.kblayouts[1]) == 'undefined') {
+                    console.log('Errore nel cambio kb layout');
+                    $window.alert('Unexpected error during keyboard layout change. Please, try again.');
+                }
+                else {
+                    console.log('Cambio kblayout ok');
+                }
+            });
+
             if (that.selectedNetwork.isProtected){
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName + '/' + that.wifiPassword).success(function(data){
                     if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
                         console.log("NON Connesso con password")
+                        $window.alert('Error during wifi connection. Wrong password?');
                     }
                     else{
                         console.log("Connesso con password")
@@ -103,8 +127,8 @@
             } else {
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName).success(function(data){
                     if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
-                        console.log(data.wifiConnectionOutput);
                         console.log('NON Connesso senza pwd');
+                        $window.alert('Error during wifi connection.');
                     }
                     else{
                         console.log('Connesso senza pwd');
