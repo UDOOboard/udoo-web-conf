@@ -30,6 +30,9 @@ router.get('/firstconfig', function(req, res, next) {
 router.get('/arduino', function(req, res, next) {
   res.render('arduino');
 });
+router.get('/terminal', function(req, res, next) {
+  res.render('terminal');
+});
 
 router.get('/date', function(req, res, next) {
 
