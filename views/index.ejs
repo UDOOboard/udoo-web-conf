@@ -9,6 +9,7 @@
     <link rel='stylesheet' href='/stylesheets/clock.css' />
     <link rel='stylesheet' href='/stylesheets/angular-wizard.min.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
+      <link rel='stylesheet' href='/stylesheets/navbar-static-top.css' />
     <!--http://bootflat.github.io/-->
     <link rel='stylesheet' href='/stylesheets/bootflat.css' />
     <!--http://getbootstrap.com/examples/dashboard/-->
@@ -20,7 +21,7 @@
    <script type="text/javascript" src="/js/directives.js"></script>
    <script type='text/javascript' src='/js/angular-wizard.js'></script>
    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
-   <script type='text/javascript' src='/js/ui.js'>
+   <script type='text/javascript' src='/js/overview.js'>
    </script><script type='text/javascript' src='./js/jquery-2.1.4.min.js'></script>
 
 
@@ -28,16 +29,33 @@
          <script>
            var socket = io();
          </script>-->
+
   </head>
   <body ng-controller="MainController as ctrl">
-
+  <script>
+      $(document).ready(function() {
+          $('[data-toggle=offcanvas]').click(function() {
+              $('.sidebar-offcanvas').toggleClass('active', 1000);
+          });
+      });</script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="topbar">
-      <div class="navbar-header">
-        <a href="http://www.udoo.org" title="UDOO">
-          <img src="/images/logo_small.png" alt="">
-        </a>
-      </div>
+        <div class="col-xs-2 col-sm-2 col-md-0">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+
+            </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-12">
+            <a href="http://www.udoo.org" title="UDOO">
+                <img src="/images/logo_small.png" alt="">
+            </a>
+            </div>
+        <div class="col-xs-8 col-sm-8 col-md-0">
+
 
     </div>
   </nav>
@@ -45,7 +63,7 @@
 <!-- header -->
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-4 col-md-2 sidebar">
+    <div class="col-xs-6 col-sm-4 col-md-2 sidebar-offcanvas">
       <ul class="nav nav-sidebar">
         <li><a href="/">Overview</a></li>
         <li><a href="/arduino">Arduino</a></li>
@@ -56,7 +74,7 @@
     </div>
 
 
-    <div class="col-sm-offset-4 col-md-offset-2 col-md-10">
+    <div class="col-md-10 col-sm-12 col-xs-12">
 
       <div class="background_v">
         <div class="title_v">
@@ -64,7 +82,7 @@
         </div>
       </div>
         <div class="tile tile-clouds col-md-12 col-xs-12" style="opacity: 1;">
-            <div class="col-md-4 col-xs-4">
+            <div class="col-md-4 col-sm-4 col-xs-12">
                 <table id="indexsensors">
                     <tr>
                         <td id="motionicons"><img class="iconnet" src="/images/iconacc.png" alt=""></td>
@@ -85,10 +103,10 @@
                 </table>
 
             </div>
-            <div class="col-md-4 col-xs-4">
+            <div class="col-md-4 col-sm-4 col-xs-0">
                 <img class="neoimg" src="/images/neo_header_front.png" alt="">
             </div>
-            <div class="col-md-4 col-xs-4">
+            <div class="col-md-4 col-sm-4 col-xs-12">
                 <table>
                 <tr>
                     <td id="networkicons"><img class="iconnet" src="/images/ethicon.png" alt=""></td>

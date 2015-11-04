@@ -1,68 +1,20 @@
 #!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
 var app = require('../app');
 var debug = require('debug')('udoo-cfg:server');
 var http = require('http');
+var server = http.createServer(app);
 // Utilities
 var ifconfig = require('wireless-tools/ifconfig');
 var exec = require('child_process').exec;
-fs = require('fs');
-
-/**
- * Get port from environment and store in Express.
- */
-
+var fs = require('fs');
 var port = normalizePort(process.env.PORT || '80');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-
-var server = http.createServer(app);
-
-/**
- * socket.io
-*/
-var io = require('socket.io')(server);
-io.on('connection', function(socket){
-  console.log('Frontend Connected');
-  getsysteminfos();
-
-  socket.on('fade', function(){
-    console.log('Fade');
-    uploadsketchfade();
-
-  });
-
-  socket.on('blink', function(){
-    console.log('Blink');
-    uploadsketchblink();
-
-  });
-
-  socket.on('chat message', function(msg){
-    console.log('test message: ' + msg);
-
-
-  });
-});
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -79,10 +31,6 @@ function normalizePort(val) {
 
   return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -108,9 +56,6 @@ function onError(error) {
   }
 }
 
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
   var addr = server.address();
@@ -120,45 +65,58 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-
-//wireless
-/*
-console.log("oh");
-var Wireless = require('../node_modules/wireless/index.js');
-console.log("eh");
-var wireless = new Wireless({
-  iface: 'wlan0',
-  updateFrequency: 12,
-  vanishThreshold: 2,
-});
-console.log("[PROGRESS] Enabling wireless card...");
-wireless.enable(function(error) {
-  if (error) {
-    console.log("[ FAILURE] Unable to enable wireless card. Quitting...");
-    return;
-  }
-
-  console.log("[PROGRESS] Wireless card enabled.");
-  console.log("[PROGRESS] Starting wireless scan...");
-
-  wireless.start();
-});
-console.log("fine");*/
-
+var acc = 0;
+var gyro = 0;
+var magn =0;
 
 /* TODO UDOO Neo's Controller Related functions, to be eventually moved outta here */
+var self = this;
+var clientconnected = false;
+var io = require('socket.io')(server);
+io.on('connection', function(socket){
+  var self = this;
+  clientconnected = true;
+  console.log('Frontend Connected');
+
+  // Get IP Addresses
+  setInterval(function () {
+  getsysteminfos();
+  }, 10000);
+
+  if (clientconnected) {
+
+      getMotionSensors();
+
+  }
+
+  socket.on('fade', function(){
+    console.log('Fade');
+    uploadsketchfade();
+
+  });
+
+  socket.on('blink', function(){
+    console.log('Blink');
+    uploadsketchblink();
+
+  });
+
+  socket.on('disconnect', function () {
+    var self = this;
+    clientconnected = false;
+   console.log('Client Disconnected');
+  });
+});
 
 function getsysteminfos(){
   var self = this;
 
-
-  setInterval(function () {
-  var ethip = 'none';
-  var wlanip = 'none';
-  var usbip = 'none';
+  var ethip = 'Not Connected';
+  var wlanip = 'Not Connected';
+  var usbip = 'Not Connected';
+  var bt = 'Not Connected';
 
   ifconfig.status('eth0', function(err, status) {
-
     if (status.ipv4_address != undefined ) {
       var self = this;
       ethip = status.ipv4_address;
@@ -178,18 +136,17 @@ function getsysteminfos(){
     var self = this;
     if (status.ipv4_address != undefined ) {
       usbip = status.ipv4_address;
-      io.emit('usbstatus', wlanip);
+      io.emit('usbstatus', usbip);
     }
   });
-  }, 10000)
 
-
+}
+function getMotionSensors(){
 // Motion Sensors
 
-  var acc = 0;
-  var gyro = 0;
-  var magn =0;
+
   console.log('Reading Motion Sensors Values');
+
   exec("echo 1 > /sys/class/misc/FreescaleGyroscope/enable", function (error, stdout, stderr) {
     if (error !== null) {
       console.log('Cannot Enable Gyroscope: '+error);
@@ -215,7 +172,6 @@ function getsysteminfos(){
     }
   });
   setInterval(function () {
-
     fs.readFile('/sys/class/misc/FreescaleAccelerometer/data', 'utf8', function (err,accel) {
       var self=this;
       if (err) {
@@ -259,11 +215,10 @@ function getsysteminfos(){
       if (magn3 > 150) {
         magn = 150
       } else magn = magn3;
-
       //console.log(data);
     });
     io.emit('motion', {a:acc, g:gyro, m:magn})
-  }, 300)
+  }, 300);
 }
 
 function uploadsketchblink() {
@@ -287,3 +242,5 @@ function uploadsketchfade(){
     }
   });
 }
+
+

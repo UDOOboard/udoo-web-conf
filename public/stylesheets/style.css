@@ -418,3 +418,16 @@ a.fa-links:focus {
   height: 310px;
   width: 310px;
 }
+
+/* RESPONSIVE SIDEBAR CSS */
+
+.col-xs-2.col-sm-2.col-md-0 {
+  margin-left: -15px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+button.navbar-toggle {
+  margin-top: 5px;
+}
+body {margin-top:0px;}
