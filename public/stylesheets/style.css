@@ -431,3 +431,18 @@ button.navbar-toggle {
   margin-top: 5px;
 }
 body {margin-top:0px;}
+
+.nav > li > a:hover,
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: #ec008c;
+  color: white;
+  font-weight: 600;
+}
+
+.nav li a {border-bottom: 1px solid #ddd; color: black;font-weight: 600;}
+.nav li a {border-bottom: 1px solid #ddd; color: black;}
+ul.nav.nav-sidebar {
+  padding-top: 15px;
+  padding-left: 15px;
+}

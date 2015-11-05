@@ -63,19 +63,9 @@
 <!-- header -->
 <div class="container-fluid">
   <div class="row">
-      <div class="sideback">
-    <div class="col-xs-6 col-sm-4 col-md-2 sidebar-offcanvas">
-      <ul class="nav nav-sidebar">
-        <li><a href="/">Overview</a></li>
-        <li><a href="/arduino">Arduino</a></li>
-        <li><a href="/docs">Docs</a></li>
-        <li><a href="/firstconfig">Configuration</a></li>
-      </ul>
+      <%- include ./partials/sidebar.ejs %>
 
-    </div>
-      </div>
-
-    <div class="col-md-10 col-sm-12 col-xs-12">
+      <div class="col-md-10 col-sm-12 col-xs-12">
         <iframe src="http://192.168.0.101:8088/terminal/"></iframe>
 
 

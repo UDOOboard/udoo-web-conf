@@ -34,6 +34,10 @@ router.get('/terminal', function(req, res, next) {
   res.render('terminal');
 });
 
+router.get('/tutorials', function(req, res, next) {
+  res.render('tutorials');
+});
+
 router.get('/date', function(req, res, next) {
 
   /*var child_process = Promise.promisifyAll(require('child_process'));*/
