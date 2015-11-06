@@ -101,6 +101,7 @@
                }
                 else {
                    console.log('Cambio hostname ok');
+                   $window.alert('Done! Settings saved');
                }
             });
 
@@ -109,7 +110,7 @@
                 console.log(data);
                 if (typeof(data.kblayouts[1]) == 'undefined') {
                     console.log('Errore nel cambio kb layout');
-                    $window.alert('Unexpected error during keyboard layout change. Please, try again.');
+                    //$window.alert('Unexpected error during keyboard layout change. Please, try again.');
                     return;
                 }
                 else {
@@ -124,7 +125,8 @@
                         $window.alert('Error during wifi connection. Wrong password?');
                     }
                     else{
-                        console.log("Connesso con password")
+                        console.log("Connesso con password");
+                        //$window.alert('Wi-fi successfully configured');
                         that.finishedWizard();
                         //WizardHandler.wizard().finish();
                     }
@@ -133,7 +135,7 @@
                 $http.get('/connectWifi/' + that.selectedNetwork.networkName).success(function(data){
                     if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
                         console.log('NON Connesso senza pwd');
-                        $window.alert('Error during wifi connection.');
+                        //$window.alert('Error during wifi connection.');
                     }
                     else{
                         console.log('Connesso senza pwd');

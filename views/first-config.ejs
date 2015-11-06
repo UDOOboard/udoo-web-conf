@@ -24,17 +24,7 @@
    <script type="text/javascript" src="/js/directives.js"></script>
    <script type='text/javascript' src='/js/angular-wizard.js'></script>
 
-      <!-- timezone stuff -->
-<!--      <script type='text/javascript' src='/js/chosen.jquery.min.js'></script>
-      <script type='text/javascript' src='/js/chosen.proto.min.js'></script>
-      <script type='text/javascript' src='/js/moment.js'></script>
-      <script type='text/javascript' src='/js/moment-timezone.js'></script>
-      <script type='text/javascript' src='/js/angular-timezone-selector.js'></script>-->
 
-     <!--    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
-         <script>
-           var socket = io();
-         </script>-->
   </head>
   <body ng-controller="MainController as ctrl">
 
@@ -59,41 +49,30 @@
 
       <div class="background_y">
         <div class="title_y">
-          <p class="title_sections">FIRST CONFIGURATION WIZARD</p>
+          <p class="title_sections">QUICK CONFIGURATION</p>
         </div>
       </div>
-
-
+          <div class="col-md-6 col-sm-12 col-xs-12">
     <wizard on-finish="finishedWizard()">
       <wz-step title="General settings">
 
 
-        <br/>
+              <div class="tile tile-emerald col-md-12 col-sm-12 col-xs-12" style="opacity: 1;text-align: left;">
+                  &nbsp;
+                  <h3>Board Name</h3>
+                  <h6>Choose a unique name for your UDOO</h6>
+
+              </div>
         <hostname-input hostname="ctrl.hostname"></hostname-input>
-        <br/>
+          &nbsp;
 
-        <!--<select name="kbinput">
-          <option ng-repeat="o in ctrl.result" value="{{o}}" class="form-control" ng-model="ctrl.selectedOption">{{o}}</option>
-        </select>-->
+          <div class="tile tile-peter-river col-md-12 col-sm-12 col-xs-12" style="opacity: 1;text-align: left;">
+              &nbsp;
+              <h4>Wireless Network</h4>
+              <h6>Select The Wireless Network you want to connect to</h6>
+          </div>
 
-        <label>Keyboard layout:
-          <select name="mySelect" id="mySelect"
-                ng-options="option.name for option in ctrl.kbData.availableOptions track by option.id"
-                ng-model="ctrl.kbData.selectedOption"></select>
-        </label>
-
-<!--          <label>Timezone:
-              <timezone-selector ng-model="ctrl.timezone">
-          </label>-->
-
-        <br/>
-          <input type="submit" wz-next value="Next" class="btn btn-default btn-lg pull-right"/>
-        <br/>
-      </wz-step>
-
-      <wz-step title="Network">
-        <h1>Network</h1>
-          <label>Wifi networks:
+          <br/>
               <ul class="wifi">
                   <li ng-repeat="item in ctrl.finalList">
                       <div ng-click="ctrl.selectNetwork(item)" ng-class="{'selected-network-bg': item.isSelected}">
@@ -102,16 +81,14 @@
                   </li>
               </ul>
               Password: <input type="password" ng-model="ctrl.wifiPassword" ng-disabled="!ctrl.selectedNetwork.isProtected">
-          </label>
+
           <br/>
-        <input type="submit" ng-click="ctrl.connectToNetwork()" value="Finish" ng-disabled="!ctrl.selectedNetwork.isSelected" class="btn btn-default btn-lg pull-right"/><br/>
+        <input type="submit" ng-click="ctrl.connectToNetwork()" value="Save"  class="btn btn-default btn-lg pull-right"/><br/>
       </wz-step>
-<!--      <wz-step title="More steps">
-        <p>Even more steps!!</p>
-        <input type="submit" wz-next value="Finish now" class="btn btn-default btn-lg pull-right"/></p>
-      </wz-step>-->
+
     </wizard>
   </div>
+      </div>
 
 </div>
   </div>

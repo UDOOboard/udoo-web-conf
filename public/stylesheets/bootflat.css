@@ -580,7 +580,8 @@ blockquote {
  */
 .form-control {
   color: #434a54;
-  border-color: #aab2bd;
+  border-color: green;
+  border-width: 3px;
 }
 .form-control, .form-control:focus {
   -webkit-box-shadow: none;

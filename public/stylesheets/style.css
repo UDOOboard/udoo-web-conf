@@ -14,7 +14,7 @@ body {
 
 ul.wifi{
   padding: 0;
-  border: 1px solid black;
+  border: 3px solid lightskyblue;
   list-style-type: none;
 }
 
@@ -445,4 +445,24 @@ body {margin-top:0px;}
 ul.nav.nav-sidebar {
   padding-top: 15px;
   padding-left: 15px;
+}
+
+ul.steps-indicator.steps-1 {
+  visibility: hidden;
+}
+input.ng-pristine.ng-untouched.ng-valid.ng-scope {
+  border: 3px solid lightgray;
+  background-color: white;
+}
+.tile.tile-peter-river.col-md-12.col-sm-12.col-xs-12.ng-scope {
+  border: 0px;
+}
+
+ul.wifi.ng-scope {
+  font-family: quicksand;
+  font-weight: 800;
+}
+
+.tile.tile-emerald.col-md-12.col-sm-12.col-xs-12.ng-scope {
+  border: 0px;
 }
