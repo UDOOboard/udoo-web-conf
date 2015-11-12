@@ -1,6 +1,11 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 
-%:
-	dh $@
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
 
+%:
+	dh $@ 
+
+dh_build_override:
+	npm install

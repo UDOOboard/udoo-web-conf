@@ -1,14 +1,13 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: udoo-web-conf
-Source: <url://example.com>
+Source: https://github.com/UDOOboard/udoo-web-conf
 
 Files: *
-Copyright: <years> <put author's name and email here>
-           <years> <likewise for another author>
+Copyright: 2015 UDOO Team <social@udoo.org>
 License: GPL-2.0+
 
 Files: debian/*
-Copyright: 2015 Francesco Montefoschi <francesco.monte@gmail.com>
+Copyright: 2015 Ettore Chimenti <ek5.chimenti@gmail.com>
 License: GPL-2.0+
 
 License: GPL-2.0+
@@ -23,12 +22,8 @@ License: GPL-2.0+
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>
+ along with this program. If not, see <http://www.gnu.org/licenses/>
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
 
-# Please also look if there are files or directories which have a
-# different copyright/license attached and list them here.
-# Please avoid picking licenses with terms that are more restrictive than the
-# packaged work, as it may make Debian's contributions unacceptable upstream.

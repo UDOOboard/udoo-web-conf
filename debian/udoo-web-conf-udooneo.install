@@ -1,0 +1,12 @@
+arduino_examples /usr/share/udoo-web-conf
+bin /usr/share/udoo-web-conf
+public /usr/share/udoo-web-conf
+routes /usr/share/udoo-web-conf
+shscripts /usr/share/udoo-web-conf
+views /usr/share/udoo-web-conf
+node_modules /usr/share/udoo-web-conf
+app.js /usr/share/udoo-web-conf
+karma.conf.js /usr/share/udoo-web-conf
+package.json /usr/share/udoo-web-conf
+debian/udoo-web-conf.conf /etc/init/
+quickstart.html /boot/
