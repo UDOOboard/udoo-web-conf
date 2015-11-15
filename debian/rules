@@ -7,5 +7,3 @@ export DH_VERBOSE=1
 %:
 	dh $@ 
 
-dh_build_override:
-	npm install

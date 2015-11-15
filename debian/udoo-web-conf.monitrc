@@ -1,0 +1,5 @@
+check process udoo-web-conf with pidfile "/var/run/udoo-web-conf.pid"
+    start program = "/sbin/start udoo-web-conf"
+    stop program = "/sbin/stop udoo-web-conf"
+    if failed port 80 with timeout 15 seconds then restart
+

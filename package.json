@@ -1,9 +1,14 @@
 {
-  "name": "udoo-cfg",
-  "version": "0.0.0",
+  "name": "udoo-web-conf",
+  "version": "0.1.0",
   "private": true,
+  "description":"UDOO Neo Web Configurator",
+  "author": "UDOO Team <social@udoo.org>", 
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "/usr/bin/node ./bin/www"
+  },
+  "config": {
+    "start": "/usr/bin/node ./bin/www"
   },
   "dependencies": {
     "bluebird": "^2.9.33",
