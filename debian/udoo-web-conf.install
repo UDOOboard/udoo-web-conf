@@ -7,7 +7,3 @@ public /opt/udoo-web-conf
 routes /opt/udoo-web-conf
 shscripts /opt/udoo-web-conf
 views /opt/udoo-web-conf
-debian/udoo-web-conf.conf /etc/init/
-debian/udoo-web-conf.monitrc /etc/monit/monitrc.d/udoo-web-conf
-debian/udoo-web-conf.nginx /etc/nginx/sites-available/udoo-web-conf
-debian/udoo-web-conf.nginx.ssl /etc/nginx/sites-available/udoo-web-conf-ssl
