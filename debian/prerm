@@ -6,14 +6,10 @@
 set -e
 
 case "$1" in
-  remove|upgrade|deconfigure)
-
-    echo "Stopping udoo-web-conf"
-    stop udoo-web-conf
-    exit 0
+  remove|deconfigure)
     ;;
 
-  failed-upgrade)
+  upgrade|failed-upgrade)
     ;;
 
   *)

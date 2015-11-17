@@ -2,16 +2,23 @@ Source: udoo-web-conf
 Section: utils
 Priority: optional
 Maintainer: Ettore Chimenti <ek5.chimenti@gmail.com>
-Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.4
+Build-Depends: debhelper (>= 9.0.0), npm
+Standards-Version: 3.9.5
 Homepage: http://www.udoo.org
 #Vcs-Git: git://git.debian.org/collab-maint/udoo-web-conf.git
 Vcs-Browser: https://github.com/UDOOboard/udoo-web-conf/
 
 Package: udoo-web-conf
 Architecture: all
-Depends: ${misc:Depends}, udoo-web-docs-neo, nodejs (>=0.12.6), npm
+Depends: ${misc:Depends}, udoo-web-docs-neo, nodejs (>=0.12.6),
+ udoo-web-conf-modules
 Description: UDOO Neo Web Configurator
- This tool is designed to allow easy configuration and act as an handy web-based 
+ This tool is designed to allow easy configuration and act as an handy web-based
  control panel for UDOO NEO.
 
+Package: udoo-web-conf-modules
+Architecture: all
+Depends: ${misc:Depends}, udoo-web-docs-neo, nodejs (>=0.12.6)
+Description: UDOO Neo Web Configurator - Node modules
+ This tool is designed to allow easy configuration and act as an handy web-based
+ control panel for UDOO NEO.

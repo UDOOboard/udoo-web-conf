@@ -7,20 +7,6 @@ set -e
 
 case "$1" in
   configure)
-
-    [ -d /opt/udoo-web-conf/node_modules ] || 
-    {
-      command -v npm >/dev/null 2>&1 || 
-      { 
-        echo >&2 "I require npm but it's not installed.  Aborting."
-        exit 1
-      }
-      echo "Running npm...."
-      cd /opt/udoo-web-conf
-      sudo -H -u root npm i
-    }
-    echo "Starting udoo-web-conf"
-    start udoo-web-conf
     ;;
 
   abort-upgrade|abort-remove|abort-deconfigure)
@@ -38,5 +24,3 @@ esac
 #DEBHELPER#
 
 exit 0
-
-

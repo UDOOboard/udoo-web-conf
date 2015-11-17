@@ -9,7 +9,7 @@ author "UDOO Team <social@udoo.org>"
 env USER=root
 env PATH=/sbin:/bin:/usr/bin
 
-start on (local-filesystems and configuring-networking)
+start on local-filesystems
 stop on [06]
 
 respawn
@@ -36,4 +36,5 @@ end script
 
 pre-stop script
   echo "[`date -u '+%Y-%m-%d %T %Z'`] (sys) Stopping" >> /var/log/udoo-web-conf.log
+  umount -lf /boot/docs 
 end script
