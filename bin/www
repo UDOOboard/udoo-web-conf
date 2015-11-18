@@ -101,6 +101,18 @@ io.on('connection', function(socket){
 
   });
 
+  socket.on('upload-sketch', function (data) {
+    console.log(data);
+    var fs = require('fs');
+    fs.writeFile("/opt/udoo-web-conf/mysketch.ino", data, function(err) {
+      if(err) {
+        return console.log(err);
+      }
+
+      console.log("The file was saved!");
+    });
+  });
+
   socket.on('disconnect', function () {
     var self = this;
     clientconnected = false;
