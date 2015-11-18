@@ -120,7 +120,7 @@ io.on('connection', function(socket){
       }
 
       console.log("The file was saved!");
-      exec("/usr/bin/arduino --upload /opt/udoo-web-conf/mysketch.ino", function (error, stdout, stderr) {
+      exec("export DISPLAY=:0 && /usr/bin/arduino --upload /opt/udoo-web-conf/mysketch.ino", {uid:1000}, function (error, stdout, stderr) {
         if (error !== null) {
           console.log('Cannot Upload Sketch: '+error);
         }
