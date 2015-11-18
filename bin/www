@@ -101,15 +101,33 @@ io.on('connection', function(socket){
 
   });
 
+  socket.on('getcurrent-sketch', function (){
+    fs.readFile('/opt/udoo-web-conf/mysketch.ino', 'utf8', function (err,data) {
+      if (err) {
+        return console.log(err);
+      }
+      socket.emit('current-sketch', data);
+      console.log('current sketch: ' + data);
+    });
+  })
+
   socket.on('upload-sketch', function (data) {
     console.log(data);
-    var fs = require('fs');
+
     fs.writeFile("/opt/udoo-web-conf/mysketch.ino", data, function(err) {
       if(err) {
         return console.log(err);
       }
 
       console.log("The file was saved!");
+      exec("/usr/bin/arduino --upload /opt/udoo-web-conf/mysketch.ino", function (error, stdout, stderr) {
+        if (error !== null) {
+          console.log('Cannot Upload Sketch: '+error);
+        }
+        else {
+          console.log('Sketch successfully uploaded ');
+        }
+      });
     });
   });
 

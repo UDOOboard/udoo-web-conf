@@ -60,8 +60,7 @@
 
 <!--- IDE -->
 
-  <textarea id="editor">
-
+            <textarea id="editor">
 void setup() {
   // put your setup code here, to run once:
 
@@ -72,24 +71,28 @@ void loop() {
 
 }
 </textarea>
+            <button type="button" id="upload" class="btn btn-success btn-block">Upload</button>
             <script type="text/javascript">
+
                 var cp = new CodePrinter(document.getElementsByTagName('textarea')[0], {
                     theme: 'default',
                     mode: 'JavaScript',
                     lineNumbers: true,
                     fontSize: 14
                 });
+                var sketch= cp.code.innerText;
+                var socket = io();
+                //var sketch = cp.code.innerText;
+                document.getElementById('upload').onclick = function() {
+                    socket.emit('upload-sketch', cp.code.innerText)
+                }
             </script>
             <!--- IDE -->
             <!--- UDOO FILE -->
-            <button type="button" id="upload" class="btn btn-success btn-block">Upload</button>
+
 
             <script>
-                var socket = io();
-                var sketch = cp.code.innerText;
-                document.getElementById('upload').onclick = function() {
-                    socket.emit('upload-sketch', sketch)
-                }
+
 
             </script>
             <!--- UDOO FILE -->
