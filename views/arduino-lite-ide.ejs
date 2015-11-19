@@ -87,9 +87,16 @@ void loop() {
                 var sketch= cp.code.innerText;
                 var socket = io();
                 //var sketch = cp.code.innerText;
-                document.getElementById('upload').onclick = function() {
+                document.getElementById('upload-ide').onclick = function() {
                     socket.emit('upload-sketch', cp.code.innerText)
                 }
+                socket.on('simple-ide-error', function (data) {
+                    document.getElementById('feedback').innerHTML=data;
+                });
+
+                socket.on('simple-ide', function (data) {
+                    document.getElementById('feedback').innerHTML=data;
+                });
             </script>
             <!--- IDE -->
             <!--- UDOO FILE -->
