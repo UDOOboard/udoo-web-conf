@@ -466,3 +466,18 @@ ul.wifi.ng-scope {
 .tile.tile-emerald.col-md-12.col-sm-12.col-xs-12.ng-scope {
   border: 0px;
 }
+
+div#feedback {
+  border: 4px solid red;
+  min-height: 40px;
+  text-align: middle;
+  vertical-align: middle;
+  border-radius: 4px;
+}
+
+button#upload-ide {
+  background: white;
+  color: purple;
+  border: purple 4px solid;
+  font-weight: 600;
+}

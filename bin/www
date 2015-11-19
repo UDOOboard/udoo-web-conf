@@ -114,13 +114,13 @@ io.on('connection', function(socket){
   socket.on('upload-sketch', function (data) {
     console.log(data);
 
-    fs.writeFile("/opt/udoo-web-conf/mysketch.ino", data, function(err) {
+    fs.writeFile("/opt/udoo-web-conf/mysketch/mysketch.ino", data, function(err) {
       if(err) {
         return console.log(err);
       }
 
       console.log("The file was saved!");
-      exec("export DISPLAY=:0 && /usr/bin/arduino --upload /opt/udoo-web-conf/mysketch.ino", {uid:1000}, function (error, stdout, stderr) {
+      exec("export DISPLAY=:0 && /usr/bin/arduino --upload /opt/udoo-web-conf/mysketch/mysketch.ino", {uid:1000, gid:20}, function (error, stdout, stderr) {
         if (error !== null) {
           console.log('Cannot Upload Sketch: '+error);
         }

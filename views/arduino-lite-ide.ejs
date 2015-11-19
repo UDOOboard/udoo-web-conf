@@ -59,7 +59,11 @@
             </div>
 
 <!--- IDE -->
-
+            <div class="row">
+<div class="col-md-2 col-sm-12 col-xs-12" id="button"><button type="button" id="upload-ide" class="btn btn-success btn-block">Upload</button></div>
+<div class="col-md-9 col-sm-12 col-xs-12" id="feedback">
+Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Microcontroller
+</div></div>
             <textarea id="editor">
 void setup() {
   // put your setup code here, to run once:
@@ -71,7 +75,7 @@ void loop() {
 
 }
 </textarea>
-            <button type="button" id="upload" class="btn btn-success btn-block">Upload</button>
+
             <script type="text/javascript">
 
                 var cp = new CodePrinter(document.getElementsByTagName('textarea')[0], {
