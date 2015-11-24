@@ -3,6 +3,7 @@
 <head>
     <title>Udoo - First configuration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8" />
     <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
@@ -88,7 +89,7 @@ void loop() {
                 var socket = io();
                 //var sketch = cp.code.innerText;
                 document.getElementById('upload-ide').onclick = function() {
-                    socket.emit('upload-sketch', cp.code.innerText)
+                    socket.emit('upload-sketch', cp.code.innerText.replace(/[^\040-\176\200-\377]/gi, "\n"))
                 }
                 socket.on('simple-ide-error', function (data) {
                     document.getElementById('feedback').innerHTML=data;

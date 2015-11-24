@@ -109,12 +109,11 @@ io.on('connection', function(socket){
       socket.emit('current-sketch', data);
       console.log('current sketch: ' + data);
     });
-  })
+  });
 
   socket.on('upload-sketch', function (data) {
-    console.log(data);
-
-    fs.writeFile("/opt/udoo-web-conf/mysketch/mysketch.ino", data, function(err) {
+    //console.log(data);
+    fs.writeFile("/opt/udoo-web-conf/mysketch/mysketch.ino", data, 'utf8',  function(err) {
       if(err) {
         socket.emit('simple-ide-error', err);
         return console.log(err);
@@ -124,8 +123,10 @@ io.on('connection', function(socket){
       socket.emit('simple-ide', 'Verifying & Uploading Sketch, please wait...');
       exec("export DISPLAY=:0 && /usr/bin/arduino --upload /opt/udoo-web-conf/mysketch/mysketch.ino", {uid:1000, gid:20}, function (error, stdout, stderr) {
         if (error !== null) {
-          socket.emit('simple-ide-error', error);
-          console.log('Cannot Upload Sketch: '+error);
+          fullerror = error.toString();
+          trimerror = fullerror.split("mysketch.ino:").pop();
+          socket.emit('simple-ide-error', trimerror);
+          console.log('Cannot Upload Sketch: '+fullerror);
         }
         else {
           socket.emit('simple-ide', 'Sketch successfully uploaded!');
