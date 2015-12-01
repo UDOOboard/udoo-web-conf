@@ -245,6 +245,21 @@ text-align:center;
 
 
 
+.content_menu {
+
+
+min-height: 600px;
+    height: auto !important;
+    height: 600px;
+
+}
+
+
+
+
+
+
+
 /* New Home ---------------------------------------------------------------------------- */
 
 .title_sections1 {
@@ -620,10 +635,20 @@ margin-top: 10px;
 
 
 
+/* Fonts ---------------------------------------------------------------------------- */
 
 
 
+@font-face {
+    font-family: quicksand;
+    src: url(/fonts/Quicksand-Regular.otf);
+}
 
+@font-face {
+    font-family: quicksand;
+    src: url(/fonts/Quicksand-Bold.otf);
+    font-weight: bold;
+}
 
 
 
@@ -879,8 +904,8 @@ body {margin-top:0px;}
 .nav li a {border-bottom: 1px solid #ddd; color: black;font-weight: 600;}
 .nav li a {border-bottom: 1px solid #ddd; color: black;}
 ul.nav.nav-sidebar {
-  padding-top: 15px;
-  padding-left: 15px;
+/*  padding-top: 15px;
+  padding-left: 15px; */
 }
 
 ul.steps-indicator.steps-1 {

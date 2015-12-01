@@ -52,7 +52,9 @@ h3{font-weight: 300; font-size: 22px;margin-bottom: 40px}
 
 
 /* collapsed sidebar styles */
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 768px) {
+
+
 
 	
 	.affix {position: static;}
@@ -71,6 +73,8 @@ h3{font-weight: 300; font-size: 22px;margin-bottom: 40px}
 		position: fixed;
 		top:50px;
 		left: -70%;
+		padding-top: 20px;
+		
 	}
 	
 	.sidebar-offcanvas ul li{margin:0}

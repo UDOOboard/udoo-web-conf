@@ -12,6 +12,7 @@
       <link rel='stylesheet' href='/stylesheets/angular-timezone-selector.css' />
       <link rel='stylesheet' href='/stylesheets/bootstrap-chosen.css' />
       <link rel='stylesheet' href='/stylesheets/chosen.css' />
+      <link rel='stylesheet' href='/stylesheets/navbar-static-top.css' />
       <script type='text/javascript' src='js/jquery-2.1.4.min.js'></script>
       <!--http://bootflat.github.io/-->
     <link rel='stylesheet' href='/stylesheets/bootflat.css' />
@@ -23,21 +24,40 @@
    <script type="text/javascript" src="/js/controllers.js"></script>
    <script type="text/javascript" src="/js/directives.js"></script>
    <script type='text/javascript' src='/js/angular-wizard.js'></script>
+   <script type='text/javascript' src='/socket.io/socket.io.js'></script>
+   <script type='text/javascript' src='/js/overview.js'></script>
 
 
   </head>
   <body ng-controller="MainController as ctrl">
 
+<script>
+      $(document).ready(function() {
+          $('[data-toggle=offcanvas]').click(function() {
+              $('.sidebar-offcanvas').toggleClass('active', 1000);
+          });
+      });</script>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid" id="topbar">
-      <div class="navbar-header">
-        <a href="http://www.udoo.org" title="UDOO">
-          <img src="/images/logo_small.png" alt="">
-        </a>
-      </div>
+        <div class="col-xs-2 col-sm-2 col-md-0">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+
+            </div>
+
+        <div class="col-xs-2 col-sm-2 col-md-12">
+            <a href="http://www.udoo.org" title="UDOO">
+                <img src="/images/logo_small.png" alt="">
+            </a>
+            </div>
+        <div class="col-xs-8 col-sm-8 col-md-0">
+
 
     </div>
-  </nav>
+  </div></nav>
 
 <!-- header -->
 <div class="container-fluid">
