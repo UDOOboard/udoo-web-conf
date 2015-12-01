@@ -3,6 +3,7 @@
 <head>
     <title>Udoo - First configuration</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8" />
     <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
@@ -52,18 +53,21 @@
 
         <div class="col-md-10 col-sm-12 col-xs-12">
 
-            <div class="background_r">
-                <div class="title_r">
-                    <p class="title_sections">ARDUINO</p>
+           <div class="row">
+                <div class="col-lg-12">
+                    <p class="title_sections1">ARDUINO EDITOR</p>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
 
 <!--- IDE -->
             <div class="row">
-<div class="col-md-2 col-sm-12 col-xs-12" id="button"><button type="button" id="upload-ide" class="btn btn-success btn-block">Upload</button></div>
-<div class="col-md-9 col-sm-12 col-xs-12" id="feedback">
-Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Microcontroller
-</div></div>
+            
+            <div class="col-md-12 col-sm-12 col-xs-12"><div class="text_g">Use this Web IDE to upload your own Sketch. Write the code below and press the Upload button. Be aware that it could takes 30 seconds to verify and upload the sketch. </div></div>
+<BR>
+<BR>
+<BR>
+<div class="col-md-12 col-sm-12 col-xs-12">
             <textarea id="editor">
 void setup() {
   // put your setup code here, to run once:
@@ -75,6 +79,18 @@ void loop() {
 
 }
 </textarea>
+<div id="feedback">
+Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Microcontroller
+</div>
+</div>
+
+<BR>
+
+
+<div class="col-md-2 col-sm-12 col-xs-12" id="button"><div class="wrapper_docs"><button type="button" id="upload-ide" class="btn btn-success btn-block">UPLOAD</button></div>
+<BR>
+</div>
+</div>
 
             <script type="text/javascript">
 
@@ -88,7 +104,8 @@ void loop() {
                 var socket = io();
                 //var sketch = cp.code.innerText;
                 document.getElementById('upload-ide').onclick = function() {
-                    socket.emit('upload-sketch', cp.code.innerText)
+                    socket.emit('upload-sketch', cp.code.innerText.replace(/[^\040-\176\200-\377]/gi, "\n"))
+                
                 }
                 socket.on('simple-ide-error', function (data) {
                     document.getElementById('feedback').innerHTML=data;
@@ -108,7 +125,7 @@ void loop() {
             </script>
             <!--- UDOO FILE -->
         </div>
-
+<BR>
     </div>
 
 </div>

@@ -50,31 +50,40 @@
 
         <div class="col-md-10 col-sm-12 col-xs-12">
 
-            <div class="background_r">
-                <div class="title_r">
-                    <p class="title_sections">ARDUINO</p>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="title_sections1">ARDUINO</p>
                 </div>
+                <!-- /.col-lg-12 -->
             </div>
-            <div class="tile tile-yellow col-md-12 col-xs-12" style="opacity: 1;">
-                &nbsp;
-            <h4>3 easy examples to get your started using UDOO Neo's integrated Arduino compatible processor. Just follow the instructions and hit run!</h4>
-
-            </div>
-            <div class="tile tile-green-sea col-md-6 col-xs-6" style="opacity: 1;">
-                &nbsp;
-<h4>Blink</h4>
-                <h6>Connect a LED to PIN 13 and see it blinking!</h6>
-            </div>
-            <div class="tile tile-green-sea col-md-6 col-xs-6" style="opacity: 1;">
-                &nbsp;
-                <h4>Fade</h4>
-                <h6>Connect a LED to PIN 9 and see it fade in and out!</h6>
-            </div>
-
-
-            <div class="tile tile-clouds col-md-6 col-xs-6" style="opacity: 1;">
+            <BR>
+          	<div class="text_g">2 easy examples to get your started using UDOO Neo's integrated Arduino compatible processor. Just follow the instructions and hit run!</div>
+          	
+          	<div class="row">
+          	
+          	<div class="col-lg-6 col-md-6">
+                    <div class="panel panel-arduino">
+                        <div class="panel-heading">
+                        <p class="title_sections2">BLINK</p>
+                            <div class="row">
+                                
+                                <div class="col-xs-12 text-right">
+                                                               
+                                    <div class="text_v">Connect a LED to PIN 13 and see it blinking!</div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">
+            
+            
+            
+            
                 <pre>
-
 void setup() {
 
   pinMode(13, OUTPUT);
@@ -88,10 +97,36 @@ void loop() {
   delay(1000);
 }
                 </pre>
-                <button type="button" id="blink" class="btn btn-success btn-block">Run!</button>
+               
             </div>
-
-            <div class="tile tile-clouds col-md-6 col-xs-6" style="opacity: 1;">
+            
+             </div>
+                    
+                    <div class="wrapper_docs"><button type="button" id="blink" class="btn btn-success btn-block">RUN!</button></div>
+                    
+                    <BR>
+                    
+                    
+                    
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="panel panel-arduino">
+                        <div class="panel-heading">
+                        <p class="title_sections2">FADE</p>
+                            <div class="row">
+                               
+                                <div class="col-xs-12 text-right">
+                                    
+                                    <div class="text_v">Connect a LED to PIN 9 and see it fade in and out!</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    
+                    <div class="panel panel-grey">
+                        <div class="panel-heading">
                 <pre>
 int led = 9;
 int brightness = 0;
@@ -119,8 +154,15 @@ void loop() {
   delay(30);
 }
                 </pre>
-                <button type="button" id="fade" class="btn btn-success btn-block">Run!</button>
             </div>
+             </div>
+                                    <div class="wrapper_docs"><button type="button" id="fade" class="btn btn-success btn-block">RUN!</button></div>
+<BR>
+                    
+                </div>
+          	
+            
+           </div>
 
 
 

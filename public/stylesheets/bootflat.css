@@ -580,8 +580,9 @@ blockquote {
  */
 .form-control {
   color: #434a54;
-  border-color: green;
+  border-color: #2ecc71;
   border-width: 3px;
+  border-radius: 4px;
 }
 .form-control, .form-control:focus {
   -webkit-box-shadow: none;
@@ -2129,10 +2130,10 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
   border-top: 1px solid #e6e9ed;
 }
 .panel-heading {
-          border-radius: 4px 4px 0 0;
+          border-radius: 4px 4px 4px 4px;
 
-  -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 4px 4px 4px 4px;
+     -moz-border-radius: 4px 4px 4px 4px;
 }
 .panel-title {
   font-size: 14px;
