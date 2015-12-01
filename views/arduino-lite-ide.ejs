@@ -105,10 +105,7 @@ Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Mi
                 //var sketch = cp.code.innerText;
                 document.getElementById('upload-ide').onclick = function() {
                     socket.emit('upload-sketch', cp.code.innerText.replace(/[^\040-\176\200-\377]/gi, "\n"))
-<<<<<<< HEAD
                 
-=======
->>>>>>> 1b8a6df7e53e26b06660b340314d7a5234ada26d
                 }
                 socket.on('simple-ide-error', function (data) {
                     document.getElementById('feedback').innerHTML=data;
