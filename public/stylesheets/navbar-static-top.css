@@ -52,7 +52,7 @@ h3{font-weight: 300; font-size: 22px;margin-bottom: 40px}
 
 
 /* collapsed sidebar styles */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
 
 
 
@@ -78,8 +78,8 @@ h3{font-weight: 300; font-size: 22px;margin-bottom: 40px}
 	}
 	
 	.sidebar-offcanvas ul li{margin:0}
-	.sidebar-offcanvas ul li a{color:#fff;padding: 15px 20px;margin:0;font-size: 15px;border-bottom: 1px solid #d6474d}
-	.sidebar-offcanvas ul li a:hover{background:#54303a;border:none; border-radius:0}
+	.sidebar-offcanvas ul li a{color:#fff;padding: 15px 20px;margin:0;font-size: 15px;border-bottom: 1px solid #f4f4f4}
+	.sidebar-offcanvas ul li a:hover{background:#f4f4f4;border:none; border-radius:0;color: #ec008c;}
 	
 	.nav{margin-top: 0px;}
 	.nav > li > a:hover, 
