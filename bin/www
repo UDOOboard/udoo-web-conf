@@ -150,6 +150,7 @@ function getsysteminfos(){
   var wlanip = 'Not Connected';
   var usbip = 'Not Connected';
   var bt = 'Not Connected';
+  var model = ' ';
 
   ifconfig.status('eth0', function(err, status) {
     if (status.ipv4_address != undefined ) {
@@ -172,6 +173,19 @@ function getsysteminfos(){
     if (status.ipv4_address != undefined ) {
       usbip = status.ipv4_address;
       io.emit('usbstatus', usbip);
+    }
+  });
+
+  exec("/opt/udoo-web-conf/shscripts/model.sh", {uid:1000, gid:20}, function (error, stdout, stderr) {
+    var self = this;
+    if (error !== null) {
+
+      console.log('Cannot Launch model script: ' +error);
+    }
+    else {
+      model = stdout.toString();
+      io.emit('model', model);
+      console.log(model);
     }
   });
 
