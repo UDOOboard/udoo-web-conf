@@ -507,11 +507,11 @@ border: 3px solid #67b2e4;
 
 
 .panel-red2 {
-    border-color: #d06a60;
+    border: 3px solid #d06a60;
 }
 
 .panel-red2 .panel-heading {
-    border-color: #d06a60;
+    border: 3px solid #d06a60;
     color: #fff;
     background-color: #d06a60;
 }
@@ -520,20 +520,37 @@ border: 3px solid #67b2e4;
     color: #d06a60;
 }
 
-.panel-red2 a:hover {
-    background-color: #c0392b;
+.panel-red2 .panel-heading:hover {
+    background-color: #ffffff;
+    border: 3px solid #d06a60; 
+    color: #d06a60;
+    font-weight: bold;
 }
+    
+    .panel-red2:focus {
+    color: #ffffff;
+    }
+    
+.panel-red2:hover:focus {
+    color: #d06a60;
+    }
+
+
+
+
+
+
 
 
 
 
 
 .panel-orange {
-    border-color: #ec9e59;
+    border: 3px solid #ec9e59;
 }
 
 .panel-orange .panel-heading {
-    border-color: #ec9e59;
+    border: 3px solid #ec9e59;
     color: #fff;
     background-color: #ec9e59;
 }
@@ -542,29 +559,41 @@ border: 3px solid #67b2e4;
     color: #ec9e59;
 }
 
-.panel-orange a:hover {
-    background-color: #e67e22;
+.panel-orange .panel-heading:hover {
+    background-color: #ffffff;
+    border: 3px solid #ec9e59;
+    color: #ec9e59;
+    font-weight: bold;
 }
+    
+    .panel-orange:focus {
+    color: #ffffff;
+    }
+    
+.panel-orange:hover:focus {
+    color: #ec9e59;
+    }
+
 
 
 
 
 .panel-arduino {
-    border-color: #16a085;
+    border-color: #00979d;
 }
 
 .panel-arduino .panel-heading {
-    border-color: #16a085;
+    border-color: #00979d;
     color: #fff;
-    background-color: #16a085;
+    background-color: #00979d;
 }
 
 .panel-arduino a {
-    color: #16a085;
+    color: #00979d;
 }
 
 .panel-arduino a:hover {
-    background-color: #16a085;
+    background-color: #00979d;
 }
 
 

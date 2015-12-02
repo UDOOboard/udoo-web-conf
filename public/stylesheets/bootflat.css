@@ -1815,6 +1815,7 @@ blockquote {
 
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
+     border: 1px solid #ddd
 }
 .list-group-item {
   border-color: transparent;
@@ -2127,7 +2128,7 @@ a.list-group-item-danger.active, a.list-group-item-danger:hover, a.list-group-it
           box-shadow: none;
 }
 .panel .list-group-item:first-child {
-  border-top: 1px solid #e6e9ed;
+  /* border-top: 1px solid #e6e9ed; */
 }
 .panel-heading {
           border-radius: 4px 4px 4px 4px;
