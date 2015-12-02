@@ -4374,7 +4374,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 5px;
 }
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .navbar-toggle {
     display: none;
   }
