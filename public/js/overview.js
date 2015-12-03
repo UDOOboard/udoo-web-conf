@@ -63,7 +63,17 @@ function notifyMotionData(data){
 
 function notifyModelData(data){
   document.getElementById('spanmodel').innerHTML=data;
+  if (data = 'FULL'){
+  $("imagemodel").attr("src","/images/udoo_neo_full_hor.png");
+} else if (data = 'EXTENDED') {
+  $("imagemodel").attr("src","/images/udoo_neo_extended_hor.png");
+} else  if (data = "BASIC"){
+  $("imagemodel").attr("src","/images/udoo_neo_basic_hor.png");
+} else {
+  $("imagemodel").attr("src","/images/udoo_neo_full_hor.png");
 }
+}
+
 
 function notifyMacAddressData(data){
   document.getElementById('spanmacaddress').innerHTML=data;

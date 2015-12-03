@@ -196,7 +196,7 @@ function getsysteminfos(){
     if (err)  throw err
     io.emit('macaddress', macAddress);
 
-    console.log(macAddress)
+    //console.log(macAddress)
 });
 
 isOnline(function(err, online) {
