@@ -37,6 +37,18 @@ socket.on('motion', function(data){
     notifyMotionData(data);
 });
 
+socket.on('model', function(data){
+  notifyModelData(data);
+});
+
+socket.on('macaddress', function(data){
+  notifyMacAddressData(data);
+});
+
+socket.on('online', function(data){
+  notifyOnlineData(data);
+});
+
 function notifyMotionData(data){
 
 
@@ -49,7 +61,17 @@ function notifyMotionData(data){
 }
 
 
+function notifyModelData(data){
+  document.getElementById('spanmodel').innerHTML=data;
+}
 
+function notifyMacAddressData(data){
+  document.getElementById('spanmacaddress').innerHTML=data;
+}
+
+function notifyOnlineData(data){
+  document.getElementById('spanonline').innerHTML=data;
+}
 
 
 function ethStatusData(data){

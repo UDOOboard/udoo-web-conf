@@ -23,7 +23,7 @@
    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
    <script type='text/javascript' src='/js/overview.js'>
    </script><script type='text/javascript' src='./js/jquery-2.1.4.min.js'></script>
-   
+
    <!-- Custom Fonts -->
     <link href="../font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -68,14 +68,14 @@
 <div class="container-fluid">
   <div class="row">
       <%- include ./partials/sidebar.ejs %>
-      
-      
-      
+
+
+
 
     <div class="col-md-10 col-sm-12 col-xs-12 background_right">
 
-      
-      
+
+
             <div class="row">
                 <div class="col-lg-12">
                     <p class="title_sections1">DASHBOARD</p>
@@ -93,12 +93,12 @@
                                     <img src="/images/ethernet_icon.png" alt="" width="56" height="56">
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                                               
+
                                     <div id="ethstatus">Not Connected</div>
                                 </div>
-                                
+
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -111,12 +111,12 @@
                                     <i class="fa fa-usb fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    
+
                                     <div id="usbstatus">Not Connected</div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -128,12 +128,12 @@
                                     <i class="fa fa-wifi fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    
+
                                     <div id="wlanstatus">Not Connected</div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -145,30 +145,30 @@
                                     <i class="fa fa-bluetooth-b fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    
+
                                     <div id="btstatus">Not Connected</div>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
             <!-- /.row -->
-      
-       
-      
-      
-      
-      
-     
-          
+
+
+
+
+
+
+
+
             <div class="row">
-                
-                
-                
-                
-                
+
+
+
+
+
                 <div class="col-lg-8 col-md-8">
                 <div class="panel panel-grey">
                         <div class="panel-heading">
@@ -177,53 +177,53 @@
                 <div class="immmagine_board">
                 <BR>
                 <img class="neoimg" src="/images/udoo_neo_full_hor.png" alt="">
-                
+
                 </div>
-                
+
                 </div>
-                
+
                 <div class="col-md-7 col-sm-7">
                 <BR>
-               
+
                 <div class="panel-body">
                             <div class="list-group">
                                 <div class="list-group-item">
                                     <i class="fa fa-square fa-fw"></i> MODEL
-                                    <span class="pull-right text-muted"><em>UDOO NEO FULL</em>
+                                    <span id="spanmodel" class="pull-right text-muted"><em></em>
                                     </span>
                                 </div>
                                 <div class="list-group-item">
                                     <i class="fa fa-plus fa-fw"></i> MAC ADDRESS
-                                    <span class="pull-right text-muted"><em>1234567890</em>
+                                    <span id="spanmacaddress" class="pull-right text-muted"><em></em>
                                     </span>
                                 </div>
                                 <div class="list-group-item">
                                     <i class="fa fa-globe fa-fw"></i> INTERNET
-                                    <span class="pull-right text-muted"><em>YES</em>
+                                    <span id="spanonline" class="pull-right text-muted"><em></em>
                                     </span>
                                 </div>
                             </div>
                             </div>
                             <!-- /.list-group -->
-                
-                                    
-                                    
-                                    
+
+
+
+
                                 </div>
                     </div>
                     </div>
-            
-                
+
+
             </div>
-            
-            
-            
-            
+
+
+
+
             <div class="col-lg-4 col-md-4">
                     <div class="panel panel-grey">
                         <div class="panel-heading">
                         <p class="title_sections3">SENSORS</p>
-                            
+
                             <table id="indexsensors">
                     <tr>
                         <td id="motionicons"><img class="iconnet" src="/images/iconacc.png" alt=""></td>
@@ -242,45 +242,45 @@
 
                     </tr>
                 </table>
-                            
-                            
-                            
+
+
+
                         </div>
                     </div>
                 </div>
-            
-            
-                
-                
+
+
+
+
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
+
+
+
       <div class="row">
-      
-      
-      
-      
+
+
+
+
                 <div class="col-lg-4 col-md-4">
-                
-                
+
+
             <!--    <div class="wrapper_firststart"><a class="panel button_firststart" href="/docs/Getting_Started/Very_First_Start.html" role="button" style="margin-left: 0px;" target="_blank">FIRST START</a></p></div> -->
 
-                
+
                 <a href="/docs/Getting_Started/Very_First_Start.html" >
                     <div class="panel panel-greeneme">
                         <div class="panel-heading">
                         <p class="title_sections4"><i class="fa fa-check fa"></i> FIRST START</p>
                         </div>
                     </div>
-                    </a> 
+                    </a>
                 </div>
                 <div class="col-lg-4 col-md-4">
                 <a href="/docs/Hardware_&_Accessories/Motion_sensor.html" >
@@ -300,8 +300,8 @@
                     </div>
                     </a>
                 </div>
-                
-                
+
+
                 <div class="col-lg-6 col-md-6">
                     <a href="/" >
                     <div class="panel panel-red2">
@@ -320,18 +320,18 @@
                     </div>
                     </a>
                 </div>
-                
+
             </div>
             <!-- /.row -->
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+
+
+
+
+
+
+
+
 </div>
 
 

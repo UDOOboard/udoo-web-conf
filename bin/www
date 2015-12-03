@@ -8,6 +8,7 @@ var ifconfig = require('wireless-tools/ifconfig');
 var exec = require('child_process').exec;
 var fs = require('fs');
 var port = normalizePort(process.env.PORT || '80');
+var isOnline = require('is-online');
 app.set('port', port);
 
 
@@ -176,7 +177,7 @@ function getsysteminfos(){
     }
   });
 
-  exec("/opt/udoo-web-conf/shscripts/model.sh", {uid:1000, gid:20}, function (error, stdout, stderr) {
+  exec("/opt/udoo-web-conf/shscripts/model.sh",  function (error, stdout, stderr) {
     var self = this;
     if (error !== null) {
 
@@ -184,10 +185,33 @@ function getsysteminfos(){
     }
     else {
       model = stdout.toString();
-      io.emit('model', model);
-      console.log(model);
+
+
+      io.emit('model', 'UDOO NEO ' +model);
+      //console.log(model);
     }
   });
+
+  require('getmac').getMac(function(err,macAddress){
+    if (err)  throw err
+    io.emit('macaddress', macAddress);
+
+    console.log(macAddress)
+});
+
+isOnline(function(err, online) {
+var online= '';
+  if(online = 'TRUE'){
+    isonline= 'YES'
+  } else isonline = 'NO';
+
+  //console.log(online);
+  io.emit('online', isonline);
+    //console.log(isonline);
+    //=> true
+});
+
+
 
 }
 function getMotionSensors(){
@@ -291,5 +315,3 @@ function uploadsketchfade(){
     }
   });
 }
-
-
