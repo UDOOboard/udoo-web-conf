@@ -2,6 +2,7 @@ app.js /opt/udoo-web-conf
 arduino_examples /opt/udoo-web-conf
 bin /opt/udoo-web-conf
 karma.conf.js /opt/udoo-web-conf
+mysketch /opt/udoo-web-conf
 package.json /opt/udoo-web-conf
 public /opt/udoo-web-conf
 routes /opt/udoo-web-conf
