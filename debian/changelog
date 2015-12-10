@@ -1,3 +1,9 @@
+udoo-web-conf (0.2.1-1) trusty; urgency=medium
+
+  * New version, see Vcs log
+
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Thu, 10 Dec 2015 18:29:01 +0100
+
 udoo-web-conf (0.2.0-1ubuntu1) trusty; urgency=medium
 
   * New version, see Vcs log
