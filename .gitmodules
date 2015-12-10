@@ -1,3 +1,0 @@
-[submodule "docs"]
-	path = docs
-	url = https://github.com/UDOOboard/udoo-web-conf.git
