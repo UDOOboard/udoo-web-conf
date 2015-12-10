@@ -10,6 +10,7 @@ var fs = require('fs');
 var port = normalizePort(process.env.PORT || '80');
 var isOnline = require('is-online');
 app.set('port', port);
+var iwconfig = require('./lib/iwconfig.js');
 
 
 server.listen(port);
@@ -152,6 +153,7 @@ function getsysteminfos(){
   var usbip = 'Not Connected';
   var bt = 'Not Connected';
   var model = ' ';
+  var wlansssid = ' ';
 
   ifconfig.status('eth0', function(err, status) {
     if (status.ipv4_address != undefined ) {
@@ -166,6 +168,16 @@ function getsysteminfos(){
     if (status.ipv4_address != undefined ) {
       wlanip = status.ipv4_address;
       io.emit('wlanstatus', wlanip);
+      /* Commented Until we achieve proper networking permissions
+      iwconfig.status('wlan0', function(err, wlanstatus) {
+        console.log(wlanstatus);
+        if (wlanstatus.ssid != undefined ) {
+          wlansssid = wlanstatus.ssid;
+        io.emit('wlansssid', wlansssid);
+      }*/
+      });
+
+
     }
   });
 

@@ -49,6 +49,10 @@ socket.on('online', function(data){
   notifyOnlineData(data);
 });
 
+socket.on('wlansssid', function(data){
+  notifyWlanSsid(data);
+});
+
 function notifyMotionData(data){
 
 
@@ -95,4 +99,7 @@ function wlanStatusData(data){
 }
 function btStatusData(data){
     document.getElementById('bgstatus').innerHTML=data;
+}
+function notifyWlanSsid(data){
+    document.getElementById('wlanssid').innerHTML=data;
 }
