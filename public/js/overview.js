@@ -53,6 +53,10 @@ socket.on('wlansssid', function(data){
   notifyWlanSsid(data);
 });
 
+socket.on('boardname', function(data){
+  notifyBoardName(data);
+});
+
 function notifyMotionData(data){
 
 
@@ -87,6 +91,9 @@ function notifyOnlineData(data){
   document.getElementById('spanonline').innerHTML=data;
 }
 
+function notifyBoardName(data){
+    document.getElementById('spanname').innerHTML=data;
+}
 
 function ethStatusData(data){
     document.getElementById('ethstatus').innerHTML=data;

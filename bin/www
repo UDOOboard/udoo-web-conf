@@ -9,7 +9,9 @@ var exec = require('child_process').exec;
 var fs = require('fs');
 var port = normalizePort(process.env.PORT || '80');
 var isOnline = require('is-online');
+var fs = require('fs');
 app.set('port', port);
+
 
 
 server.listen(port);
@@ -151,6 +153,7 @@ function getsysteminfos(){
   var wlanip = 'Not Connected';
   var usbip = 'Not Connected';
   var bt = 'Not Connected';
+  var name = ' ';
   var model = ' ';
   var wlansssid = ' ';
 
@@ -224,6 +227,13 @@ var online= '';
     //=> true
 });
 
+fs.readFile('/etc/hostname', 'utf8', function (err,data) {
+  if (err) {
+    return console.log(err);
+  }
+  io.emit('boardname', data)
+  //console.log(data);
+});
 
 
 }
