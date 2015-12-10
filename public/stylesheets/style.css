@@ -303,13 +303,13 @@ min-height: 600px;
 
 
 .title_sections4 {
-  
+
   font-family: quicksand;
   font-size: 22px;
   margin-bottom: 0px;
   font-weight: bold;
   text-align:center;
-      
+
 }
 
 
@@ -398,7 +398,7 @@ min-height: 600px;
 
 .panel-greeneme {
 border: 3px solid #62d994;
-    
+
 }
 
 .panel-greeneme .panel-heading {
@@ -413,15 +413,15 @@ border: 3px solid #62d994;
 
 .panel-greeneme .panel-heading:hover {
     background-color: #ffffff;
-    border: 3px solid #62d994; 
+    border: 3px solid #62d994;
     color: #62d994;
     font-weight: bold;
 }
-    
+
     .panel-greeneme:focus {
     color: #ffffff;
     }
-    
+
 .panel-greeneme:hover:focus {
     color: #62d994;
     }
@@ -447,15 +447,15 @@ border: 3px solid #67b2e4;
 
 .panel-lightblue .panel-heading:hover {
     background-color: #ffffff;
-    border: 3px solid #67b2e4; 
+    border: 3px solid #67b2e4;
     color: #67b2e4;
     font-weight: bold;
 }
-    
+
     .panel-lightblue:focus {
     color: #ffffff;
     }
-    
+
 .panel-lightblue:hover:focus {
     color: #67b2e4;
     }
@@ -481,15 +481,15 @@ border: 3px solid #67b2e4;
 
 .panel-purple .panel-heading:hover {
     background-color: #ffffff;
-    border: 3px solid #9c7bb5; 
+    border: 3px solid #9c7bb5;
     color: #9c7bb5;
     font-weight: bold;
 }
-    
+
     .panel-purple:focus {
     color: #ffffff;
     }
-    
+
 .panel-purple:hover:focus {
     color: #9c7bb5;
     }
@@ -522,15 +522,15 @@ border: 3px solid #67b2e4;
 
 .panel-red2 .panel-heading:hover {
     background-color: #ffffff;
-    border: 3px solid #d06a60; 
+    border: 3px solid #d06a60;
     color: #d06a60;
     font-weight: bold;
 }
-    
+
     .panel-red2:focus {
     color: #ffffff;
     }
-    
+
 .panel-red2:hover:focus {
     color: #d06a60;
     }
@@ -565,11 +565,11 @@ border: 3px solid #67b2e4;
     color: #ec9e59;
     font-weight: bold;
 }
-    
+
     .panel-orange:focus {
     color: #ffffff;
     }
-    
+
 .panel-orange:hover:focus {
     color: #ec9e59;
     }
@@ -668,7 +668,7 @@ margin-top: 10px;
 
 #ethstatus, #usbstatus, #wlanstatus, #btstatus {
 
-font-size: 22px;
+font-size: 21px;
 /* text-align:center;  */
 margin-top: 10px;
 
@@ -678,7 +678,7 @@ margin-top: 10px;
 #info1, #info2, #info3 {
 
 font-size: 19px;
-text-align:left;  
+text-align:left;
 margin-top: 30px;
 font-family: quicksand;
 font-weight: bold;
@@ -1022,9 +1022,9 @@ button#upload-ide {
     color: #ffffff;
     font-size: 18px;
     margin-right: 10px;
-  
-  
-  
+
+
+
 }
 
 
@@ -1033,29 +1033,29 @@ button#upload-ide {
 
 
 
-    
-    
-    
+
+
+
 .wrapper_docs {
     font-family: quicksand;
-    
+
     }
-    
-    
-    
-    
+
+
+
+
     button#upload-ide:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
-    
+
     }
-    
+
     button#upload-ide:focus {
     color: #ffffff;
     }
-    
+
 button#upload-ide:hover:focus {
     color: #ec008c;
     }
@@ -1076,26 +1076,26 @@ input.btn-default {
     margin-right: 10px;
     border-color: #ec008c !important;
     text-shadow: none;
-  
-  
-  
+
+
+
 }
-    
-    
-    
+
+
+
     input.btn-default:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
-    
+
     }
-    
+
     input.btn-default:focus {
     color: #ec008c;
     background-color: #ffffff;
     }
-    
+
 input.btn-default:hover:focus {
     color: #ec008c;
     background-color: #ffffff;
@@ -1130,26 +1130,26 @@ button#blink {
     color: #ffffff;
     font-size: 18px;
     margin-right: 10px;
-  
-  
-  
+
+
+
 }
-    
-    
-    
-    
+
+
+
+
     button#blink:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
-    
+
     }
-    
+
     button#blink:focus {
     color: #ffffff;
     }
-    
+
 button#blink:hover:focus {
     color: #ec008c;
     }
@@ -1172,26 +1172,26 @@ button#fade {
     color: #ffffff;
     font-size: 18px;
     margin-right: 10px;
-  
-  
-  
+
+
+
 }
-    
-    
-    
-    
+
+
+
+
     button#fade:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
-    
+
     }
-    
+
     button#fade:focus {
     color: #ffffff;
     }
-    
+
 button#fade:hover:focus {
     color: #ec008c;
     }
@@ -1201,7 +1201,3 @@ button#fade:hover:focus {
 background-color: #ecf0f1;
 
 }
-
-
-
-
