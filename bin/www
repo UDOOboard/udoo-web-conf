@@ -168,16 +168,18 @@ function getsysteminfos(){
     if (status.ipv4_address != undefined ) {
       wlanip = status.ipv4_address;
       io.emit('wlanstatus', wlanip);
-      /* Commented Until we achieve proper networking permissions
-      iwconfig.status('wlan0', function(err, wlanstatus) {
-        console.log(wlanstatus);
-        if (wlanstatus.ssid != undefined ) {
-          wlansssid = wlanstatus.ssid;
-        io.emit('wlansssid', wlansssid);
-      }*/
+      exec("iw dev wlan0 link | grep SSID",  function (error, stdout, stderr) {
+        var self = this;
+        if (error !== null) {
+          console.log('Cannot Get Network SSID : ' +error);
+        }
+        else {
+          out = stdout.toString();
+          wlanssid = out.substring(out.indexOf(":")+1)
+          io.emit('wlansssid', wlanssid);
+          //console.log(wlanssid)
+        }
       });
-
-
     }
   });
 
