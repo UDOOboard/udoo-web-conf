@@ -105,7 +105,7 @@ function wlanStatusData(data){
     document.getElementById('wlanstatus').innerHTML=data;
 }
 function btStatusData(data){
-    document.getElementById('bgstatus').innerHTML=data;
+    document.getElementById('btstatus').innerHTML=data;
 }
 function notifyWlanSsid(data){
     document.getElementById('wlanssid').innerHTML=data;
