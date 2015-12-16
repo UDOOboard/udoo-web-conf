@@ -56,5 +56,5 @@ function wlanStatusData(data){
     document.getElementById('wlanstatus').innerHTML=data;
 }
 function btStatusData(data){
-    document.getElementById('bgstatus').innerHTML=data;
+    document.getElementById('btstatus').innerHTML=data;
 }
