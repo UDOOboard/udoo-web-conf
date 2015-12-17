@@ -158,15 +158,20 @@ function getsysteminfos(){
   var wlansssid = ' ';
 
   ifconfig.status('eth0', function(err, status) {
+    if (status != undefined) {
     if (status.ipv4_address != undefined ) {
       var self = this;
       ethip = status.ipv4_address;
       io.emit('ethstatus', ethip);
     }
+  } else {
+    io.emit('ethstatus', 'Not Available');
+  }
   });
 
   ifconfig.status('wlan', function(err, status) {
     var self = this;
+      if (status != undefined) {
     if (status.ipv4_address != undefined ) {
       wlanip = status.ipv4_address;
       io.emit('wlanstatus', wlanip);
@@ -181,7 +186,11 @@ function getsysteminfos(){
           io.emit('wlansssid', wlanssid);
           //console.log(wlanssid)
         }
-      });
+        });
+      }
+
+    } else {
+      io.emit('wlanstatus', 'Not Available');
     }
   });
 
@@ -271,8 +280,9 @@ function getMotionSensors(){
     fs.readFile('/sys/class/misc/FreescaleAccelerometer/data', 'utf8', function (err,accel) {
       var self=this;
       if (err) {
-        return console.log(err);
-      }
+        return acc = 0;
+        //return console.log(err);
+      } else {
       str = accel;
       var arr = str.split(",");
       arr = arr.map(function (val) { return +val + 1; });
@@ -281,12 +291,14 @@ function getMotionSensors(){
       acc3 = acc2.toFixed(0);
       acc = acc3*acc3-90;
       //console.log('acc'+acc);
+      }
     });
     fs.readFile('/sys/class/misc/FreescaleGyroscope/data', 'utf8', function (err,gyrosc) {
       var self=this;
       if (err) {
-        return console.log(err);
-      }
+        return gyro = 0;
+        //return console.log(err);
+      } else {
       str = gyrosc;
       var arr = str.split(",");
       arr = arr.map(function (val) { return +val + 1; });
@@ -295,13 +307,15 @@ function getMotionSensors(){
         gyro = 150
       } else gyro = gyro2;
       //console.log(data);
+      }
     });
 
     fs.readFile('/sys/class/misc/FreescaleMagnetometer/data', 'utf8', function (err,magnet) {
       var self=this;
       if (err) {
-        return console.log(err);
-      }
+        magn= 0;
+        //return console.log(err);
+      } else {
       str = magnet;
       var arr = str.split(",");
       arr = arr.map(function (val) { return +val + 1; });
@@ -309,12 +323,15 @@ function getMotionSensors(){
       magn2 = magn1/100;
       magn3 = magn2.toFixed(0);
       if (magn3 > 150) {
-        magn = 150
+        return magn = 150
       } else magn = magn3;
       //console.log(data);
+      }
     });
+
     io.emit('motion', {a:acc, g:gyro, m:magn})
   }, 300);
+
 }
 
 function uploadsketchblink() {
