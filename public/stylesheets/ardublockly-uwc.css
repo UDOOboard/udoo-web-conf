@@ -1,0 +1,281 @@
+/**
+ * @fileoverview CSS file for the Ardublockly for UDOO-web-conf application.
+ *
+ * There are a lot of '!important' tags in this file as a lot of the rules set
+ * here go against the css rules from the Materialize framework.
+ */
+
+.ardublockly-panel-header {
+  padding: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.ardublockly-panel-body {
+  padding-top: 0 !important;
+}
+
+.panel-borders {
+  border: 1px solid #e6e9ed;
+}
+.code-panel-body {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-color: #e0e0e0 !important;
+  border-width: 1px !important;
+}
+.xml-panel-body {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-color: #e0e0e0 !important;
+  border-width: 1px !important;
+}
+
+
+/*************/
+/*  Buttons  */
+/*************/
+.ardublockly-menu {
+  vertical-align: bottom;
+  position: absolute;
+  right: 15px;    /* bootstrap columns horizontal padding*/
+}
+
+/* Toggle the toolbox on and off button */
+.button_toggle_toolbox_on {
+  position: absolute;
+  margin: 0 !important;
+  padding: 0px 0 0 0  !important;
+  left: 15px;
+  top: 0px;
+  text-align: center;
+  font-size: 2rem !important;
+  line-height: 32px;
+  color: #000000;
+  cursor: pointer;
+  z-index: 5;
+  border-color: #e0e0e0 !important;
+  border-width: 1px !important;
+  -webkit-border-radius: 3px 3px 3px 3px !important;
+  -moz-border-radius: 3px 3px 3px 3px !important;
+  border-radius: 3px 3px 3px 3px !important;
+  background-color: rgba(210, 210, 210, 0.8) !important;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  transition: background 0.3s linear, box-shadow 0.3s linear, border-width 0.3s linear;
+  -ms-transition: background 0.3s linear, box-shadow 0.3s linear, border-width 0.3s linear;
+  -moz-transition: background 0.3s linear, -moz-box-shadow 0.3s linear, border-width 0.3s linear;
+  -webkit-transition: background 0.3s linear, -webkit-box-shadow 0.3s linear, border-width 0.3s linear;
+}
+.button_toggle_toolbox_on:hover {
+  color: rgba(236, 40, 142, 1) !important;
+}
+.button_toggle_toolbox_off {
+  position: absolute;
+  margin: 0 !important;
+  padding: 0 !important;
+  left: 15px;
+  top: 2px;
+  text-align: center;
+  font-size: 2rem !important;
+  color: #000000;
+  cursor: pointer;
+  z-index: 5;
+}
+.button_toggle_toolbox_off:hover {
+  color: rgba(236, 40, 142, 1) !important;
+}
+
+/************************************/
+/*  Blocks, Arduino, and XML areas  */
+/************************************/
+.content {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+#blocks_panel {
+  padding: 0px;
+  position: relative !important;
+  min-height: 480px;
+}
+.blocks_panel {
+  height: -moz-calc(100vh - 190px);     /* Firefox  */
+  height: -webkit-calc(100vh - 190px);  /* WebKit   */
+  height: -o-calc(100vh - 190px);       /* Opera    */
+  height: calc(100vh - 190px);          /* Standard */
+}
+
+#content_blocks {
+  margin: 0;
+  padding: 0;
+  min-height: 480px;
+  height: -moz-calc(100vh - 190px);     /* Firefox  */
+  height: -webkit-calc(100vh - 190px);  /* WebKit   */
+  height: -o-calc(100vh - 190px);       /* Opera    */
+  height: calc(100vh - 190px);          /* Standard */
+}
+
+#content_xml {
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 0px 5px;
+  font-family: monospace;
+  font-size: smaller;
+  overflow: scroll;
+  font-style: 0.2em !important;
+  min-height: 384px;
+}
+.content_xml {
+  height: -moz-calc(100vh - 268px);     /* Firefox  */
+  height: -webkit-calc(100vh - 268px);  /* WebKit   */
+  height: -o-calc(100vh - 268px);       /* Opera    */
+  height: calc(100vh - 268px);          /* Standard */
+}
+
+
+/* The materialize framework changes height of the div to show or hide */
+/* the collapsible elements. */
+#content_arduino {
+  resize: none;
+  outline: none;
+  border: none;
+  padding: 0px 5px;
+  font-size: 1.2rem;
+  font-family: "Droid Sans Mono", monospace;
+  overflow: auto;
+  -moz-user-select: text;
+  -khtml-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  min-height: 388px;
+}
+.content_arduino {
+  height: -moz-calc(100vh - 263px);     /* Firefox  */
+  height: -webkit-calc(100vh - 263px);  /* WebKit   */
+  height: -o-calc(100vh - 263px);       /* Opera    */
+  height: calc(100vh - 263px);          /* Standard */
+}
+
+
+/************/
+/*  Others  */
+/************/
+/* Edit logo for code and xml collapsibles*/
+.collapsible_logo {
+  width: 3rem;
+  font-weight: bold;
+  display: block;
+  float: left;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+/* Colours for the new and deleted code highlighting */
+.code_highlight_new {
+  background-color: rgba(255, 204, 51, 0.5); /* Arduino yellow 50% */
+}
+.code_highlight_deleted {
+  background-color: #FDBEBE;
+}
+
+.loading-bar {
+  vertical-align: bottom;
+  position: absolute;
+  left: 15px;    /* bootstrap columns horizontal padding*/
+  display: none;
+}
+
+/*****************************/
+/*  Overwriting Blockly CSS  */
+/*****************************/
+/* Blockly text for the following components:  */
+.blocklyTreeLabel,           /* Toolbox        */
+.blocklyText,                /* Block          */
+.goog-menuitem-content {     /* Drop down menu */
+  /*font-family: "Roboto", sans-serif!important;*/
+}
+
+/* Entire Blockly area, Toolbox dranw on top */
+.blocklySvg {
+  border-width: 0 !important;
+}
+
+/* Toolbox */
+.blocklyToolboxDiv {
+  border-color: #e0e0e0 !important;
+  border-width: 0px 1px 0px 0px !important;
+  -webkit-border-radius: 0px 4px 4px 0px !important;
+  -moz-border-radius: 4px 4px 0px 0px !important;
+  border-radius: 0px 4px 4px 0px !important;
+  border: none !important;
+  margin: 0px !important;
+  padding: 0px 0px 0px 0px !important;
+  background-color: rgba(210, 210, 210, 0.8) !important;
+  /*background: rgba(98, 174, 178, .2) !important;  /* Arduino Light Teal */
+  overflow: hidden !important;
+}
+.blocklyTreeRoot {
+  background: none !important;
+  border: none !important;
+  margin: 36px 0px 0px 0px !important;
+  padding: 0px 1px !important;
+  height: -moz-calc(100% - 37px);     /* Firefox  */
+  height: -webkit-calc(100% - 37px);  /* WebKit   */
+  height: -o-calc(100% - 37px);       /* Opera    */
+  height: calc(100% - 37px);          /* Standard */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.blocklyTreeRow {
+  background: none !important;
+  border: none !important;
+  margin: 0px 0px !important;
+  padding: 7px 16px 7px 0px !important;
+  box-sizing: content-box !important;
+}
+.blocklyTreeSelected {
+  background-color: rgba(158, 54, 179, 1) !important;
+}
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: rgba(236, 40, 142, 1) !important;
+  color: #FFFFFF;
+}
+.blocklyTreeLabel {
+}
+.blocklyTreeSeparator{
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+/* Toolbox second column with blocks*/
+.blocklyFlyoutBackground {
+  background-color: rgba(210, 210, 210, 0.5) !important;
+  -webkit-border-radius: 0px 4px 4px 0px !important;
+  -moz-border-radius: 0px 4px 4px 0px !important;
+  border-radius: 0px 4px 4px 0px !important;
+}
+
+/* Blockly scrollbars */
+.blocklyScrollbarKnob {
+  fill: #EC288E !important;
+  fill-opacy: 1;
+}
+.blocklyScrollbarBackground {
+  stroke-width: 0px !important;
+  fill: none !important;
+}
+
+/* Edit select colour to Arduino yellow. (Edited out as already this colour)
+.blocklyHighlightedConnectionPath,
+.blocklySelected>.blocklyPath {
+  stroke: rgba(255, 204, 51, 1) !important;
+} */
+
+/*******************************/
+/*  Overwriting Bootstrap CSS  */
+/*******************************/
