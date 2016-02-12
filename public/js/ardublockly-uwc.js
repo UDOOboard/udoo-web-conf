@@ -103,7 +103,7 @@ Ardublockly.sendCode = function() {
   });
   // Notify events
   socket.on('simple-ide', function (data) {
-      if (0 == data.localeCompare('Sketch successfully uploaded!')) {
+      if (data === 'Sketch successfully uploaded!') {
         Ardublockly.showLoader(false);
       }
       alert(data);
