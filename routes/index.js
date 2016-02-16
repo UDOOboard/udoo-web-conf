@@ -1,25 +1,11 @@
 var express = require('express');
 var router = express.Router();
-
 var util = require('util');
 var Promise = require('bluebird');
 var execAsync = Promise.promisify(require('child_process').exec);
 var shScriptsPath = '/opt/udoo-web-conf/shscripts/';
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  //var util = require('util');
-  //var Promise = require('bluebird');
-  /*var child_process = Promise.promisifyAll(require('child_process'));*/
-  //var execAsync = Promise.promisify(require('child_process').exec);
-  /*var spawn = require('child_process').spawn;*/
-  /*var child = spawn('date');*/
-  //var dateRes = execAsync('date').then(function(r){ res.render('index', {title: r })});
-
-
-  /*util.inspect(child.stdout, {showHidden: false, depth: null})*/
-
-  /*res.render('index', { title:  'asd'});*/
   res.render('index');
 });
 
@@ -51,25 +37,11 @@ router.get('/ardublocklystandalone', function(req, res, next) {
 });
 
 router.get('/date', function(req, res, next) {
-
-  /*var child_process = Promise.promisifyAll(require('child_process'));*/
-  /*var spawn = require('child_process').spawn;*/
-  /*var child = spawn('date');*/
-  //var execAsync = Promise.promisify(require('child_process').exec);
   execAsync('date').then(function(r){ res.json({dateData: r })}).catch(function(r){ res.json({dateData: r }) });
-
-
-  /*util.inspect(child.stdout, {showHidden: false, depth: null})*/
-
-  /*res.render('index', { title:  'asd'});*/
 });
 
 router.get('/timezone', function(req, res, next){
-  //var execFileAsync = Promise.promisify(require('child_process').execFile());
-  //execFileAsync('bash', ['timezone.sh']).then(function(r){ res.json({messaggio: r })}).catch(function(r){ res.json({messaggio: r }) });
-
   execAsync('sudo ' + shScriptsPath + 'timezone.sh').then(function(r){ res.json({messaggio: r })}).catch(function(r){ res.json({messaggio: r }) });
-
 });
 
 router.get('/hostname/:newName', function(req, res, next){
