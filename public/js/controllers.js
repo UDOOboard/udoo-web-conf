@@ -68,7 +68,7 @@
                 var end_pos = arrWifiList[i].indexOf('\'',start_pos);
                 var networkName = arrWifiList[i].substring(start_pos,end_pos);
                 var isProtected = false;
-                if (arrWifiList[i].indexOf("WPA") > -1) {
+                if (arrWifiList[i].indexOf("WPA") > -1 || arrWifiList[i].indexOf("WEP") > -1) {
                     isProtected = true;
                 }
                 that.finalList.push({
