@@ -5,50 +5,25 @@
     <%- include ./partials/commonheader.ejs %>
   </head>
   <body>
-  <script>
-      $(document).ready(function() {
-          $('[data-toggle=offcanvas]').click(function() {
-              $('.sidebar-offcanvas').toggleClass('active', 1000);
-          });
-      });</script>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid" id="topbar">
-        <div class="col-xs-2 col-sm-2 col-md-0">
-          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
 
-            </div>
+<script>
+$(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+      $('.sidebar-offcanvas').toggleClass('active', 1000);
+  });
+});
+</script>
+<%- include ./partials/navbar.ejs %>
 
-        <div class="col-xs-2 col-sm-2 col-md-12">
-            <a href="http://www.udoo.org" title="UDOO">
-                <img src="/images/logo_small.png" alt="">
-            </a>
-            </div>
-        <div class="col-xs-8 col-sm-8 col-md-0">
-
-
-    </div>
-  </nav>
-
-<!-- header -->
 <div class="container-fluid">
-  <div class="row">
-      <%- include ./partials/sidebar.ejs %>
-
-      <div class="col-md-10 col-sm-12 col-xs-12">
-        <iframe src="http://192.168.0.101:8088/terminal/"></iframe>
-
-
-
-
-
+    <div class="row">
+        <%- include ./partials/sidebar.ejs %>
+        <div class="col-md-10 col-sm-12 col-xs-12">
+            <iframe src="http://192.168.0.101:8088/terminal/"></iframe>
+        </div>
+        
     </div>
-
 </div>
-  </div>
 
   </body>
 </html>
