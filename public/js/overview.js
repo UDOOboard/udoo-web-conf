@@ -64,11 +64,11 @@ socket.on('motion', function(data) {
 
 socket.on('model', function(data) {
     document.getElementById('spanmodel').innerHTML = data;
-    if (data == 'FULL'){
+    if (data == "UDOO NEO FULL") {
         $("imagemodel").attr("src","/images/udoo_neo_full_hor.png");
-    } else if (data == 'UDOO NEO EXTENDED') {
+    } else if (data == "UDOO NEO EXTENDED") {
         $("imagemodel").attr("src","/images/udoo_neo_extended_hor.png");
-    } else if (data == "BASIC"){
+    } else if (data == "UDOO NEO BASIC" || data == "UDOO NEO BASIC KICKSTARTER") {
         $("imagemodel").attr("src","/images/udoo_neo_basic_hor.png");
     } else {
         $("imagemodel").attr("src","/images/udoo_neo_full_hor.png");
