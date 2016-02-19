@@ -1,153 +1,80 @@
 <!DOCTYPE html>
 <html ng-app="udooCfgApp">
   <head>
-    <title>Udoo - First configuration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
-    <link rel='stylesheet' href='/stylesheets/clock.css' />
-    <link rel='stylesheet' href='/stylesheets/angular-wizard.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-      <link rel='stylesheet' href='/stylesheets/angular-timezone-selector.css' />
-      <link rel='stylesheet' href='/stylesheets/bootstrap-chosen.css' />
-      <link rel='stylesheet' href='/stylesheets/chosen.css' />
-      <link rel='stylesheet' href='/stylesheets/navbar-static-top.css' />
-      <script type='text/javascript' src='js/jquery-2.1.4.min.js'></script>
-      <!--http://bootflat.github.io/-->
-    <link rel='stylesheet' href='/stylesheets/bootflat.css' />
-    <!--http://getbootstrap.com/examples/dashboard/-->
-   <link rel='stylesheet' href='/stylesheets/dashboard.css' />
-   <script type="text/javascript" src="js/lodash.min.js"></script>
-   <script type="text/javascript" src="/js/angular.min.js"></script>
-   <script type="text/javascript" src="/js/app.js"></script>
-   <script type="text/javascript" src="/js/controllers.js"></script>
-   <script type="text/javascript" src="/js/directives.js"></script>
-   <script type='text/javascript' src='/js/angular-wizard.js'></script>
-   <script type='text/javascript' src='/socket.io/socket.io.js'></script>
-   <script type='text/javascript' src='/js/overview.js'></script>
-   
-   <!-- Custom Fonts -->
-    <link href="../font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-
+    <title>UDOO - First configuration</title>
+    <%- include ./partials/commonheader.ejs %>
+    <link rel='stylesheet' href='/stylesheets/angular-timezone-selector.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-chosen.css' />
+    <link rel='stylesheet' href='/stylesheets/chosen.css' />
   </head>
   <body ng-controller="MainController as ctrl">
 
 <script>
-      $(document).ready(function() {
-          $('[data-toggle=offcanvas]').click(function() {
-              $('.sidebar-offcanvas').toggleClass('active', 1000);
-          });
-      });</script>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid" id="topbar">
-        <div class="col-xs-2 col-sm-2 col-md-0">
-          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
+$(document).ready(function() {
+  $('[data-toggle=offcanvas]').click(function() {
+      $('.sidebar-offcanvas').toggleClass('active', 1000);
+  });
+});
+</script>
+<%- include ./partials/navbar.ejs %>
 
-            </div>
-
-        <div class="col-xs-2 col-sm-2 col-md-12">
-            <a href="/" title="UDOO">
-                <img src="/images/logo_small.png" alt="">
-            </a>
-            </div>
-        <div class="col-xs-8 col-sm-8 col-md-0">
-
-
-    </div>
-  </div></nav>
-
-<!-- header -->
 <div class="container-fluid">
-  <div class="row">
+    <div class="row">
         <%- include ./partials/sidebar.ejs %>
+        <div class="col-md-10 col-sm-12 col-xs-12 background_right">
+            <div><p class="title_sections1">QUICK CONFIGURATION</p></div>
+            <div class="text_g">Configure your UDOO NEO name and WiFi connection.</div>
 
+            <wizard on-finish="finishedWizard()">
+                <wz-step title="General settings">
 
-      <div class="col-md-10 col-sm-12 col-xs-12 background_right">
-<div class="row">
-      
-                <div class="col-lg-12">
-                    <p class="title_sections1">QUICK CONFIGURATION</p>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <div class="row">
-            <div class="col-lg-12">
-          	<div class="text_g">Configure your UDOO NEO.</div>
-          	</div>
-          <div class="col-md-6 col-sm-12 col-xs-12">
-          <div class="row">
-    <wizard on-finish="finishedWizard()">
-      <wz-step title="General settings">
-              	
-          	<div class="col-lg-12 col-md-12">
-                    <div class="panel panel-green2">
-                        <div class="panel-heading">
-                        <p class="title_sections2">BOARD NAME</p>
-                            <div class="row">
-                                
-                                <div class="col-xs-12 text-right">
-                                                               
-                                    <div class="text_v">Choose a unique name for your UDOO (A reboot is required).</div>
-                                    
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="panel panel-green2">
+                                <div class="panel-heading">
+                                    <p class="title_sections2">BOARD NAME</p>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-right">
+                                            <div class="text_v">Choose a unique name for your UDOO (A reboot is required).</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                
                             </div>
                             
+                            <hostname-input hostname="ctrl.hostname"></hostname-input>
                         </div>
-                        </div>
-                        </div>
-                    <div class="col-lg-12 col-md-12">
-        <hostname-input hostname="ctrl.hostname"></hostname-input>
-         </div>
-          </div>
-</div>
-<div class="col-md-6 col-sm-12 col-xs-12">
-         <div class="row">
-          	<div class="col-lg-12 col-md-12">
-                    <div class="panel panel-blue2">
-                        <div class="panel-heading">
-                        <p class="title_sections2">WIRELESS NETWORK</p>
-                            <div class="row">
-                                
-                                <div class="col-xs-12 text-right">
-                                                               
-                                    <div class="text_v">Select The Wireless Network you want to connect to.</div>
-                                    
+                        
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="panel panel-blue2">
+                                <div class="panel-heading">
+                                    <p class="title_sections2">WIRELESS NETWORK</p>
+                                    <div class="row">
+                                        <div class="col-xs-12 text-right">
+                                            <div class="text_v">Select The Wireless Network you want to connect to.</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                
                             </div>
                             
+                            <ul class="wifi">
+                                <li ng-repeat="item in ctrl.finalList">
+                                    <div ng-click="ctrl.selectNetwork(item)" ng-class="{'selected-network-bg': item.isSelected}">
+                                        {{item.networkName}}<img src="images/lock.png" ng-show="item.isProtected" height="15" class="pull-right"/>
+                                    </div>
+                                </li>
+                            </ul>
+                            Password: <input type="password" ng-model="ctrl.wifiPassword" ng-disabled="!ctrl.selectedNetwork.isProtected">
                         </div>
-                        </div>
-                        </div>
-              <div class="col-lg-12 col-md-12">
-              <ul class="wifi">
-                  <li ng-repeat="item in ctrl.finalList">
-                      <div ng-click="ctrl.selectNetwork(item)" ng-class="{'selected-network-bg': item.isSelected}">
-                          {{item.networkName}}<img src="images/lock.png" ng-show="item.isProtected" height="15" class="pull-right"/>
-                      </div>
-                  </li>
-              </ul>
-              Password: <input type="password" ng-model="ctrl.wifiPassword" ng-disabled="!ctrl.selectedNetwork.isProtected">
-        <div class="wrapper_docs"><input type="submit" ng-click="ctrl.connectToNetwork()" value="SAVE"  class="btn btn-default btn-lg pull-right"/></div>
-        
-      </wz-step>
+                    </div>
+                
+                    <div class="wrapper_docs"><input type="submit" ng-click="ctrl.connectToNetwork()" value="SAVE"  class="btn btn-default btn-lg pull-right"/></div>
+                
+                </wz-step>
+            </wizard>
 
-    </wizard>    
-    
+        </div>
     </div>
-    <BR>
-  </div>
-     </div>
 </div>
-</div>
-  </div>
 
   </body>
 </html>

@@ -1,111 +1,43 @@
 <!DOCTYPE html>
 <html ng-app="udooCfgApp">
-<head>
-    <title>Udoo - First configuration</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!--<link rel='stylesheet' href='/stylesheets/style.css' />-->
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap-theme.css' />
-    <link rel='stylesheet' href='/stylesheets/clock.css' />
-    <link rel='stylesheet' href='/stylesheets/angular-wizard.min.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/navbar-static-top.css' />
-    <!--http://bootflat.github.io/-->
-    <link rel='stylesheet' href='/stylesheets/bootflat.css' />
-    <!--http://getbootstrap.com/examples/dashboard/-->
-    <link rel='stylesheet' href='/stylesheets/dashboard.css' />
-    <script type="text/javascript" src="js/lodash.min.js"></script>
-    <script type="text/javascript" src="/js/angular.min.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
-    <script type="text/javascript" src="/js/controllers.js"></script>
-    <script type="text/javascript" src="/js/directives.js"></script>
-    <script type='text/javascript' src='/js/angular-wizard.js'></script>
-    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
-    <!--<script type='text/javascript' src='/js/ui.js'>-->
-    </script><script type='text/javascript' src='./js/jquery-2.1.4.min.js'></script>
-
-<!-- Custom Fonts -->
-    <link href="../font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!--    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
-        <script>
-          var socket = io();
-        </script>-->
-</head>
+  <head>
+    <title>UDOO - First configuration</title>
+    <%- include ./partials/commonheader.ejs %>
+  </head>
 <body ng-controller="MainController as ctrl">
 
 <script>
-      $(document).ready(function() {
-          $('[data-toggle=offcanvas]').click(function() {
-              $('.sidebar-offcanvas').toggleClass('active', 1000);
-          });
-      });</script>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid" id="topbar">
-        <div class="col-xs-2 col-sm-2 col-md-0">
-          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
+$(document).ready(function() {
+    $('[data-toggle=offcanvas]').click(function() {
+        $('.sidebar-offcanvas').toggleClass('active', 1000);
+    });
+});
+</script>
+<%- include ./partials/navbar.ejs %>
 
-            </div>
-
-        <div class="col-xs-2 col-sm-2 col-md-12">
-            <a href="/" title="UDOO">
-                <img src="/images/logo_small.png" alt="">
-            </a>
-            </div>
-        <div class="col-xs-8 col-sm-8 col-md-0">
-
-
-    </div>
-  </div></nav>
-
-<!-- header -->
 <div class="container-fluid">
     <div class="row">
         <%- include ./partials/sidebar.ejs %>
-
-
         <div class="col-md-10 col-sm-12 col-xs-12 background_right">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <p class="title_sections1">ARDUINO</p>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <BR>
-          	<div class="text_g">2 easy examples to get your started using UDOO Neo's integrated Arduino compatible processor. Just follow the instructions and hit run!</div>
-          	
-          	<div class="row">
-          	
-          	<div class="col-lg-6 col-md-6">
-                    <div class="panel panel-arduino">
-                        <div class="panel-heading">
-                        <p class="title_sections2">BLINK</p>
-                            <div class="row">
-                                
-                                <div class="col-xs-12 text-right">
-                                                               
-                                    <div class="text_v">Connect a LED to PIN 13 and see it blinking!</div>
+            <div><p class="title_sections1">ARDUINO</p></div>
+            <div class="text_g">Two easy examples to get your started using UDOO Neo's integrated Arduino compatible processor. Just follow the instructions and hit run!</div>
+            
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-arduino">
+                            <div class="panel-heading">
+                                <p class="title_sections2">BLINK</p>
+                                <div class="row">
+                                    <div class="col-xs-12 text-right">
+                                        <div class="text_v">Connect a LED to PIN 13 and see it blinking!</div>
+                                    </div>
                                 </div>
-                                
                             </div>
-                            
                         </div>
-                    </div>
-                    
-                    <div class="panel panel-grey">
-                        <div class="panel-heading">
-            
-            
-            
-            
-                <pre>
+                        <div class="panel panel-grey">
+                            <div class="panel-heading">
+                                <pre>
 void setup() {
-
   pinMode(13, OUTPUT);
 }
 
@@ -116,56 +48,42 @@ void loop() {
   digitalWrite(13, LOW);
   delay(1000);
 }
-                </pre>
-               
-            </div>
-            
-             </div>
+                                </pre>
+                            </div>
+                        </div>
+                        <div class="wrapper_docs"><button type="button" id="blink" class="btn btn-success btn-block">RUN!</button></div>
+                    </div>
                     
-                    <div class="wrapper_docs"><button type="button" id="blink" class="btn btn-success btn-block">RUN!</button></div>
-                    
-                    <BR>
-                    
-                    
-                    
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="panel panel-arduino">
-                        <div class="panel-heading">
-                        <p class="title_sections2">FADE</p>
-                            <div class="row">
-                               
-                                <div class="col-xs-12 text-right">
-                                    
-                                    <div class="text_v">Connect a LED to PIN 9 and see it fade in and out!</div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="panel panel-arduino">
+                            <div class="panel-heading">
+                                <p class="title_sections2">FADE</p>
+                                <div class="row">
+                                   
+                                    <div class="col-xs-12 text-right">
+                                        
+                                        <div class="text_v">Connect a LED to PIN 9 and see it fade in and out!</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>
-                    
-                    
-                    <div class="panel panel-grey">
-                        <div class="panel-heading">
-                <pre>
+                        <div class="panel panel-grey">
+                            <div class="panel-heading">
+                                <pre>
 int led = 9;
 int brightness = 0;
 int fadeAmount = 5;
 
 
 void setup() {
-
   pinMode(led, OUTPUT);
 }
 
 
 void loop() {
-
   analogWrite(led, brightness);
 
-
   brightness = brightness + fadeAmount;
-
 
   if (brightness == 0 || brightness == 255) {
     fadeAmount = -fadeAmount ;
@@ -173,34 +91,27 @@ void loop() {
 
   delay(30);
 }
-                </pre>
-            </div>
-             </div>
-                                    <div class="wrapper_docs"><button type="button" id="fade" class="btn btn-success btn-block">RUN!</button></div>
-<BR>
-                    
+                            </pre>
+                        </div>
+                    </div>
+                    <div class="wrapper_docs"><button type="button" id="fade" class="btn btn-success btn-block">RUN!</button></div>
+                    <br>
                 </div>
-          	
-            
            </div>
-
-
-
-
         </div>
-
     </div>
-    <script>
-        var socket = io();
-        document.getElementById('fade').onclick = function() {
-            socket.emit('fade','')
-        }
-
-        document.getElementById('blink').onclick = function() {
-            socket.emit('blink','')
-        }
-    </script>
 </div>
+
+<script>
+    var socket = io();
+    document.getElementById('fade').onclick = function() {
+        socket.emit('fade','')
+    }
+
+    document.getElementById('blink').onclick = function() {
+        socket.emit('blink','')
+    }
+</script>
 
 </body>
 </html>
