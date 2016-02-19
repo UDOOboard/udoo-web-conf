@@ -1201,3 +1201,41 @@ button#fade:hover:focus {
 background-color: #ecf0f1;
 
 }
+
+.disable-animations *,
+.disable-animations *:after,
+.disable-animations *:before {
+    transition: none !important;
+}
+
+.sensors-bars .row {
+    margin-top: 0;
+}
+
+.sensors-bars .col-xs-10 {
+    padding-left: 0;
+}
+
+.sensors-bars img {
+    width: 60px;
+    height: 60px;
+}
+
+#sensors-modulus.sensors-bars .progress {
+    height: 27px;
+    margin-top: 15px;
+}
+
+#sensors-axis.sensors-bars .progress {
+    height: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#sensors-axis.sensors-bars .progress:first-child {
+    margin-top: 13px;
+}
+
+.panel-fixed-height {
+    height: 225px;
+}

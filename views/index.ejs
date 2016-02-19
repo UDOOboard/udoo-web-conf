@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="col-xs-9 col-sm-10 text-right">
 
-                                    <div id="ethstatus">Not Connected</div>
+                                    <div id="ethstatus">&nbsp;</div>
                                 </div>
 
                             </div>
@@ -51,7 +51,7 @@
                                 </div>
                                 <div class="col-xs-9 col-sm-10 text-right">
 
-                                    <div id="usbstatus">Not Connected</div>
+                                    <div id="usbstatus">&nbsp;</div>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class="col-xs-9 col-sm-10 text-right">
 
-                                    <div id="wlanstatus">Not Connected</div>
+                                    <div id="wlanstatus">&nbsp;</div>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                 </div>
                                 <div class="col-xs-9 col-sm-10 text-right">
 
-                                    <div id="btstatus">Not Connected</div>
+                                    <div id="btstatus">&nbsp;</div>
                                 </div>
                             </div>
                         </div>
@@ -98,7 +98,7 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8">
                   <div class="panel panel-grey">
-                      <div class="panel-heading">
+                      <div class="panel-heading panel-fixed-height">
                           <p class="title_sections3">BOARD INFO</p>
                           <div class="col-md-5 col-sm-5">
                               <div class="immmagine_board">
@@ -137,25 +137,118 @@
                 </div>
                   
                 <div class="col-lg-4 col-md-4">
-                  <div class="panel panel-grey">
-                      <div class="panel-heading">
-                          <p class="title_sections3">SENSORS</p>
-                          <table id="indexsensors">
-                              <tr>
-                                  <td id="motionicons"><img class="iconnet" src="/images/iconacc.png" alt=""></td>
-                                  <td id="AccelerometerGr"><div id="progress_bar_acc" style="height:30px; background:#2ecc71; display:block;"></div></td>
-                              </tr>
-                              <tr>
-                                  <td id="motionicons"><img class="iconnet" src="/images/icongyro.png" alt=""></td>
-                                  <td id="GyroscopeGr"><div id="progress_bar_gyro" style="height:30px; background:#f1c40f; display:block;"></div></td>
-                              </tr>
-                              <tr>
-                                  <td id="motionicons"><img class="iconnet" src="/images/iconmagn.png" alt=""></td>
-                                  <td id="MagnetometerGr"><div id="progress_bar_magn" style="height:30px; background:red; display:block;"></div></td>
-                              </tr>
-                          </table>
-                      </div>
-                  </div>
+                    <div class="panel panel-grey">
+                        <div class="panel-heading panel-fixed-height">
+                          
+                            <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
+                                <button type="button" class="btn btn-default switch-axis active">Axis</button>
+                                <button type="button" class="btn btn-default switch-modulus">Modulus</button>
+                            </div>
+
+                            <p class="title_sections3">SENSORS</p>
+
+                            <div id="sensors-modulus" class="sensors-bars hidden">
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="iconnet" src="/images/iconacc.png" alt=""></div>
+                                    <div class="col-xs-10">
+                                        <div class="progress accelerometer-modulus">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="iconnet" src="/images/icongyro.png" alt=""></div>
+                                    <div class="col-xs-10">
+                                        <div class="progress gyroscope-modulus">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="iconnet" src="/images/iconmagn.png" alt=""></div>
+                                    <div class="col-xs-10">
+                                        <div class="progress magnetometer-modulus">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="sensors-axis" class="sensors-bars">
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="iconnet" src="/images/iconacc.png" alt=""></div>
+                                    <div class="col-xs-10">
+                                        <div class="progress accelerometer-x">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div class="progress accelerometer-y">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div class="progress accelerometer-z">
+                                            <div class="progress-bar progress-bar-success" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="iconnet" src="/images/icongyro.png" alt=""></div>
+                                    <div class="col-xs-10">
+                                        <div class="progress gyroscope-x">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div class="progress gyroscope-y">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div class="progress gyroscope-z">
+                                            <div class="progress-bar progress-bar-warning" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-xs-2"><img class="iconnet" src="/images/iconmagn.png" alt=""></div>
+                                    <div class="col-xs-10">
+                                        <div class="progress magnetometer-x">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div class="progress magnetometer-y">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                        <div class="progress magnetometer-z">
+                                            <div class="progress-bar progress-bar-danger" role="progressbar" style="width: 0%">
+                                                <span class="sr-only"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
                 </div>
             </div>
             

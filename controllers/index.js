@@ -5,17 +5,14 @@ var isOnline = require('is-online');
 
 io.on('connection', function(socket) {
     var clientconnected = true;
-    console.log('Frontend Connected');
-
-    // Get IP Addresses
-    getsysteminfos();
-    setInterval(function () {
-        getsysteminfos();
-    }, 10000);
-
     if (clientconnected) {
         getMotionSensors();
     }
+    
+    getsysteminfos();
+    socket.on('getnetworkstatus', function () {
+        getsysteminfos();
+    });
 
     socket.on('disconnect', function () {
         clientconnected = false;
@@ -33,44 +30,45 @@ function getsysteminfos() {
     var wlansssid = ' ';
 
     ifconfig.status('eth0', function(err, status) {
-        if (status != undefined) {
-            if (status && status.ipv4_address != undefined ) {
-                ethip = status.ipv4_address;
-                io.emit('ethstatus', ethip);
-            }
+        if (status && status.ipv4_address != undefined ) {
+            ethip = status.ipv4_address;
+            io.emit('ethstatus', ethip);
         } else {
             io.emit('ethstatus', 'Not Available');
         }
     });
 
     ifconfig.status('wlan', function(err, status) {
-        if (status != undefined) {
-            if (status.ipv4_address != undefined ) {
-                wlanip = status.ipv4_address;
-                io.emit('wlanstatus', wlanip);
-                exec("iw dev wlan0 link | grep SSID",  function (error, stdout, stderr) {
-                    if (error !== null) {
-                        console.log('Cannot Get Network SSID : ' +error);
-                    }
-                    else {
-                        out = stdout.toString();
-                        wlanssid = out.substring(out.indexOf(":")+1)
-                        io.emit('wlansssid', wlanssid);
-                        //console.log(wlanssid)
-                    }
-                });
-            }
+        if (status && status.ipv4_address != undefined ) {
+            console.log("addre");
+            wlanip = status.ipv4_address;
+            io.emit('wlanstatus', wlanip);
+            exec("iw dev wlan0 link | grep SSID",  function (error, stdout, stderr) {
+                if (error !== null) {
+                    console.log('Cannot Get Network SSID : ' +error);
+                }
+                else {
+                    out = stdout.toString();
+                    wlanssid = out.substring(out.indexOf(":")+1)
+                    io.emit('wlansssid', wlanssid);
+                }
+            });
         } else {
             io.emit('wlanstatus', 'Not Available');
         }
     });
 
     ifconfig.status('usb0', function(err, status) {
-        if (status.ipv4_address != undefined ) {
+        if (status && status.ipv4_address != undefined ) {
             usbip = status.ipv4_address;
             io.emit('usbstatus', usbip);
+        } else {
+            io.emit('usbstatus', 'Not Available');
         }
     });
+    
+    // not implemented
+    io.emit('btstatus', 'Not Available');
 
     exec("/opt/udoo-web-conf/shscripts/model.sh",  function (error, stdout, stderr) {
         if (error !== null) {
@@ -122,51 +120,66 @@ function getMotionSensors() {
         }
     });
     
-    var acc = 0, gyro = 0, magn = 0;
+    var zero = {
+        modulus: 0,
+        axis: [0, 0, 0]
+    };
+        
+    var acc  = zero,
+        gyro = zero,
+        magn = zero;
   
     setInterval(function () {
         fs.readFile('/sys/class/misc/FreescaleAccelerometer/data', 'utf8', function (err, data) {
             if (err) {
-                acc = 0;
+                acc = zero;
                 return;
             }
-            var arr = data.split(",");
-            arr = arr.map(function (val) { return +val + 1; });
-            acc = Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))).toFixed(0);
-            acc = acc/1630;
-            acc = acc.toFixed(0);
-            acc = acc*acc-90;
+            var axis = data.split(",");
+            axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
+            var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
+            
+            acc = {
+                modulus: modulus,
+                axis: axis
+            };
         });
         
         fs.readFile('/sys/class/misc/FreescaleGyroscope/data', 'utf8', function (err, data) {
             if (err) {
-                gyro = 0;
+                gyro = zero;
                 return;
             }
-            var arr = data.split(",");
-            arr = arr.map(function (val) { return +val + 1; });
-            gyro = Math.floor(Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))));
-            if (gyro > 150) {
-                gyro = 150;
-            }
+            var axis = data.split(",");
+            axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
+            var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
+            
+            gyro = {
+                modulus: modulus,
+                axis: axis
+            };
         });
 
         fs.readFile('/sys/class/misc/FreescaleMagnetometer/data', 'utf8', function (err, data) {
             if (err) {
-                magn = 0;
+                magn = zero;
                 return;
             }
-            var arr = data.split(",");
-            arr = arr.map(function (val) { return +val + 1; });
-            magn = Math.floor(Math.sqrt(((arr[0])*(arr[0]))+(((arr[1]))*(arr[1]))+((arr[2])*(arr[2]))));
-            magn = magn/100;
-            magn = magn.toFixed(0);
-            if (magn > 150) {
-                magn = 150
-            }
+            var axis = data.split(",");
+            axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
+            var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
+            
+            magn = {
+                modulus: modulus,
+                axis: axis
+            };
         });
 
-        io.emit('motion', {a:acc, g:gyro, m:magn});
+        io.emit('motion', {
+            accelerometer: acc,
+            gyroscope: gyro,
+            magnetometer: magn
+        });
     }, 300);
 
 }
