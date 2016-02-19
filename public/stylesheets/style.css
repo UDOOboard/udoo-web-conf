@@ -1067,8 +1067,8 @@ button#upload-ide:hover:focus {
 
 
 input.btn-default {
-  margin-top:20px;
-   font-weight: bold;
+    margin-top:20px;
+    font-weight: bold;
     border: 3px solid #ec008c;
     background: rgba(236,0,140,1);
     color: #ffffff;
@@ -1076,30 +1076,24 @@ input.btn-default {
     margin-right: 10px;
     border-color: #ec008c !important;
     text-shadow: none;
-
-
-
 }
 
-
-
-    input.btn-default:hover {
+input.btn-default:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
+}
 
-    }
-
-    input.btn-default:focus {
+input.btn-default:focus {
     color: #ec008c;
     background-color: #ffffff;
-    }
+}
 
 input.btn-default:hover:focus {
     color: #ec008c;
     background-color: #ffffff;
-    }
+}
 
 
 
@@ -1239,3 +1233,60 @@ background-color: #ecf0f1;
 .panel-fixed-height {
     height: 225px;
 }
+
+
+
+button.btn.btn-default {
+  background: #ec008c;
+  color: white;
+  border: 1px solid #ec008c !important;
+}
+
+button.btn.btn-default:hover, button.btn.btn-default:focus {
+    background: white;
+    color: #ec008c;
+}
+
+.wifibars {
+    position: relative;
+    top: 2px;
+}
+.wifibar {
+    width: 3px;
+    background-color: #3498db;
+    float:left;
+}
+.wifibar1 {
+    position: relative;
+    height: 3px;
+    top: 12px;
+}
+.wifibar2 {
+    position: relative;
+    height: 6px;
+    top: 9px;
+}
+.wifibar3 {
+    position: relative;
+    height: 9px;
+    top: 6px;
+}
+.wifibar4 {
+    position: relative;
+    height: 12px;
+    top: 3px;
+}
+.wifibar5 {
+    position: relative;
+    height: 15px;
+    top: 0px;
+}
+.wifibar-empty {
+    background-color: #c0c0c0;
+}
+
+.wifi-ct {
+    max-height: 228px;
+    overflow-y: scroll;
+}
+

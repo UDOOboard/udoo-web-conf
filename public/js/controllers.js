@@ -55,40 +55,6 @@
 
         });
 
-        $http.get('/wifiList').success(function(data){
-            var msg = data.wifiListOutput[0];
-            var arrWifiList = msg.split(/\r?\n/)
-            //var wifiList = arrWifiList[0];
-
-
-            that.finalList = [];
-
-            for (var i = 1; i < arrWifiList.length - 1; i++){ //skip first and last lines
-                var start_pos = arrWifiList[i].indexOf('\'') + 1;
-                var end_pos = arrWifiList[i].lastIndexOf('\'');
-                var networkName = arrWifiList[i].substring(start_pos,end_pos);
-                var isProtected = false;
-                if (arrWifiList[i].indexOf("WPA") > -1 || arrWifiList[i].indexOf("WEP") > -1) {
-                    isProtected = true;
-                }
-                that.finalList.push({
-                    networkName: networkName,
-                    isProtected: isProtected,
-                    isSelected: false
-                });
-            }
-
-        });
-
-        that.selectNetwork = function(network) {
-            that.wifiPassword = "";
-            for (var i = 0; i < that.finalList.length; i++){
-                that.finalList[i].isSelected = false;
-            }
-            network.isSelected = true;
-            that.selectedNetwork = network;
-        };
-
         that.connectToNetwork = function() {
 
             $http.get('/hostname/' + that.hostname).success(function(data){
@@ -118,39 +84,11 @@
                 }
             });
 
-            if (that.selectedNetwork.isProtected){
-                $http.get('/connectWifi/' + that.selectedNetwork.networkName + '/' + that.wifiPassword).success(function(data){
-                    if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
-                        console.log("NON Connesso con password")
-                        $window.alert('Error during wifi connection. Wrong password?');
-                    }
-                    else{
-                        console.log("Connesso con password");
-                        //$window.alert('Wi-fi successfully configured');
-                        that.finishedWizard();
-                        //WizardHandler.wizard().finish();
-                    }
-                });
-            } else {
-                $http.get('/connectWifi/' + that.selectedNetwork.networkName).success(function(data){
-                    if (typeof(data.wifiConnectionOutput[1]) == 'undefined'){ //Errore
-                        console.log('NON Connesso senza pwd');
-                        //$window.alert('Error during wifi connection.');
-                    }
-                    else{
-                        console.log('Connesso senza pwd');
-                        that.finishedWizard();
-                        //WizardHandler.wizard().finish();
-                    }
-                });
-            }
         };
 
         that.finishedWizard = function() {
             $window.location.href = '/';
         }
 
-
-        //socket.emit('chat message', 'vaiiJdsijd');
     }]);
 })();
