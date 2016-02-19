@@ -3,18 +3,28 @@
 var app = require('../app');
 var debug = require('debug')('udoo-cfg:server');
 var http = require('http');
-var port = normalizePort(process.env.PORT || '80');
-app.set('port', port);
-
 var server = http.createServer(app);
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+var fs = require('fs');
 
-io = require('socket.io')(server);
+fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
+    var port;
+    if (err) {
+        port = 80;
+    } else {
+        port = normalizePort(data);
+    }
+    
+    app.set('port', port);
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
 
-require('../controllers/index');
-require('../controllers/arduino');
+    io = require('socket.io')(server);
+
+    require('../controllers/index');
+    require('../controllers/arduino');
+});
+
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
