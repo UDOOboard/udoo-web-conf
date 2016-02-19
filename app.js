@@ -4,14 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var livereload = require('express-livereload');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
-
-livereload = require('express-livereload');
-
-
-
 
 var app = express();
 livereload(app, config={});
@@ -29,7 +24,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 //documentation static pages
 app.use('/docs', express.static('/opt/udoo-web-conf/docs'));
 // catch 404 and forward to error handler
