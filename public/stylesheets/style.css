@@ -1239,6 +1239,7 @@ background-color: #ecf0f1;
 button.btn.btn-default {
   background: #ec008c;
   color: white;
+  text-shadow: none !important;
   border: 1px solid #ec008c !important;
 }
 
@@ -1290,3 +1291,11 @@ button.btn.btn-default:hover, button.btn.btn-default:focus {
     overflow-y: scroll;
 }
 
+#timezone-picker .timezone-picker {
+    margin: 10px auto;
+}
+
+
+.nav-submenu a {
+    padding-left: 40px !important;
+}
