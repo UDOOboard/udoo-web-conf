@@ -15,7 +15,7 @@ router.get('/regional', function(req, res, next) {
         var lang;
         
         execAsync("cat /etc/default/locale |grep LANG= |cut -c6-7").then(function(out) {
-            lang = out[0].trim();
+            lang = out.trim();
         }).finally(function() {
             res.render('settings/regional', {
                 saved: typeof(req.query.saved) !== 'undefined',
