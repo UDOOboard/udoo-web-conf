@@ -18,7 +18,7 @@ function refreshWifiList() {
     $('.wifi-spinner').removeClass("hidden");
     $.ajax({
         type: "GET",
-        url: '/wifiList',
+        url: '/settings/wifi-networks',
         success: function(response) {
             if (response.success) {
                 $('.wifi-spinner').addClass("hidden");

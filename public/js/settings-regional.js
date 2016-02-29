@@ -1,3 +1,13 @@
+var languagesLoaded = null,
+    firstTimeLoaded = false;
+
+function autoSelectCountryOnLoad() {
+    if (!firstTimeLoaded) {
+        $('#edit-site-default-language').val(window.lastLanguage);
+        firstTimeLoaded = true;
+    }
+}
+
 $(document).ready(function() {
     $('#timezone-image').timezonePicker({
         target: '#edit-date-default-timezone',
@@ -10,8 +20,15 @@ $(document).ready(function() {
     
     $("#edit-site-default-country").on("autochange", function() {
         var newCountry = $("#edit-site-default-country").val();
+        if (languagesLoaded == newCountry) {
+            return;
+        } else {
+            languagesLoaded = newCountry;
+        }
+        
         if (newCountry == 'IT') {
             $('#edit-site-default-language').html("<option value=\"it\">Italian</option>");
+            autoSelectCountryOnLoad();
         } else {
             $.ajax({
                 type: "GET",
@@ -25,6 +42,8 @@ $(document).ready(function() {
                                 html = "<option value=\"" + l.iso639_1 + "\">" + l.name[0] + "</option>";
                             $("#edit-site-default-language").append(html);
                         }
+                        
+                        autoSelectCountryOnLoad();
                     } else {
                         alert("Error: cannot get languages spoken in " + newCountry);
                     }

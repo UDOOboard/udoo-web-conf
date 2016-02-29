@@ -2,14 +2,11 @@
 <html ng-app="udooCfgApp">
   <head>
     <title>UDOO - First configuration</title>
-    <%- include ./partials/commonheader.ejs %>
-    <link rel='stylesheet' href='/stylesheets/angular-timezone-selector.css' />
+    <%- include ../partials/commonheader.ejs %>
     <link rel='stylesheet' href='/stylesheets/bootstrap-chosen.css' />
     <link rel='stylesheet' href='/stylesheets/chosen.css' />
     <script type="text/javascript" src="/js/first-config.js">
   </head>
-  <body ng-controller="MainController as ctrl">
-
 <script>
 $(document).ready(function() {
   $('[data-toggle=offcanvas]').click(function() {
@@ -17,7 +14,7 @@ $(document).ready(function() {
   });
 });
 </script>
-<%- include ./partials/navbar.ejs %>
+<%- include ../partials/navbar.ejs %>
 
 <div class="modal fade" id="hostnameError" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -42,7 +39,7 @@ $(document).ready(function() {
             </div>
             <div class="modal-body">
                 Insert the password for the network <strong></strong>:<br><br><br>
-                <form class="form-horizontal" action="/connect-wifi" method="POST">
+                <form class="form-horizontal" action="/settings/wifi-connect" method="POST">
                     <input type="hidden" name="ssid">
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
@@ -65,8 +62,11 @@ $(document).ready(function() {
 
 <div class="container-fluid">
     <div class="row">
-        <%- include ./partials/sidebar.ejs %>
+        <%- include ../partials/sidebar.ejs %>
         <div class="col-md-10 col-sm-12 col-xs-12 background_right">
+            
+            <%- include ../partials/saved.ejs %>
+            
             <div><p class="title_sections1">QUICK CONFIGURATION</p></div>
             <div class="text_g">Configure your UDOO NEO name and WiFi connection.</div>
             
@@ -83,7 +83,7 @@ $(document).ready(function() {
                         </div>
                     </div>
                     
-                    <form class="form-inline savehostname" method="post" action="/set-hostname">
+                    <form class="form-inline savehostname" method="post" action="/settings/set-hostname">
                         <div class="row">
                             <div class="col-xs-10">
                                 <input type="text" class="form-control" style="width:100%;" placeholder="Board name" name="hostname" value="<%= hostname %>">
@@ -111,18 +111,6 @@ $(document).ready(function() {
                         <div class="list-group wifi">
                         </div>
                     </div>
-
-<!--                     
-                    <ul class="wifi">
-                        <li ng-repeat="item in ctrl.finalList">
-                            <div ng-click="ctrl.selectNetwork(item)" ng-class="{'selected-network-bg': item.isSelected}">
-                                {{item.networkName}}<img src="images/lock.png" ng-show="item.isProtected" height="15" class="pull-right"/>
-                            </div>
-                        </li>
-                    </ul>
-                    Password: <input type="password" ng-model="ctrl.wifiPassword" ng-disabled="!ctrl.selectedNetwork.isProtected">
-                    
-                -->
                 </div>
             </div>
         </div>

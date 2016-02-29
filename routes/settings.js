@@ -4,6 +4,7 @@ var fs = require("fs");
 var Promise = require('bluebird');
 var execAsync = Promise.promisify(require('child_process').exec);
 var CountryLanguage = require('country-language');
+var shScriptsPath = '/opt/udoo-web-conf/shscripts/';
 
 router.get('/regional', function(req, res, next) {
     fs.readFile('/etc/timezone', 'utf8', function (err, data) {
@@ -11,10 +12,17 @@ router.get('/regional', function(req, res, next) {
             data = "Etc/UTC";
         }
         
-        res.render('settings/regional', {
-            saved: typeof(req.query.saved) !== 'undefined',
-            timezone: data.trim(),
-            defaultTimezone: (data.trim() == "Etc/UTC")
+        var lang;
+        
+        execAsync("cat /etc/default/locale |grep LANG= |cut -c6-7").then(function(out) {
+            lang = out[0].trim();
+        }).finally(function() {
+            res.render('settings/regional', {
+                saved: typeof(req.query.saved) !== 'undefined',
+                lang: lang,
+                timezone: data.trim(),
+                defaultTimezone: (data.trim() == "Etc/UTC")
+            });
         });
     });
 });
@@ -43,23 +51,97 @@ router.post('/regional-update', function (req, res) {
     
     var lc = language + "_" + country;
     
-    var commandCompleted = 0,
-        commands = [
-            "timedatectl set-timezone " + timezone,
-            "update-locale LC_ALL="+lc+".UTF-8 LANG="+lc+".UTF-8",
-            "locale-gen "+lc+" "+lc+".UTF-8",
-            "DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales"
-        ];
-    
-    execAsync(commands[0]).then(function() {
-        execAsync(commands[1]).then(function() {
-            execAsync(commands[2]).then(function() {
-                execAsync(commands[3]).then(function() {
+    execAsync("timedatectl set-timezone " + timezone).then(function() {
+        execAsync("update-locale LC_ALL="+lc+".UTF-8 LANG="+lc+".UTF-8").catch(function() {
+            execAsync("update-locale LC_ALL="+lc+".UTF-8").catch(function(){
+                execAsync("update-locale LC_ALL="+lc).catch(function(){});
+            });
+        }).finally(function() {
+            execAsync("locale-gen "+lc+" "+lc+".UTF-8").then(function() {
+                execAsync("DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales").then(function() {
                     res.redirect('/settings/regional?saved');
-                }).catch();
-            }).catch();
-        }).catch();
-    }).catch();
+                });
+            });
+        });
+    });
+});
+
+
+router.get('/firstconfig', function(req, res, next) {
+    var hostname = fs.readFileSync("/etc/hostname", "utf8");
+    res.render('settings/first-config', {
+        hostname: hostname,
+        saved: typeof(req.query.saved) !== 'undefined'
+    });
+});
+
+router.post('/set-hostname', function (req, res) {
+    execAsync(shScriptsPath + 'sethostname.sh ' + req.body.hostname).then(function(r) {
+        res.redirect('/settings/firstconfig?saved');
+    });
+});
+
+
+router.get('/wifi-networks', function(req, res, next){
+  execAsync('nmcli dev wifi list').then(function(r){
+    
+      var arrWifiList = r[0].split(/\r?\n/);
+      var finalList = [];
+      
+      for (var i = 1; i < arrWifiList.length - 1; i++) { //skip first and last lines
+          var start_pos = arrWifiList[i].indexOf('\'') + 1;
+          var end_pos = arrWifiList[i].lastIndexOf('\'');
+          var networkName = arrWifiList[i].substring(start_pos,end_pos);
+          var isProtected = false;
+          if (arrWifiList[i].indexOf("WPA") > -1 || arrWifiList[i].indexOf("WEP") > -1) {
+              isProtected = true;
+          }
+          start_pos = arrWifiList[i].indexOf('MB/s') + 4;
+          var signal = arrWifiList[i].substring(start_pos).trim();
+          signal = parseInt(signal.substring(0, 3).trim());
+          
+          finalList.push({
+              networkName: networkName,
+              isProtected: isProtected,
+              signal: signal,
+              isSelected: false
+          });
+      }
+      
+      finalList = finalList.sort(function(a, b) {
+        if (a.signal > b.signal) {
+            return -1;
+        } else {
+            if (a.signal < b.signal) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+      });
+      
+      res.json({
+          success: true,
+          wifi: finalList
+      });
+      
+  }).catch(function(r){ res.json({ success: false }) });
+});
+
+router.post('/wifi-connect', function (req, res) {
+    var ssid = req.body.ssid,
+        password = req.body.password,
+        command;
+    
+    if (password) {
+        command = 'nmcli dev wifi con ' + '"' + ssid + '" ' + 'password ' + '"' + password + '"';
+    } else {
+        command = 'nmcli dev wifi con ' + '"' + ssid + '"';
+    }
+    
+    execAsync(command).then(function(r){
+        res.redirect('/settings/firstconfig?saved');
+    });
 });
 
 module.exports = router;
