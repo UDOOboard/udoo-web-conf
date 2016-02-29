@@ -12,18 +12,6 @@ body {
   float: none;
 }
 
-ul.wifi{
-  padding: 0;
-  border: 3px solid #3498db;
-  list-style-type: none;
-  padding: 2px;
-  border-radius:4px;
-}
-
-.selected-network-bg{
-  background-color: rgba(86,61,124,.15);
-}
-
 div#topbar {
   background-color: white;
   min-height: 70px;
@@ -31,24 +19,6 @@ div#topbar {
 
 nav.navbar.navbar-inverse.navbar-fixed-top {
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.25);
-}
-
-.background_y {
-  background-color: #edc03c;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 30px;
-}
-
-.background_y .title_y {
-  padding: 10px 10px 10px 10px;
-  font-family: quicksand;
-  background-color: #fbcb47;
-  display: block;
-  /* position: absolute; */
-  left: 0px;
-  width: 50%;
-  height: 100%;
 }
 
 .title_sections {
@@ -87,159 +57,16 @@ input.btn.btn-default.btn-lg.pull-right.ng-scope:hover:focus {
   color: #ffffff;
 }
 
-.background_v {
-
-  background-color: #9069ac;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 30px;
-  margin-top: 5px;
-
-
-}
-
-
-.background_v .title_v {
-
-  padding: 10px 10px 10px 10px;
-  font-family: quicksand;
-  background-color: #9d75b3;
-
-  display: block;
-  /* position: absolute; */
-  left: 0px;
-  width: 50%;
-  height: 100%;
-
-
-}
-
-.background_r {
-
-  background-color: #4dba7c;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 30px;
-  margin-top: 5px;
-
-
-}
-
-
-.background_r .title_r {
-
-  padding: 10px 10px 10px 10px;
-  font-family: quicksand;
-  background-color: #66c185;
-
-  display: block;
-  /* position: absolute; */
-  left: 0px;
-  width: 50%;
-  height: 100%;
-
-
-}
-
-
-.background_orange {
-
-  background-color: #df8c49;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 30px;
-  margin-top: 5px;
-
-
-}
-
-
-.background_orange .title_orange {
-
-  padding: 10px 10px 10px 10px;
-  font-family: quicksand;
-  background-color: #df9a5a;
-
-  display: block;
-  /* position: absolute; */
-  left: 0px;
-  width: 50%;
-  height: 100%;
-
-
-}
-
-.background_v {
-
-  background-color: #9069ac;
-  overflow: hidden;
-  position: relative;
-  margin-bottom: 30px;
-  margin-top: 5px;
-
-
-}
-
-
-.background_v .title_v {
-
-  padding: 10px 10px 10px 10px;
-  font-family: quicksand;
-  background-color: #9d75b3;
-
-  display: block;
-  /* position: absolute; */
-  left: 0px;
-  width: 50%;
-  height: 100%;
-
-
-}
-
-
 .background_right {
-
-background-color:#ffffff;
-margin-top: -3px;
-border-left: 1px solid #dddddd;
-min-height: 768px;
-
-
-
+    background-color:#ffffff;
+    margin-top: -3px;
+    border-left: 1px solid #dddddd;
+    min-height: 768px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 img.neoimg {
    max-width: 300px;
     max-height: 160PX;
-
 }
 
 .grad{width:15px;height:15px;border-radius:15px}
@@ -249,30 +76,14 @@ img.iconnet {
 }
 
 .immmagine_board {
-
 text-align:center;
 }
 
-
-
-
-
 .content_menu {
-
-
-min-height: 600px;
+    min-height: 600px;
     height: auto !important;
     height: 600px;
-
 }
-
-
-
-
-
-
-
-/* New Home ---------------------------------------------------------------------------- */
 
 .title_sections1 {
   color: #000000;
@@ -301,9 +112,7 @@ min-height: 600px;
       border-bottom: 1px solid #ddd;
 }
 
-
 .title_sections4 {
-
   font-family: quicksand;
   font-size: 22px;
   margin-bottom: 0px;
@@ -312,400 +121,101 @@ min-height: 600px;
 
 }
 
-
-
-.huge {
-    font-size: 40px;
-}
-
-.panel-green {
-    border-color: #5cb85c;
-}
-
-.panel-green .panel-heading {
-    border-color: #5cb85c;
-    color: #fff;
-    background-color: #5cb85c;
-}
-
-.panel-green a {
-    color: #5cb85c;
-}
-
-.panel-green a:hover {
-    color: #3d8b3d;
-}
-
-.panel-red {
-    border-color: #d9534f;
-}
-
-.panel-red .panel-heading {
-    border-color: #d9534f;
-    color: #fff;
-    background-color: #d9534f;
-}
-
-.panel-red a {
-    color: #d9534f;
-}
-
-.panel-red a:hover {
-    color: #b52b27;
-}
-
-.panel-yellow {
-    border-color: #f0ad4e;
-}
-
-.panel-yellow .panel-heading {
-    border-color: #f0ad4e;
-    color: #fff;
-    background-color: #f0ad4e;
-}
-
-.panel-yellow a {
-    color: #f0ad4e;
-}
-
-.panel-yellow a:hover {
-    color: #df8a13;
-}
-
-
-
-.panel-grey {
-    border-color: #f5f5f5;
-}
-
-.panel-grey .panel-heading {
-    border-color: #f5f5f5;
-    color: #000;
-    background-color: #f5f5f5;
-    min-height: 233px;
-}
-
-.panel-grey a {
-    color: #f5f5f5;
-}
-
-.panel-grey a:hover {
-    color: #f5f5f5;
-}
-
-
-
-
-.panel-greeneme {
-border: 3px solid #62d994;
-
-}
-
-.panel-greeneme .panel-heading {
-    border: 3px solid #62d994;
-    color: #fff;
-    background-color: #62d994;
-}
-
-.panel-greeneme a {
-    color: #62d994;
-}
-
-.panel-greeneme .panel-heading:hover {
-    background-color: #ffffff;
-    border: 3px solid #62d994;
-    color: #62d994;
-    font-weight: bold;
-}
-
-    .panel-greeneme:focus {
-    color: #ffffff;
-    }
-
-.panel-greeneme:hover:focus {
-    color: #62d994;
-    }
-
-
-
-
-
-.panel-lightblue {
-border: 3px solid #67b2e4;
-    ;
-}
-
-.panel-lightblue .panel-heading {
-    border: 3px solid #67b2e4;
-    color: #fff;
-    background-color: #67b2e4;
-}
-
-.panel-lightblue a {
-    color: #67b2e4;
-}
-
-.panel-lightblue .panel-heading:hover {
-    background-color: #ffffff;
-    border: 3px solid #67b2e4;
-    color: #67b2e4;
-    font-weight: bold;
-}
-
-    .panel-lightblue:focus {
-    color: #ffffff;
-    }
-
-.panel-lightblue:hover:focus {
-    color: #67b2e4;
-    }
-
-
-
-
-
-
-.panel-purple {
-    border: 3px solid #9c7bb5;
-}
-
-.panel-purple .panel-heading {
-    border: 3px solid #9c7bb5;
-    color: #fff;
-    background-color: #9c7bb5;
-}
-
-.panel-purple a {
-    color: #9c7bb5;
-}
-
-.panel-purple .panel-heading:hover {
-    background-color: #ffffff;
-    border: 3px solid #9c7bb5;
-    color: #9c7bb5;
-    font-weight: bold;
-}
-
-    .panel-purple:focus {
-    color: #ffffff;
-    }
-
-.panel-purple:hover:focus {
-    color: #9c7bb5;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-.panel-red2 {
-    border: 3px solid #d06a60;
-}
-
-.panel-red2 .panel-heading {
-    border: 3px solid #d06a60;
-    color: #fff;
-    background-color: #d06a60;
-}
-
-.panel-red2 a {
-    color: #d06a60;
-}
-
-.panel-red2 .panel-heading:hover {
-    background-color: #ffffff;
-    border: 3px solid #d06a60;
-    color: #d06a60;
-    font-weight: bold;
-}
-
-    .panel-red2:focus {
-    color: #ffffff;
-    }
-
-.panel-red2:hover:focus {
-    color: #d06a60;
-    }
-
-
-
-
-
-
-
-
-
-
-
-.panel-orange {
-    border: 3px solid #ec9e59;
-}
-
-.panel-orange .panel-heading {
-    border: 3px solid #ec9e59;
-    color: #fff;
-    background-color: #ec9e59;
-}
-
-.panel-orange a {
-    color: #ec9e59;
-}
-
-.panel-orange .panel-heading:hover {
-    background-color: #ffffff;
-    border: 3px solid #ec9e59;
-    color: #ec9e59;
-    font-weight: bold;
-}
-
-    .panel-orange:focus {
-    color: #ffffff;
-    }
-
-.panel-orange:hover:focus {
-    color: #ec9e59;
-    }
-
-
-
-
-
-.panel-arduino {
-    border-color: #00979d;
-}
-
-.panel-arduino .panel-heading {
-    border-color: #00979d;
-    color: #fff;
-    background-color: #00979d;
-}
-
-.panel-arduino a {
-    color: #00979d;
-}
-
-.panel-arduino a:hover {
-    background-color: #00979d;
-}
-
-
-
-
-
-.panel-green2 {
-    border-color: #2ecc71;
-}
-
-.panel-green2 .panel-heading {
-    border-color: #2ecc71;
-    color: #fff;
-    background-color: #2ecc71;
-}
-
-.panel-green2 a {
-    color: #2ecc71;
-}
-
-.panel-green2 a:hover {
-    background-color: #2ecc71;
-}
-
-
-
-
-
-.panel-blue2 {
-    border-color: #3498db;
-}
-
-.panel-blue2 .panel-heading {
-    border-color: #3498db;
-    color: #fff;
-    background-color: #3498db;
-}
-
-.panel-blue2 a {
-    color: #3498db;
-}
-
-.panel-blue2 a:hover {
-    background-color: #3498db;
-}
-
-
-
-
+.panel-green{border-color:#5cb85c}
+.panel-green .panel-heading{border-color:#5cb85c;color:#fff;background-color:#5cb85c}
+.panel-green a{color:#5cb85c}
+.panel-green a:hover{color:#3d8b3d}
+.panel-red{border-color:#d9534f}
+.panel-red .panel-heading{border-color:#d9534f;color:#fff;background-color:#d9534f}
+.panel-red a{color:#d9534f}
+.panel-red a:hover{color:#b52b27}
+.panel-yellow{border-color:#f0ad4e}
+.panel-yellow .panel-heading{border-color:#f0ad4e;color:#fff;background-color:#f0ad4e}
+.panel-yellow a{color:#f0ad4e}
+.panel-yellow a:hover{color:#df8a13}
+.panel-grey{border-color:#f5f5f5}
+.panel-grey .panel-heading{border-color:#f5f5f5;color:#000;background-color:#f5f5f5;min-height:233px}
+.panel-grey a{color:#f5f5f5}
+.panel-grey a:hover{color:#f5f5f5}
+.panel-greeneme{border:3px solid #62d994}
+.panel-greeneme .panel-heading{border:3px solid #62d994;color:#fff;background-color:#62d994}
+.panel-greeneme a{color:#62d994}
+.panel-greeneme .panel-heading:hover{background-color:#fff;border:3px solid #62d994;color:#62d994;font-weight:700}
+.panel-greeneme:focus{color:#fff}
+.panel-greeneme:hover:focus{color:#62d994}
+.panel-lightblue{border:3px solid #67b2e4}
+.panel-lightblue .panel-heading{border:3px solid #67b2e4;color:#fff;background-color:#67b2e4}
+.panel-lightblue a{color:#67b2e4}
+.panel-lightblue .panel-heading:hover{background-color:#fff;border:3px solid #67b2e4;color:#67b2e4;font-weight:700}
+.panel-lightblue:focus{color:#fff}
+.panel-lightblue:hover:focus{color:#67b2e4}
+.panel-purple{border:3px solid #9c7bb5}
+.panel-purple .panel-heading{border:3px solid #9c7bb5;color:#fff;background-color:#9c7bb5}
+.panel-purple a{color:#9c7bb5}
+.panel-purple .panel-heading:hover{background-color:#fff;border:3px solid #9c7bb5;color:#9c7bb5;font-weight:700}
+.panel-purple:focus{color:#fff}
+.panel-purple:hover:focus{color:#9c7bb5}
+.panel-red2{border:3px solid #d06a60}
+.panel-red2 .panel-heading{border:3px solid #d06a60;color:#fff;background-color:#d06a60}
+.panel-red2 a{color:#d06a60}
+.panel-red2 .panel-heading:hover{background-color:#fff;border:3px solid #d06a60;color:#d06a60;font-weight:700}
+.panel-red2:focus{color:#fff}
+.panel-red2:hover:focus{color:#d06a60}
+.panel-orange{border:3px solid #ec9e59}
+.panel-orange .panel-heading{border:3px solid #ec9e59;color:#fff;background-color:#ec9e59}
+.panel-orange a{color:#ec9e59}
+.panel-orange .panel-heading:hover{background-color:#fff;border:3px solid #ec9e59;color:#ec9e59;font-weight:700}
+.panel-orange:focus{color:#fff}
+.panel-orange:hover:focus{color:#ec9e59}
+.panel-arduino{border-color:#00979d}
+.panel-arduino .panel-heading{border-color:#00979d;color:#fff;background-color:#00979d}
+.panel-arduino a{color:#00979d}
+.panel-arduino a:hover{background-color:#00979d}
+.panel-green2{border-color:#2ecc71}
+.panel-green2 .panel-heading{border-color:#2ecc71;color:#fff;background-color:#2ecc71}
+.panel-green2 a{color:#2ecc71}
+.panel-green2 a:hover{background-color:#2ecc71}
+.panel-blue2{border-color:#3498db}
+.panel-blue2 .panel-heading{border-color:#3498db;color:#fff;background-color:#3498db}
+.panel-blue2 a{color:#3498db}
+.panel-blue2 a:hover{background-color:#3498db}
 
 .text_v {
-
 text-align:left;
 font-size: 18px;
-
 }
 
 .text_g {
-
 font-size: 16px;
-
 }
-
 
 #rterminal, #rdesktop {
 font-size: 22px;
-/* text-align:center;  */
 margin-top: 10px;
-
 }
 
-
 #ethstatus, #usbstatus, #wlanstatus, #btstatus {
-
 font-size: 21px;
-/* text-align:center;  */
 margin-top: 10px;
-
-
 }
 
 #info1, #info2, #info3 {
-
 font-size: 19px;
 text-align:left;
 margin-top: 30px;
 font-family: quicksand;
 font-weight: bold;
-
-
 }
-
 
 @media (max-width: 767px) {
-
-#info1, #info2, #info3 {
-
-    font-size: 16px;
-    text-align: center;
-    margin-top: 35px;
-    font-family: quicksand;
-    font-weight: bold;
-
-
-
+    #info1, #info2, #info3 {
+        font-size: 16px;
+        text-align: center;
+        margin-top: 35px;
+        font-family: quicksand;
+        font-weight: bold;
+    }
 }
-
-
-
-
-}
-
 
 
 
@@ -1022,49 +532,26 @@ button#upload-ide {
     color: #ffffff;
     font-size: 18px;
     margin-right: 10px;
-
-
-
 }
-
-
-
-
-
-
-
-
-
 
 .wrapper_docs {
     font-family: quicksand;
+}
 
-    }
-
-
-
-
-    button#upload-ide:hover {
+button#upload-ide:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
+}
 
-    }
-
-    button#upload-ide:focus {
+button#upload-ide:focus {
     color: #ffffff;
-    }
+}
 
 button#upload-ide:hover:focus {
     color: #ec008c;
-    }
-
-
-
-
-
-
+}
 
 input.btn-default {
     margin-top:20px;
@@ -1095,27 +582,6 @@ input.btn-default:hover:focus {
     background-color: #ffffff;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 button#blink {
   margin-top:20px;
    font-weight: bold;
@@ -1124,39 +590,22 @@ button#blink {
     color: #ffffff;
     font-size: 18px;
     margin-right: 10px;
-
-
-
 }
 
-
-
-
-    button#blink:hover {
+button#blink:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
+}
 
-    }
-
-    button#blink:focus {
+button#blink:focus {
     color: #ffffff;
-    }
+}
 
 button#blink:hover:focus {
     color: #ec008c;
-    }
-
-
-
-
-
-
-
-
-
-
+}
 
 button#fade {
   margin-top:20px;
@@ -1166,34 +615,25 @@ button#fade {
     color: #ffffff;
     font-size: 18px;
     margin-right: 10px;
-
-
-
 }
 
-
-
-
-    button#fade:hover {
+button#fade:hover {
     color: #ec008c;
     font-weight: bold;
     border: 3px solid #ec008c;
     background-color: #ffffff;
+}
 
-    }
-
-    button#fade:focus {
+button#fade:focus {
     color: #ffffff;
-    }
+}
 
 button#fade:hover:focus {
     color: #ec008c;
-    }
+}
 
 .inside-arduino {
-
-background-color: #ecf0f1;
-
+    background-color: #ecf0f1;
 }
 
 .disable-animations *,
@@ -1294,7 +734,6 @@ button.btn.btn-default:hover, button.btn.btn-default:focus {
 #timezone-picker .timezone-picker {
     margin: 10px auto;
 }
-
 
 .nav-submenu a {
     padding-left: 40px !important;
