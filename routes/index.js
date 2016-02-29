@@ -94,6 +94,18 @@ router.get('/wifiList', function(req, res, next){
           });
       }
       
+      finalList = finalList.sort(function(a, b) {
+        if (a.signal > b.signal) {
+            return -1;
+        } else {
+            if (a.signal < b.signal) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+      });
+      
       res.json({
           success: true,
           wifi: finalList
