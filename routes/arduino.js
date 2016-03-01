@@ -53,6 +53,7 @@ router.post('/compilesketch', function (req, res) {
                 message: err
             });
         } else {
+            console.log("Starting Arduino IDE...");
             exec("export DISPLAY=:0 && /usr/bin/arduino --upload /opt/udoo-web-conf/mysketch/mysketch.ino", {uid:1000, gid:20}, function (error, stdout, stderr) {
                 if (error !== null) {
                     var fullerror = error.toString();

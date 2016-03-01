@@ -88,25 +88,28 @@ Ardublockly.saveSketchFile = function() {
  * message from server).
  */
 Ardublockly.sendCode = function() {
-  //alert(Ardublockly.generateArduino());
   var arduinoCode = Ardublockly.generateArduino();
   Ardublockly.showLoader(true);
-  // Reference to Socket.io
-  var socket = io();
-  // Sending Sketch To Node Backend via Socket.io
-  socket.emit('upload-sketch', arduinoCode);
-  // Listening for backend Events
-  // Notify errors
-  socket.on('simple-ide-error', function (data) {
-      Ardublockly.showLoader(false);
-      alert(data);
-  });
-  // Notify events
-  socket.on('simple-ide', function (data) {
-      if (data === 'Sketch successfully uploaded!') {
-        Ardublockly.showLoader(false);
+  
+  $('#waitDialog div.loaded').addClass("hidden");
+  $('#waitDialog div.error').addClass("hidden");
+  
+  $.ajax({
+      type: "POST",
+      url: '/arduino/compilesketch/',
+      data: {
+          sketch: arduinoCode
+      },
+      success: function(response) {
+          Ardublockly.showLoader(false);
+          if (response.success) {
+              $('#waitDialog div.loaded').removeClass("hidden");
+              $('#waitDialog').modal('show');
+          } else {
+              $('#waitDialog div.error').html(response.message).removeClass("hidden");
+              $('#waitDialog').modal('show');
+          }
       }
-      alert(data);
   });
 };
 

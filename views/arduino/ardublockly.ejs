@@ -18,6 +18,23 @@
 <body>
 <%- include ../partials/top.ejs %>
 
+<div class="modal fade" id="waitDialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">UDOO Neo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="loaded hidden">The sketch has been uploaded!</div>
+                <div class="error hidden"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="row">
     <div class="col-lg-12">
         <div class="title_sections1">
@@ -110,7 +127,6 @@
     <script>window.isStandalone = true;</script>
 <% } %>
 <%- include ../partials/bottom.ejs %>
-    <script type='text/javascript' src='/socket.io/socket.io.js'></script>
     <script src="/ardublockly/ardublockly/js_libs/FileSaver.min.js"></script>
     <script src="/ardublockly/ardublockly/js_libs/diff.js"></script>
     <script src="/ardublockly/ardublockly/prettify/prettify.js"></script>
