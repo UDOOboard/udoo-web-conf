@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var livereload = require('express-livereload');
 
 var routes = require('./routes/index');
+var arduinoRoutes = require('./routes/arduino');
 var settingsRoutes = require('./routes/settings');
 
 var app = express();
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/', routes);
+app.use('/arduino', arduinoRoutes);
 app.use('/settings', settingsRoutes);
 
 //documentation static pages
