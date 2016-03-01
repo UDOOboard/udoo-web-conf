@@ -1,3 +1,28 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/layout/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/layout/bootstrap/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/layout/style.css" rel="stylesheet">
+
+    <title>UDOO</title>
+</head>
+<body>
+    
+    <div><p class="title_sections1"><%= error.status %> - <%= message %></p></div>
+    <h2>Bad server, naughty server! No donut for you!</h2>
+    <br>
+    
+    <div class="row">
+        <div class="col-md-4">
+            <img src="/images/404.jpg" style="margin-left:15px;">
+        </div>
+        <div class="col-md-8">
+            <pre><%= error.stack %></pre>
+        </div>
+    </div>
+</body>
+</html>
