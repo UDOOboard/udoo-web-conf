@@ -4,28 +4,24 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var livereload = require('express-livereload');
 
 var routes = require('./routes/index');
 var arduinoRoutes = require('./routes/arduino');
 var settingsRoutes = require('./routes/settings');
 
 var app = express();
-livereload(app, config={});
-
-var oneDay = 86400000;
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneDay }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+var oneDay = 86400000;
+app.use(express.static(path.join(__dirname, 'public'), { maxAge: oneDay }));
 
 app.use('/', routes);
 app.use('/arduino', arduinoRoutes);
@@ -39,12 +35,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-var bodyParser = require('body-parser')
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-}));
 
 // error handlers
 

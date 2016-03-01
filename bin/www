@@ -20,9 +20,7 @@ fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
     server.on('listening', onListening);
 
     io = require('socket.io')(server);
-
     require('../controllers/index');
-    require('../controllers/arduino');
 });
 
 
