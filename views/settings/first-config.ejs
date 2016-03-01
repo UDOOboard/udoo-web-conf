@@ -1,20 +1,20 @@
 <!DOCTYPE html>
-<html ng-app="udooCfgApp">
-  <head>
-    <title>UDOO - First configuration</title>
-    <%- include ../partials/commonheader.ejs %>
-    <link rel='stylesheet' href='/stylesheets/bootstrap-chosen.css' />
-    <link rel='stylesheet' href='/stylesheets/chosen.css' />
-    <script type="text/javascript" src="/js/first-config.js">
-  </head>
-<script>
-$(document).ready(function() {
-  $('[data-toggle=offcanvas]').click(function() {
-      $('.sidebar-offcanvas').toggleClass('active', 1000);
-  });
-});
-</script>
-<%- include ../partials/navbar.ejs %>
+<html lang="en">
+<head>
+<%- include ../partials/header.ejs %>
+    <title>UDOO - Network configuration</title>
+</head>
+<body>
+<%- include ../partials/top.ejs %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div><p class="title_sections1">NETWORK CONFIGURATION</p></div>
+        <div class="text_g">Configure your UDOO NEO name and WiFi connection.</div>
+    </div>
+</div>
+
+<%- include ../partials/saved.ejs %>
 
 <div class="modal fade" id="hostnameError" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -60,62 +60,54 @@ $(document).ready(function() {
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
-        <%- include ../partials/sidebar.ejs %>
-        <div class="col-md-10 col-sm-12 col-xs-12 background_right">
-            
-            <%- include ../partials/saved.ejs %>
-            
-            <div><p class="title_sections1">QUICK CONFIGURATION</p></div>
-            <div class="text_g">Configure your UDOO NEO name and WiFi connection.</div>
-            
-            <div class="row">
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="panel panel-green2">
-                        <div class="panel-heading">
-                            <p class="title_sections2">BOARD NAME</p>
-                            <div class="row">
-                                <div class="col-xs-12 text-right">
-                                    <div class="text_v">Choose a unique name for your UDOO (a reboot is required).</div>
-                                </div>
-                            </div>
-                        </div>
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-green2">
+            <div class="panel-heading">
+                <p class="title_sections2">BOARD NAME</p>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <div class="text_v">Choose a unique name for your UDOO (a reboot is required).</div>
                     </div>
-                    
-                    <form class="form-inline savehostname" method="post" action="/settings/set-hostname">
-                        <div class="row">
-                            <div class="col-xs-10">
-                                <input type="text" class="form-control" style="width:100%;" placeholder="Board name" name="hostname" value="<%= hostname %>">
-                            </div>
-                            <div class="col-xs-2">
-                                <button type="submit" class="btn btn-default col-xs-2" style="width:100%;">Save</button>
-                            </div>
-                        </div>
-                    </form>
                 </div>
-                
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="panel panel-blue2">
-                        <div class="panel-heading">
-                            <p class="title_sections2">WIRELESS NETWORK <i class="fa fa-spinner wifi-spinner pull-right hidden"></i></p>
-                            <div class="row">
-                                <div class="col-xs-12 text-right">
-                                    <div class="text_v">Double-click the Wireless Network you want to connect to.</div>
-                                </div>
-                            </div>
-                        </div>
+            </div>
+            
+            <form class="form-inline" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-hostname">
+                <div class="row">
+                    <div class="col-xs-10">
+                        <input type="text" class="form-control" style="width: 100%;" placeholder="Board name" name="hostname" value="<%= hostname %>">
+                    </div>
+                    <div class="col-xs-2">
+                        <button type="submit" style="width: 100%;" class="btn btn-primary col-xs-2">Save</button>
                     </div>
                     
-                    <div class="wifi-ct">
-                        <div class="list-group wifi">
-                        </div>
+                </div>
+            </form>
+            <br style="clear:both;">
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-blue2">
+            <div class="panel-heading">
+                <p class="title_sections2">WIRELESS NETWORK <i class="fa fa-spinner wifi-spinner pull-right hidden"></i></p>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <div class="text_v">Double-click the Wireless Network you want to connect to.</div>
                     </div>
+                </div>
+            </div>
+            <div class="wifi-ct">
+                <div class="list-group wifi">
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-  </body>
+
+<%- include ../partials/bottom.ejs %>
+<script type="text/javascript" src="/js/first-config.js"></script>
+
+</body>
 </html>

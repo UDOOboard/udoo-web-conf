@@ -85,7 +85,7 @@ router.post('/set-hostname', function (req, res) {
 router.get('/wifi-networks', function(req, res, next){
   execAsync('nmcli dev wifi list').then(function(r){
     
-      var arrWifiList = r[0].split(/\r?\n/);
+      var arrWifiList = r.split(/\r?\n/);
       var finalList = [];
       
       for (var i = 1; i < arrWifiList.length - 1; i++) { //skip first and last lines

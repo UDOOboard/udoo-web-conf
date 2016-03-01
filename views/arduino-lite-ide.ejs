@@ -1,31 +1,23 @@
 <!DOCTYPE html>
-<html ng-app="udooCfgApp">
-  <head>
+<html lang="en">
+<head>
+<%- include ./partials/header.ejs %>
     <title>UDOO - Arduino Web IDE</title>
-    <%- include ./partials/commonheader.ejs %>
     <link rel="stylesheet" href="/stylesheets/CodePrinter.css">
-    <script type="text/javascript" src="/js/codeprinter/CodePrinter.js"></script>
-  </head>
+</head>
 <body>
+<%- include ./partials/top.ejs %>
 
-<script>
-$(document).ready(function() {
-  $('[data-toggle=offcanvas]').click(function() {
-      $('.sidebar-offcanvas').toggleClass('active', 1000);
-  });
-});
-</script>
-<%- include ./partials/navbar.ejs %>
+<div class="row">
+    <div class="col-lg-12">
+        <div><p class="title_sections1">ARDUINO WEB IDE</p></div>
+        <div class="text_g">Use this Web IDE to upload your own Sketch. Write the code below and press the Upload button. Be aware that it could take 30 seconds or more to verify and upload the sketch.</div>
+    </div>
+</div>
 
-<div class="container-fluid">
-    <div class="row">
-        <%- include ./partials/sidebar.ejs %>
-        <div class="col-md-10 col-sm-12 col-xs-12 background_right">
-            <div><p class="title_sections1">ARDUINO EDITOR</p></div>
-            <div class="text_g">Use this Web IDE to upload your own Sketch. Write the code below and press the Upload button. Be aware that it could take 30 seconds or more to verify and upload the sketch.</div>
-            <br>
-            
-            <div class="col-md-12 col-sm-12 col-xs-12">
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
 <textarea id="editor">
 void setup() {
   // put your setup code here, to run once:
@@ -37,19 +29,21 @@ void loop() {
 
 }
 </textarea>
-                <div id="feedback">
-                Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Microcontroller
-                </div>
-            </div>
-            
-            <div class="col-md-2 col-sm-12 col-xs-12" id="button">
-                <div class="wrapper_docs"><button type="button" id="upload-ide" class="btn btn-success btn-block">UPLOAD</button></div>
-                <BR>
-            </div>
+        <div id="feedback">
+        Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Microcontroller
         </div>
+    </div>
+    
+    <div class="col-md-2 col-sm-12 col-xs-12" id="button">
+        <br>
+        <div class="wrapper_docs"><button type="button" id="upload-ide" class="btn btn-primary btn-block">UPLOAD</button></div>
     </div>
 </div>
 
+
+<%- include ./partials/bottom.ejs %>
+<script type='text/javascript' src='/socket.io/socket.io.js'></script>
+<script type="text/javascript" src="/js/codeprinter/CodePrinter.js"></script>
 <script type="text/javascript">
     var cp = new CodePrinter(document.getElementsByTagName('textarea')[0], {
         theme: 'default',

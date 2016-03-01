@@ -26,7 +26,9 @@ router.get('/arduino-lite-ide', function(req, res, next) {
 });
 
 router.get('/ardublockly', function(req, res, next) {
-  res.render('ardublockly');
+  res.render('ardublockly', {
+      standalone: typeof(req.query.standalone) !== 'undefined'
+  });
 });
 
 router.get('/ardublocklystandalone', function(req, res, next) {

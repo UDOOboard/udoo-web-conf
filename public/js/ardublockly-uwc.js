@@ -207,7 +207,7 @@ Ardublockly.resizeBlocklyWorkspace = function() {
 /** @param {!boolean} show Indicates if it should show the loading bar. */
 Ardublockly.showLoader = function(show) {
   var loader = document.getElementById('loading-bar');
-  loader.style.display = show ? 'block': 'none';
+  loader.style.display = show ? 'inline': 'none';
 };
 
 /**
