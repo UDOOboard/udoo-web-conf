@@ -61,31 +61,7 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6 col-sm-12 col-xs-12">
-        <div class="panel panel-green2">
-            <div class="panel-heading">
-                <p class="title_sections2">BOARD NAME</p>
-                <div class="row">
-                    <div class="col-xs-12 text-right">
-                        <div class="text_v">Choose a unique name for your UDOO (a reboot is required).</div>
-                    </div>
-                </div>
-            </div>
-            
-            <form class="form-inline" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-hostname">
-                <div class="row">
-                    <div class="col-xs-10">
-                        <input type="text" class="form-control" style="width: 100%;" placeholder="Board name" name="hostname" value="<%= hostname %>">
-                    </div>
-                    <div class="col-xs-2">
-                        <button type="submit" style="width: 100%;" class="btn btn-primary col-xs-2">Save</button>
-                    </div>
-                    
-                </div>
-            </form>
-            <br style="clear:both;">
-        </div>
-    </div>
+    
     
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-blue2">
@@ -107,7 +83,7 @@
 
 
 <%- include ../partials/bottom.ejs %>
-<script type="text/javascript" src="/js/first-config.js"></script>
+<script type="text/javascript" src="/js/settings-network.js"></script>
 
 </body>
 </html>

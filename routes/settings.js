@@ -66,21 +66,47 @@ router.post('/regional-update', function (req, res) {
     });
 });
 
-
-router.get('/firstconfig', function(req, res, next) {
+router.get('/base', function(req, res, next) {
     var hostname = fs.readFileSync("/etc/hostname", "utf8");
-    res.render('settings/first-config', {
+    res.render('settings/base', {
         hostname: hostname,
+        saved: typeof(req.query.saved) !== 'undefined'
+    });
+});
+
+router.get('/network', function(req, res, next) {
+    res.render('settings/network', {
         saved: typeof(req.query.saved) !== 'undefined'
     });
 });
 
 router.post('/set-hostname', function (req, res) {
     execAsync(shScriptsPath + 'sethostname.sh ' + req.body.hostname).then(function(r) {
-        res.redirect('/settings/firstconfig?saved');
+        res.redirect('/settings/base?saved');
     });
 });
 
+router.post('/change-password', function (req, res) {
+    console.log(req.body.password);
+    console.log(req.body.password.length);
+    
+    switch (req.body.username) {
+        case 'udooer':
+            execAsync(shScriptsPath + 'setudooerpwd.sh ' + req.body.password).then(function(r) {
+                res.redirect('/settings/base?saved');
+            });
+            break;
+            
+        case 'root':
+            execAsync(shScriptsPath + 'setrootpwd.sh ' + req.body.password).then(function(r) {
+                res.redirect('/settings/base?saved');
+            });
+            break;
+            
+        default:
+            res.redirect('/settings/base');
+    }
+});
 
 router.get('/wifi-networks', function(req, res, next){
   execAsync('nmcli dev wifi list').then(function(r){
@@ -140,7 +166,7 @@ router.post('/wifi-connect', function (req, res) {
     }
     
     execAsync(command).then(function(r){
-        res.redirect('/settings/firstconfig?saved');
+        res.redirect('/settings/network?saved');
     });
 });
 

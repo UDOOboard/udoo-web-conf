@@ -1,15 +1,4 @@
 $(function() {
-
-    $("form.savehostname").on("submit", function() {
-        var patt = /^(([a-zA-Z0-9]|[a-zA-Z0-9][a-zA-Z0-9\-]*[a-zA-Z0-9])\.)*([A-Za-z0-9]|[A-Za-z0-9][A-Za-z0-9\-]*[A-Za-z0-9])$/gm;
-        var isvalid = patt.test($("input[name=hostname]").val());
-        
-        if (!isvalid) {
-            $('#hostnameError').modal('show');
-            return false;
-        }
-    });
-    
     refreshWifiList();
     setInterval(refreshWifiList, 15000);
 });
