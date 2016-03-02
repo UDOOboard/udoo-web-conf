@@ -4,19 +4,25 @@ var fs = require('fs');
 var isOnline = require('is-online');
 
 io.on('connection', function(socket) {
-    var clientconnected = true;
-    if (clientconnected) {
-        getMotionSensors();
-    }
+    var motionTimer;
     
+    try {
+        if (fs.lstatSync('/sys/devices/virtual/misc/FreescaleAccelerometer').isDirectory()) {
+            enableMotionSensors();
+            motionTimer = setInterval(readMotionSensors, 300);
+        } else {
+            console.log("No motion sensors on board!");
+        }
+    }
+    catch (e) {}
+
     getsysteminfos();
     socket.on('getnetworkstatus', function () {
         getsysteminfos();
     });
 
     socket.on('disconnect', function () {
-        clientconnected = false;
-        console.log('Client Disconnected');
+        clearInterval(motionTimer);
     });
 });
 
@@ -111,9 +117,9 @@ function getsysteminfos() {
     });
 }
 
-function getMotionSensors() {
-    console.log('Reading Motion Sensors Values');
-
+function enableMotionSensors() {
+    console.log("Enabling motion sensors");
+    
     exec("echo 1 > /sys/class/misc/FreescaleGyroscope/enable", function (error, stdout, stderr) {
         if (error !== null) {
             console.log('Cannot Enable Gyroscope: '+error);
@@ -129,67 +135,66 @@ function getMotionSensors() {
             console.log('Cannot Enable Magnetometer: '+error);
         }
     });
+}
+
+var zero = {
+    modulus: 0,
+    axis: [0, 0, 0]
+};
     
-    var zero = {
-        modulus: 0,
-        axis: [0, 0, 0]
-    };
+var acc  = zero,
+    gyro = zero,
+    magn = zero;
+
+function readMotionSensors() {
+    fs.readFile('/sys/class/misc/FreescaleAccelerometer/data', 'utf8', function (err, data) {
+        if (err) {
+            acc = zero;
+            return;
+        }
+        var axis = data.split(",");
+        axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
+        var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
         
-    var acc  = zero,
-        gyro = zero,
-        magn = zero;
-  
-    setInterval(function () {
-        fs.readFile('/sys/class/misc/FreescaleAccelerometer/data', 'utf8', function (err, data) {
-            if (err) {
-                acc = zero;
-                return;
-            }
-            var axis = data.split(",");
-            axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
-            var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
-            
-            acc = {
-                modulus: modulus,
-                axis: axis
-            };
-        });
+        acc = {
+            modulus: modulus,
+            axis: axis
+        };
+    });
+    
+    fs.readFile('/sys/class/misc/FreescaleGyroscope/data', 'utf8', function (err, data) {
+        if (err) {
+            gyro = zero;
+            return;
+        }
+        var axis = data.split(",");
+        axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
+        var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
         
-        fs.readFile('/sys/class/misc/FreescaleGyroscope/data', 'utf8', function (err, data) {
-            if (err) {
-                gyro = zero;
-                return;
-            }
-            var axis = data.split(",");
-            axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
-            var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
-            
-            gyro = {
-                modulus: modulus,
-                axis: axis
-            };
-        });
+        gyro = {
+            modulus: modulus,
+            axis: axis
+        };
+    });
 
-        fs.readFile('/sys/class/misc/FreescaleMagnetometer/data', 'utf8', function (err, data) {
-            if (err) {
-                magn = zero;
-                return;
-            }
-            var axis = data.split(",");
-            axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
-            var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
-            
-            magn = {
-                modulus: modulus,
-                axis: axis
-            };
-        });
-
-        io.emit('motion', {
-            accelerometer: acc,
-            gyroscope: gyro,
-            magnetometer: magn
-        });
-    }, 300);
-
+    fs.readFile('/sys/class/misc/FreescaleMagnetometer/data', 'utf8', function (err, data) {
+        if (err) {
+            magn = zero;
+            return;
+        }
+        var axis = data.split(",");
+        axis = [parseInt(axis[0]), parseInt(axis[1]), parseInt(axis[2])];
+        var modulus = Math.sqrt(axis[0]*axis[0] + axis[1]*axis[1] + axis[2]*axis[2]);
+        
+        magn = {
+            modulus: modulus,
+            axis: axis
+        };
+    });
+    
+    io.emit('motion', {
+        accelerometer: acc,
+        gyroscope: gyro,
+        magnetometer: magn
+    });
 }
