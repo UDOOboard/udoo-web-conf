@@ -67,9 +67,19 @@ function getsysteminfos() {
         }
     });
     
-    // not implemented
-    io.emit('btstatus', 'Not Available');
-
+    exec("hcitool dev |grep hci0| awk '{print $2}'",  function (error, stdout, stderr) {
+        if (error !== null) {
+            io.emit('btstatus', 'Not Available');
+        } else {
+            var mac = stdout.toString().trim();
+            if (mac) {
+                io.emit('btstatus', mac);
+            } else {
+                io.emit('btstatus', 'Not Available');
+            }
+        }
+    });
+    
     exec("/opt/udoo-web-conf/shscripts/model.sh",  function (error, stdout, stderr) {
         if (error !== null) {
             console.log('Cannot Launch model script: ' +error);
