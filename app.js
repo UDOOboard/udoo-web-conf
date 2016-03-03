@@ -60,5 +60,44 @@ app.use(function(err, req, res, next) {
   });
 });
 
+//tty.js
+var tty = require('tty.js');
+
+var ttyapp = tty.createServer({
+  shell: 'bash',
+  users: {
+    foo: 'bar'
+  },
+  port: 8000,
+    "term": {
+    "termName": "xterm",
+    "geometry": [80, 24],
+    "scrollback": 1000,
+    "visualBell": false,
+    "popOnBell": false,
+    "cursorBlink": false,
+    "screenKeys": false,
+    "colors": [
+      "#2e3436",
+      "#cc0000",
+      "#4e9a06",
+      "#c4a000",
+      "#3465a4",
+      "#75507b",
+      "#06989a",
+      "#d3d7cf",
+      "#555753",
+      "#ef2929",
+      "#8ae234",
+      "#fce94f",
+      "#729fcf",
+      "#ad7fa8",
+      "#34e2e2",
+      "#eeeeec"
+    ]
+  }
+});
+
+ttyapp.listen();
 
 module.exports = app;
