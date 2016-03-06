@@ -9,6 +9,9 @@ var routes = require('./routes/index');
 var arduinoRoutes = require('./routes/arduino');
 var settingsRoutes = require('./routes/settings');
 
+var Promise = require('bluebird');
+var readFile = Promise.promisify(require("fs").readFile);
+
 var app = express();
 
 // view engine setup
@@ -63,41 +66,10 @@ app.use(function(err, req, res, next) {
 //tty.js
 var tty = require('tty.js');
 
-var ttyapp = tty.createServer({
-  shell: 'bash',
-  users: {
-    foo: 'bar'
-  },
-  port: 8000,
-    "term": {
-    "termName": "xterm",
-    "geometry": [80, 24],
-    "scrollback": 1000,
-    "visualBell": false,
-    "popOnBell": false,
-    "cursorBlink": false,
-    "screenKeys": false,
-    "colors": [
-      "#2e3436",
-      "#cc0000",
-      "#4e9a06",
-      "#c4a000",
-      "#3465a4",
-      "#75507b",
-      "#06989a",
-      "#d3d7cf",
-      "#555753",
-      "#ef2929",
-      "#8ae234",
-      "#fce94f",
-      "#729fcf",
-      "#ad7fa8",
-      "#34e2e2",
-      "#eeeeec"
-    ]
-  }
+readFile("/opt/udoo-web-conf/ttyconfig.json", "utf8").then(function(data) {
+	var ttycfg = JSON.parse(data);
+    var ttyapp = tty.createServer(ttycfg);
+	ttyapp.listen();
 });
-
-ttyapp.listen();
 
 module.exports = app;
