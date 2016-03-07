@@ -83,29 +83,30 @@
           <div class="panel-heading panel-fixed-height">
               <p class="title_sections3">BOARD INFO</p>
               <div class="col-md-5 col-sm-5" style="text-align:center;">
-                  <img id="boardimage" class="neoimg" src="/images/udoo_neo_full_hor.png" alt="">
+                  <img id="boardimage" class="boardimg" src="/images/boards/<%= boardImage %>" alt="<%= global.boardModel %>">
               </div>
               <div class="col-md-7 col-sm-7">
                   <div class="panel-body">
                       <div class="list-group">
                           <div class="list-group-item">
                               <i class="fa fa-user fa-fw"></i> NAME
-                              <span id="spanname" class="pull-right text-muted"><em></em>
+                              <span id="spanname" class="pull-right text-muted">
                               </span>
                           </div>
                           <div class="list-group-item">
                               <i class="fa fa-square fa-fw"></i> MODEL
-                              <span id="spanmodel" class="pull-right text-muted"><em></em>
+                              <span id="spanmodel" class="pull-right text-muted">
+                                  <%= global.boardModel %>
                               </span>
                           </div>
                           <div class="list-group-item">
                               <i class="fa fa-barcode fa-fw"></i> MAC
-                              <span id="spanmacaddress" class="pull-right text-muted"><em></em>
+                              <span id="spanmacaddress" class="pull-right text-muted">
                               </span>
                           </div>
                           <div class="list-group-item">
                               <i class="fa fa-globe fa-fw"></i> INTERNET
-                              <span id="spanonline" class="pull-right text-muted"><em></em>
+                              <span id="spanonline" class="pull-right text-muted">
                               </span>
                           </div>
                       </div>

@@ -32,7 +32,6 @@ function getsysteminfos() {
     var usbip = 'Not Connected';
     var bt = 'Not Connected';
     var name = ' ';
-    var model = ' ';
     var wlansssid = ' ';
 
     ifconfig.status('eth0', function(err, status) {
@@ -86,15 +85,6 @@ function getsysteminfos() {
         }
     });
     
-    exec("/opt/udoo-web-conf/shscripts/model.sh",  function (error, stdout, stderr) {
-        if (error !== null) {
-            console.log('Cannot Launch model script: ' +error);
-        } else {
-            model = stdout.toString();
-            io.emit('model', 'UDOO NEO ' +model);
-        }
-    });
-
     require('getmac').getMac(function(err,macAddress) {
         if (err)  throw err
         io.emit('macaddress', macAddress);

@@ -14,13 +14,22 @@ fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
         port = normalizePort(data);
     }
     
-    app.set('port', port);
-    server.listen(port);
-    server.on('error', onError);
-    server.on('listening', onListening);
+    fs.readFile('/proc/device-tree/model', 'utf8', function (err, data) {
+        if (err) {
+            console.log("Unknown board model!");
+        }
+        
+        global.boardModel = data.replace(/\0/g, '').trim();
+        console.log(global.boardModel);
+        
+        app.set('port', port);
+        server.listen(port);
+        server.on('error', onError);
+        server.on('listening', onListening);
 
-    io = require('socket.io')(server);
-    require('../controllers/index');
+        io = require('socket.io')(server);
+        require('../controllers/index');
+    });
 });
 
 

@@ -78,19 +78,6 @@ socket.on('motion', function(data) {
     }
 });
 
-socket.on('model', function(data) {
-    document.getElementById('spanmodel').innerHTML = data;
-    if (data == "UDOO NEO FULL") {
-        $("imagemodel").attr("src","/images/udoo_neo_full_hor.png");
-    } else if (data == "UDOO NEO EXTENDED") {
-        $("imagemodel").attr("src","/images/udoo_neo_extended_hor.png");
-    } else if (data == "UDOO NEO BASIC" || data == "UDOO NEO BASIC KICKSTARTER") {
-        $("imagemodel").attr("src","/images/udoo_neo_basic_hor.png");
-    } else {
-        $("imagemodel").attr("src","/images/udoo_neo_full_hor.png");
-    }
-});
-
 socket.on('macaddress', function(data) {
     document.getElementById('spanmacaddress').innerHTML = data;
 });
