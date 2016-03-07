@@ -85,9 +85,13 @@ function getsysteminfos() {
         }
     });
     
-    require('getmac').getMac(function(err,macAddress) {
-        if (err)  throw err
-        io.emit('macaddress', macAddress);
+    exec("/opt/udoo-web-conf/shscripts/serial.sh",  function (error, stdout, stderr) {
+        if (error !== null) {
+            console.log('Cannot Launch serial script: ' +error);
+        } else {
+            serial = stdout.toString();
+            io.emit('cpuid', serial);
+        }
     });
     
     isOnline(function(err, online) {

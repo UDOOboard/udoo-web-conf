@@ -78,8 +78,8 @@ socket.on('motion', function(data) {
     }
 });
 
-socket.on('macaddress', function(data) {
-    document.getElementById('spanmacaddress').innerHTML = data;
+socket.on('cpuid', function(data) {
+    document.getElementById('spancpuid').innerHTML = data;
 });
 
 socket.on('online', function(data) {
