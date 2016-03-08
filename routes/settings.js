@@ -170,4 +170,66 @@ router.post('/wifi-connect', function (req, res) {
     });
 });
 
+router.get('/advanced', function(req, res, next) {
+    execAsync('udooscreenctl get').then(function(screenctl) {
+        execAsync('udoom4ctl status').then(function(m4ctl) {
+            res.render('settings/advanced', {
+                port: global.webPort,
+                video: screenctl.trim(),
+                m4: m4ctl.trim() == 'true' ? 'enabled' : 'disabled',
+                saved: typeof(req.query.saved) !== 'undefined'
+            });
+        });
+    });
+});
+
+router.post('/set-video', function (req, res) {
+    var video = req.body.video.trim();
+    
+    if (video != "hdmi" && video != "lvds7" && video != "lvds15" && video != "headless") {
+        res.redirect('/settings/advanced');
+        return;
+    }
+    
+    console.log("udooscreenctl set " + video)
+    
+    execAsync("udooscreenctl set " + video).then(function(r){
+        res.redirect('/settings/advanced?saved');
+    });
+});
+
+router.post('/set-m4', function (req, res) {
+    var m4 = req.body.m4.trim(),
+             command;
+    
+    if (m4 == "enabled") {
+        command = "udoom4ctl enable";
+    } else {
+        command = "udoom4ctl disable";
+    }
+    
+    console.log(command)
+    
+    execAsync(command).then(function(r){
+        res.redirect('/settings/advanced?saved');
+    });
+});
+
+router.post('/set-http-port', function (req, res) {
+    var port = req.body.port.trim(),
+               command;
+    
+    if (port == "disabled") {
+        command = "echo manual > /etc/init/udoo-web-conf.override";
+    } else {
+        command = "echo " + parseInt(port) + " > /etc/udoo-web-conf/port";
+    }
+    
+    console.log(command)
+    
+    execAsync(command).then(function(r){
+        res.redirect('/settings/advanced?saved');
+    });
+});
+
 module.exports = router;

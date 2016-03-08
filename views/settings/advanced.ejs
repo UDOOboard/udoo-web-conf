@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<%- include ../partials/header.ejs %>
+    <title>UDOO - Advanced configuration</title>
+</head>
+<body>
+<%- include ../partials/top.ejs %>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div><p class="title_sections1">ADVANCED SETTINGS</p></div>
+        <div class="text_g">Change these settings carefully. Restart the board to apply the changes!</div>
+    </div>
+</div>
+
+<%- include ../partials/saved.ejs %>
+
+<div class="row">
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-blue2">
+            <div class="panel-heading">
+                <p class="title_sections2">VIDEO OUTPUT</p>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <div class="text_v">Select the main video output.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="form-horizontal" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-video">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Video output</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="video">
+                            <option <%= video == "hdmi" ? "selected" : "" %> value="hdmi">HDMI</option>
+                            <option <%= video == "lvds7" ? "selected" : "" %> value="lvds7">LVDS 7 inches</option>
+                            <option <%= video == "headless" ? "selected" : "" %> value="headless">Disable screen outout</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">SAVE</button>
+                    </div>
+                </div>
+            </form>
+            
+            <br style="clear:both;">
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-green2">
+            <div class="panel-heading">
+                <p class="title_sections2">ARDUINO M4 CORE</p>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <div class="text_v">Disabling the M4 core, it will be possible to access all SoC devices and pins from Linux.</div>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="form-horizontal" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-m4">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">M4 status</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="m4">
+                            <option <%= m4 == "enabled" ? "selected" : "" %> value="enabled">Enabled</option>
+                            <option <%= m4 == "disabled" ? "selected" : "" %> value="disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">SAVE</button>
+                    </div>
+                </div>
+            </form>
+            
+            <br style="clear:both;">
+        </div>
+    </div>
+    
+    <div class="col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <p class="title_sections2">WEB CONTROL PANEL</p>
+                <div class="row">
+                    <div class="col-xs-12 text-right">
+                        <div class="text_v">Move this tool to a different port before installing a web server.</div>
+                    </div>
+                </div>
+            </div>
+            
+                <form class="form-horizontal" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-http-port">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Listen on port</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" name="port">
+                            <option <%= port == 80 ? "selected" : "" %> value="80">80</option>
+                            <option <%= port == 81 ? "selected" : "" %> value="81">81</option>
+                            <option <%= port == 8080 ? "selected" : "" %> value="8080">8080</option>
+                            <option <%= port == 8888 ? "selected" : "" %> value="8888">8888</option>
+                            <option value="disabled">Disable web configuration tool startup</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">SAVE</button>
+                    </div>
+                </div>
+            </form>
+            
+            <br style="clear:both;">
+        </div>
+    </div>
+    
+</div>
+
+
+<%- include ../partials/bottom.ejs %>
+<script type="text/javascript" src="/js/settings-base.js"></script>
+
+</body>
+</html>

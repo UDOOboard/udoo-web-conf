@@ -8,3 +8,4 @@ public /opt/udoo-web-conf
 routes /opt/udoo-web-conf
 shscripts /opt/udoo-web-conf
 views /opt/udoo-web-conf
+debian/port /etc/udoo-web-conf
