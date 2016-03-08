@@ -16,9 +16,10 @@ io.on('connection', function(socket) {
     }
     catch (e) {}
 
-    getsysteminfos();
+    getStaticInfo();
+    getDynamicInfo();
     socket.on('getnetworkstatus', function () {
-        getsysteminfos();
+        getDynamicInfo();
     });
 
     socket.on('disconnect', function () {
@@ -26,7 +27,25 @@ io.on('connection', function(socket) {
     });
 });
 
-function getsysteminfos() {
+function getStaticInfo() {
+    exec("/opt/udoo-web-conf/shscripts/serial.sh",  function (error, stdout, stderr) {
+        if (error !== null) {
+            console.log('Cannot Launch serial script: ' +error);
+        } else {
+            serial = stdout.toString();
+            io.emit('cpuid', serial);
+        }
+    });
+    
+    fs.readFile('/etc/hostname', 'utf8', function (err,data) {
+        if (err) {
+            return console.log(err);
+        }
+        io.emit('boardname', data)
+    });
+}
+
+function getDynamicInfo() {
     var ethip = 'Not Connected';
     var wlanip = 'Not Connected';
     var usbip = 'Not Connected';
@@ -85,15 +104,6 @@ function getsysteminfos() {
         }
     });
     
-    exec("/opt/udoo-web-conf/shscripts/serial.sh",  function (error, stdout, stderr) {
-        if (error !== null) {
-            console.log('Cannot Launch serial script: ' +error);
-        } else {
-            serial = stdout.toString();
-            io.emit('cpuid', serial);
-        }
-    });
-    
     isOnline(function(err, online) {
         var online= 'NO';
         if (online = 'TRUE') {
@@ -101,13 +111,6 @@ function getsysteminfos() {
         }
 
         io.emit('online', isonline);
-    });
-
-    fs.readFile('/etc/hostname', 'utf8', function (err,data) {
-        if (err) {
-            return console.log(err);
-        }
-        io.emit('boardname', data)
     });
 }
 
