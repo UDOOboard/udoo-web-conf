@@ -173,11 +173,18 @@ router.post('/wifi-connect', function (req, res) {
 router.get('/advanced', function(req, res, next) {
     execAsync('udooscreenctl get').then(function(screenctl) {
         execAsync('udoom4ctl status').then(function(m4ctl) {
-            res.render('settings/advanced', {
-                port: global.webPort,
-                video: screenctl.trim(),
-                m4: m4ctl.trim() == 'true' ? 'enabled' : 'disabled',
-                saved: typeof(req.query.saved) !== 'undefined'
+            fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function(err) {
+                var port = global.webPort;
+                if (!err) {
+                    port = -1;
+                }
+                
+                res.render('settings/advanced', {
+                    port: port,
+                    video: screenctl.trim(),
+                    m4: m4ctl.trim() == 'true' ? 'enabled' : 'disabled',
+                    saved: typeof(req.query.saved) !== 'undefined'
+                });
             });
         });
     });
@@ -190,8 +197,6 @@ router.post('/set-video', function (req, res) {
         res.redirect('/settings/advanced');
         return;
     }
-    
-    console.log("udooscreenctl set " + video)
     
     execAsync("udooscreenctl set " + video).then(function(r){
         res.redirect('/settings/advanced?saved');
@@ -208,8 +213,6 @@ router.post('/set-m4', function (req, res) {
         command = "udoom4ctl disable";
     }
     
-    console.log(command)
-    
     execAsync(command).then(function(r){
         res.redirect('/settings/advanced?saved');
     });
@@ -219,13 +222,11 @@ router.post('/set-http-port', function (req, res) {
     var port = req.body.port.trim(),
                command;
     
-    if (port == "disabled") {
+    if (port == "-1") {
         command = "echo manual > /etc/init/udoo-web-conf.override";
     } else {
-        command = "echo " + parseInt(port) + " > /etc/udoo-web-conf/port";
+        command = "echo " + parseInt(port) + " > /etc/udoo-web-conf/port; rm /etc/init/udoo-web-conf.override;";
     }
-    
-    console.log(command)
     
     execAsync(command).then(function(r){
         res.redirect('/settings/advanced?saved');

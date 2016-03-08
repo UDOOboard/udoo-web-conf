@@ -93,7 +93,7 @@
                 </div>
             </div>
             
-                <form class="form-horizontal" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-http-port">
+                <form class="form-horizontal webport" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-http-port">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Listen on port</label>
                     <div class="col-sm-10">
@@ -102,7 +102,7 @@
                             <option <%= port == 81 ? "selected" : "" %> value="81">81</option>
                             <option <%= port == 8080 ? "selected" : "" %> value="8080">8080</option>
                             <option <%= port == 8888 ? "selected" : "" %> value="8888">8888</option>
-                            <option value="disabled">Disable web configuration tool startup</option>
+                            <option <%= port == -1 ? "selected" : "" %> value="-1">Disable web configuration tool startup</option>
                         </select>
                     </div>
                 </div>
@@ -121,7 +121,7 @@
 
 
 <%- include ../partials/bottom.ejs %>
-<script type="text/javascript" src="/js/settings-base.js"></script>
+<script type="text/javascript" src="/js/settings-advanced.js"></script>
 
 </body>
 </html>
