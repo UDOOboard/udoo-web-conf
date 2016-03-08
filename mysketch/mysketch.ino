@@ -7,5 +7,4 @@ void loop() {
   delay(300);
   digitalWrite(13, LOW);
   delay(300);
-
 }

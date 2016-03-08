@@ -3,7 +3,6 @@
 <head>
 <%- include ../partials/header.ejs %>
     <title>UDOO - Arduino Web IDE</title>
-    <link rel="stylesheet" href="/stylesheets/CodePrinter.css">
 </head>
 <body>
 <%- include ../partials/top.ejs %>
@@ -40,7 +39,7 @@
 
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <textarea id="editor"><%= sketch %></textarea>
+        <pre id="editor"><%= sketch %></pre>
         <div id="feedback">
         Write your Sketch and hit Upload to Flash it on UDOO NEO's integrated Arduino Microcontroller
         </div>
@@ -54,13 +53,13 @@
 
 
 <%- include ../partials/bottom.ejs %>
-<script type="text/javascript" src="/js/codeprinter/CodePrinter.js"></script>
-<script type="text/javascript">
-    var cp = new CodePrinter(document.getElementsByTagName('textarea')[0], {
-        theme: 'default',
-        mode: 'JavaScript',
-        lineNumbers: true,
-        fontSize: 14
+<script src="/js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/chrome");
+    editor.session.setMode("ace/mode/c_cpp");
+    editor.setOptions({
+        fontSize: "13pt"
     });
     
     $(function() {
@@ -74,7 +73,7 @@
                 type: "POST",
                 url: '/arduino/compilesketch/',
                 data: {
-                    sketch: cp.code.innerText.replace(/[^\040-\176\200-\377]/gi, "\n")
+                    sketch: ace.edit("editor").getValue().replace(/[^\040-\176\200-\377]/gi, "\n")
                 },
                 success: function(response) {
                     $('#waitDialog div.loading').addClass("hidden");
