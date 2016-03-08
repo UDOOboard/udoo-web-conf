@@ -32,8 +32,7 @@ function getStaticInfo() {
         if (error !== null) {
             console.log('Cannot Launch serial script: ' +error);
         } else {
-            serial = stdout.toString();
-            io.emit('cpuid', serial);
+            io.emit('cpuid', stdout.toString());
         }
     });
     
@@ -42,6 +41,14 @@ function getStaticInfo() {
             return console.log(err);
         }
         io.emit('boardname', data)
+    });
+    
+    exec("udooscreenctl get",  function (error, stdout, stderr) {
+        if (error !== null) {
+            console.log('Cannot Launch udooscreenctl: ' +error);
+        } else {
+            io.emit('videooutput', stdout.toString().toUpperCase());
+        }
     });
 }
 

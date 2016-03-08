@@ -142,7 +142,15 @@ pre {
 }
 
 .panel-fixed-height {
-    height: 240px;
+    height: 280px;
+}
+
+.sensors-bars {
+    margin-top: 10px;
+}
+
+.sensors-bars .row {
+    height: 75px;
 }
 
 #sensors-modulus.sensors-bars .progress {
