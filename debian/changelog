@@ -1,3 +1,12 @@
+udoo-web-conf (0.3) trusty; urgency=medium
+
+  * New UI
+  * Improved WiFi selection
+  * Added regional settings, password management, video and M4 core selection
+  * Integrated Ardublockly
+
+ -- Francesco Montefoschi <francesco.monte@gmail.com>  Thu, 10 Dec 2015 18:29:01 +0100
+
 udoo-web-conf (0.2.1-1) trusty; urgency=medium
 
   * New version, see Vcs log
