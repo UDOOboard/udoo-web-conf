@@ -1,10 +1,6 @@
 {
-  "users": {
-    "udooer": "280a25b12d1bec6c5e0abbf5e83eb32882e4964c"
-  },
   "port": 8000,
-  "shell": "su",
-  "shellArgs": ["udooer"],
+  "shell": "login",
   "limitGlobal": 10000,
   "limitPerUser": 1000,
   "localOnly": false,
