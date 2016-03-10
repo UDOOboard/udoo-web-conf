@@ -121,4 +121,6 @@ $(function() {
         $("#sensors-modulus").removeClass("hidden");
         $("#sensors-axis").addClass("hidden");
     });
+    
+    $("a.remoteterminal").attr("href", "http://" + location.hostname + ":8000");
 });
