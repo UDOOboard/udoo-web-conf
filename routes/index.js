@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/terminal', function(req, res, next) {
-  res.render('terminal');
+  res.render('terminal', {});
 });
 
 router.get('/tutorials', function(req, res, next) {

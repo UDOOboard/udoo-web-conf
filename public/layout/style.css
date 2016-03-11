@@ -86,6 +86,20 @@
     margin-top: 10px;
 }
 
+@media (min-width: 1351px) and (max-width: 1500px) {
+    #ethstatus, #usbstatus, #wlanstatus, #btstatus {
+        font-size: 18px;
+        margin-top: 14px;
+    }
+}
+
+@media (min-width: 1185px) and (max-width: 1350px) {
+    #ethstatus, #usbstatus, #wlanstatus, #btstatus {
+        font-size: 15px;
+        margin-top: 14px;
+    }
+}
+
 .button-row a:hover {
   text-decoration: none;
 }
@@ -99,7 +113,9 @@ pre {
 }
 
 .boardimg {
-    margin-top: 15px;
+    width: 100%;
+    max-width: 260px;
+    margin: 15px auto;
 }
 
 @media (min-width: 1701px) {
@@ -141,8 +157,10 @@ pre {
     }
 }
 
-.panel-fixed-height {
-    height: 280px;
+@media(min-width:768px) {
+    .panel-fixed-height {
+        height: 280px;
+    }
 }
 
 .sensors-bars {
