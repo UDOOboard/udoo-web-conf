@@ -9,11 +9,11 @@
                 </button>
                 <a class="navbar-brand" href="/"><img src="/images/logo_small.png" width="105" height="70" alt="UDOO"></a>
             </div>
-
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
                         <li><a href="/"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
+                        <%if (hasArduinoMenu) { %>
                         <li>
                             <a href="#"><i class="fa fa-code fa-fw"></i> Arduino<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
@@ -22,6 +22,7 @@
                                 <li><a href="/arduino/ardublockly"><i class="fa fa-puzzle-piece fa"></i> Ardublockly</a></li>
                             </ul>
                         </li>
+                        <% } %>
                         <li><a href="/docs"><i class="fa fa-book fa-fw"></i> Documentation</a></li>
                         <li><a href="http://www.udoo.org/forum" target="_blank"><i class="fa fa-comments fa-fw"></i> Support forums</a></li>
                         <li>
@@ -37,5 +38,5 @@
                 </div>
             </div>
         </nav>
-        
+
         <div id="page-wrapper">

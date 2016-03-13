@@ -6,29 +6,7 @@ var execAsync = Promise.promisify(require('child_process').exec);
 var shScriptsPath = '/opt/udoo-web-conf/shscripts/';
 
 router.get('/', function(req, res, next) {
-    var boardImage;
-    switch (global.boardModel) {
-        case 'UDOO Quad Board':
-            boardImage = 'quad.png';
-            break;
-        case 'UDOO Dual-lite Board':
-            boardImage = 'dual.png';
-            break;
-        case 'UDOO Neo Extended':
-            boardImage = 'neo_extended.png';
-            break;
-        case 'UDOO Neo Full':
-            boardImage = 'neo_full.png';
-            break;
-        case 'UDOO Neo Basic Kickstarter':
-        case 'UDOO Neo Basic':
-            boardImage = 'neo_basic.png';
-            break;
-    }
-    
-    res.render('index', {
-        boardImage: boardImage
-    });
+    res.render('index', {});
 });
 
 router.get('/terminal', function(req, res, next) {

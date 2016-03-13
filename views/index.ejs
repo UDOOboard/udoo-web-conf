@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<%- include ./partials/header.ejs %>
+<%- include partials/header.ejs %>
     <title>UDOO</title>
 </head>
 <body>
-<%- include ./partials/top.ejs %>
+<%- include partials/top.ejs %>
 
 <div class="row">
     <div class="col-lg-12">
@@ -84,7 +84,7 @@
               <p class="title_sections3">BOARD INFO</p>
               <div class="row">
                   <div class="col-md-5 col-sm-5 hidden-xs" style="text-align:center;">
-                      <img id="boardimage" class="boardimg img-responsive" src="/images/boards/<%= boardImage %>" alt="<%= global.boardModel %>">
+                      <img id="boardimage" class="boardimg img-responsive" src="/images/boards/<%= boardImage %>" alt="<%= boardModel %>">
                   </div>
                   <div class="col-xs-12 col-md-7 col-sm-7">
                       <div class="panel-body">
@@ -97,7 +97,7 @@
                               <div class="list-group-item">
                                   <i class="fa fa-square fa-fw"></i> MODEL
                                   <span id="spanmodel" class="pull-right text-muted">
-                                      <%= global.boardModel %>
+                                      <%= boardModel %>
                                   </span>
                               </div>
                               <div class="list-group-item">
@@ -122,11 +122,11 @@
           </div>
       </div>
     </div>
-      
+
     <div class="col-lg-4 col-md-4">
         <div class="panel panel-grey">
             <div class="panel-heading panel-fixed-height">
-              
+
                 <div class="btn-group btn-group-xs pull-right" role="group" aria-label="...">
                     <button type="button" class="btn switch-axis active">Axis</button>
                     <button type="button" class="btn switch-modulus">Modulus</button>
@@ -145,7 +145,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xs-2"><img class="iconnet" src="/images/icongyro.png" alt=""></div>
                         <div class="col-xs-10">
@@ -156,7 +156,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xs-2"><img class="iconnet" src="/images/iconmagn.png" alt=""></div>
                         <div class="col-xs-10">
@@ -168,7 +168,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="sensors-axis" class="sensors-bars">
                     <div class="row">
                         <div class="col-xs-2"><img class="iconnet" src="/images/iconacc.png" alt=""></div>
@@ -190,7 +190,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xs-2"><img class="iconnet" src="/images/icongyro.png" alt=""></div>
                         <div class="col-xs-10">
@@ -211,7 +211,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-xs-2"><img class="iconnet" src="/images/iconmagn.png" alt=""></div>
                         <div class="col-xs-10">
@@ -233,7 +233,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>

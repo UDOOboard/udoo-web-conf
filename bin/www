@@ -13,17 +13,51 @@ fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
     } else {
         port = normalizePort(data);
     }
-    
+
     fs.readFile('/proc/device-tree/model', 'utf8', function (err, data) {
         if (err) {
             console.log("Unknown board model!");
         }
-        
-        global.boardModel = data.replace(/\0/g, '').trim();
-        console.log(global.boardModel);
-        
+        //set global static props for the app
+        app.locals.boardModel = data.replace(/\0/g, '').trim();
+        console.log(app.locals.boardModel);
+
+        switch (app.locals.boardModel) {
+            case 'UDOO Quad Board':
+                app.locals.boardImage = 'quad.png';
+                app.locals.hasArduinoMenu = false;
+                app.locals.hasM4 = false;
+                app.locals.hasLvds15 = true;
+                break;
+            case 'UDOO Dual-lite Board':
+                app.locals.boardImage = 'dual.png';
+                app.locals.hasArduinoMenu = false;
+                app.locals.hasM4 = false;
+                app.locals.hasLvds15 = true;
+                break;
+            case 'UDOO Neo Extended':
+                app.locals.boardImage = 'neo_extended.png';
+                app.locals.hasArduinoMenu = true;
+                app.locals.hasM4 = true;
+                app.locals.hasLvds15 = false;
+                break;
+            case 'UDOO Neo Full':
+                app.locals.boardImage = 'neo_full.png';
+                app.locals.hasArduinoMenu = true;
+                app.locals.hasM4 = true;
+                app.locals.hasLvds15 = false;
+                break;
+            case 'UDOO Neo Basic Kickstarter':
+            case 'UDOO Neo Basic':
+                app.locals.boardImage = 'neo_basic.png';
+                app.locals.hasArduinoMenu = true;
+                app.locals.hasM4 = true;
+                app.locals.hasLvds15 = false;
+                break;
+        }
+
         global.webPort = port;
-        
+
         app.set('port', port);
         server.listen(port);
         server.on('error', onError);

@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <form class="form-horizontal" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-video">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Video output</label>
@@ -35,6 +35,7 @@
                         <select class="form-control" name="video">
                             <option <%= video == "hdmi" ? "selected" : "" %> value="hdmi">HDMI</option>
                             <option <%= video == "lvds7" ? "selected" : "" %> value="lvds7">LVDS 7 inches</option>
+                            <%if (hasLvds15) { %><option <%= video == "lvds15" ? "selected" : "" %> value="lvds15">LVDS 15 inches</option><% } %>
                             <option <%= video == "headless" ? "selected" : "" %> value="headless">Disable screen outout</option>
                         </select>
                     </div>
@@ -45,11 +46,12 @@
                     </div>
                 </div>
             </form>
-            
+
             <br style="clear:both;">
         </div>
     </div>
-    
+
+    <%if (hasM4) { %>
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-green2">
             <div class="panel-heading">
@@ -60,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <form class="form-horizontal" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-m4">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">M4 status</label>
@@ -77,11 +79,12 @@
                     </div>
                 </div>
             </form>
-            
+
             <br style="clear:both;">
         </div>
     </div>
-    
+    <% } %>
+
     <div class="col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-red">
             <div class="panel-heading">
@@ -92,7 +95,7 @@
                     </div>
                 </div>
             </div>
-            
+
                 <form class="form-horizontal webport" style="margin:20px 15px 0 15px;" method="POST" action="/settings/set-http-port">
                 <div class="form-group">
                     <label class="col-sm-2 control-label">Listen on port</label>
@@ -112,11 +115,11 @@
                     </div>
                 </div>
             </form>
-            
+
             <br style="clear:both;">
         </div>
     </div>
-    
+
 </div>
 
 
