@@ -14,3 +14,24 @@ override_dh_auto_build:
 override_dh_clean:
 	rm -rf node_modules
 	dh_clean 
+
+override_dh_install:
+	dh_install
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublockly/classic
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublockly/font
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublockly/img
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublockly/materialize
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublocklyserver
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/appengine
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/blocks
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/core
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/demos
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/generators
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/i18n
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/media
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/msg/json
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/tests
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/closure-library
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/examples
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/package
+	ls -lsa debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/
