@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=UDOO Web Configuration
+Type=Link
+URL=http://127.0.0.1/
+Categories=Settings;HardwareSettings;
+Icon=chromium-browser
