@@ -174,6 +174,7 @@ router.post('/wifi-connect', function (req, res) {
 router.get('/advanced', function(req, res, next) {
   var screenCtl;
   var m4Ctl = 'false';
+  var port = global.webPort;
 
  if(req.app.locals.hasM4){
 
@@ -183,7 +184,6 @@ router.get('/advanced', function(req, res, next) {
     }).then(function() {
       execAsync('udoom4ctl status').then(function(m4ctl) {
           fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function(err) {
-              var port = global.webPort;
               if (!err) {
                   port = -1;
               }
@@ -206,7 +206,6 @@ router.get('/advanced', function(req, res, next) {
       screenCtl = screenctl.trim();
     }).then (function() {
       fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function(err) {
-          var port = global.webPort;
           if (!err) {
               port = -1;
           }
@@ -262,6 +261,8 @@ router.post('/set-http-port', function (req, res) {
     }
 
     execAsync(command).then(function(r){
+        res.redirect('/settings/advanced?saved');
+    }).catch(function(e) {
         res.redirect('/settings/advanced?saved');
     });
 });
