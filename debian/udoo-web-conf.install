@@ -10,5 +10,4 @@ views			/opt/udoo-web-conf
 app.js			/opt/udoo-web-conf
 package.json		/opt/udoo-web-conf
 ttyconfig.json		/opt/udoo-web-conf
-debian/port		/etc/udoo-web-conf
 debian/*.desktop		/usr/share/applications

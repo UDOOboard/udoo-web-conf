@@ -7,6 +7,10 @@ set -e
 
 case "$1" in
   install|upgrade)
+    mkdir /etc/udoo-web-conf || /bin/true
+    if [ ! -f /etc/udoo-web-conf/port ]; then
+      echo 80 > /etc/udoo-web-conf/port
+    fi
     ;;
 
   abort-upgrade)
