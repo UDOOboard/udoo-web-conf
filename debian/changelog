@@ -1,4 +1,4 @@
-udoo-web-conf (0.3) trusty; urgency=medium
+udoo-web-conf (0.3.0) trusty; urgency=medium
 
   * New UI
   * Improved WiFi selection
