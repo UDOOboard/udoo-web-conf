@@ -4,8 +4,8 @@ set -e
 
 case "$1" in
   install|upgrade)
-    if grep -qs "Neo" /proc/device-tree/model; then
-      rm /usr/share/applications/ardublockly.desktop || /true
+    if ! grep -qs "Neo" /proc/device-tree/model; then
+      rm /usr/share/applications/ardublockly.desktop || /bin/true
     fi
     ;;
 
