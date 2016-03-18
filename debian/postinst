@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+  install|upgrade)
+    if grep -qs "Neo" /proc/device-tree/model; then
+      rm /usr/share/applications/ardublockly.desktop || /true
+    fi
+    ;;
+
+  abort-upgrade)
+    ;;
+
+  *)
+    echo "preinst called with unknown argument \`$1'" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
