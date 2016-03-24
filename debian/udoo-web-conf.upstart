@@ -13,6 +13,7 @@ start on local-filesystems
 stop on [06]
 
 respawn
+respawn limit 4 20
 
 script
   export HOME=/opt/udoo-web-conf

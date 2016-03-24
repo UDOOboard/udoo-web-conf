@@ -16,7 +16,7 @@ Description: UDOO Neo Web Configurator
  control panel for UDOO NEO.
 
 Package: udoo-web-conf-modules
-Architecture: all
+Architecture: armhf
 Depends: ${misc:Depends}, nodejs (>=5.7)
 Description: UDOO Neo Web Configurator - Node modules
  This tool is designed to allow easy configuration and act as an handy web-based
