@@ -4,8 +4,8 @@ set -e
 
 case "$1" in
   install|upgrade)
-    if ! grep -qs "Neo" /proc/device-tree/model; then
-      rm /usr/share/applications/ardublockly.desktop || /bin/true
+    if ! dpkg -l | grep -q '^.i *linux-udooneo'
+      rm -f /usr/share/applications/ardublockly.desktop 
     fi
     ;;
 
