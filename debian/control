@@ -9,7 +9,7 @@ Vcs-Browser: https://github.com/UDOOboard/udoo-web-conf/
 
 Package: udoo-web-conf
 Architecture: all
-Depends: ${misc:Depends}, udoo-web-docs, nodejs (>=5.7),
+Depends: ${misc:Depends}, udoo-web-docs, nodejs (>=0.12),
  udoo-web-conf-modules (= ${source:Version}), network-manager, dtweb
 Description: UDOO Neo Web Configurator
  This tool is designed to allow easy configuration and act as an handy web-based
@@ -17,7 +17,7 @@ Description: UDOO Neo Web Configurator
 
 Package: udoo-web-conf-modules
 Architecture: armhf
-Depends: ${misc:Depends}, nodejs (>=5.7)
+Depends: ${misc:Depends}, nodejs (>=0.12)
 Description: UDOO Neo Web Configurator - Node modules
  This tool is designed to allow easy configuration and act as an handy web-based
  control panel for UDOO NEO.
