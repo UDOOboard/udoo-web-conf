@@ -7,7 +7,7 @@ description "UDOO Neo Web Configurator"
 author "UDOO Team <social@udoo.org>"
 
 env USER=root
-env PATH=/sbin:/bin:/usr/bin
+env PATH=/sbin:/bin:/usr/bin:/usr/sbin
 
 start on local-filesystems
 stop on [06]
