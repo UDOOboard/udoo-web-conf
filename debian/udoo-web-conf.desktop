@@ -1,7 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=UDOO Web Configuration
-Type=Link
-URL=http://127.0.0.1/
+GenericName=Web Based UDOO Board Configuration Tool
+Type=Application
+Exec=x-www-browser http://127.0.0.1/
 Categories=Settings;HardwareSettings;
-Icon=chromium-browser
+Terminal=false
+Icon=udoo-web-conf

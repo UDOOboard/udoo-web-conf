@@ -1,7 +1,8 @@
 [Desktop Entry]
-Encoding=UTF-8
 Name=ArduBlockly
-Type=Link
-URL=http://127.0.0.1/arduino/ardublockly?standalone
+GenericName=Visual programming editor for Arduino based on Blockly
+Type=Application
+Exec=x-www-browser http://127.0.0.1/arduino/ardublockly?standalone
 Categories=Development;Electronics;
-Icon=chromium-browser
+Terminal=false
+Icon=ardublockly
