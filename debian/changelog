@@ -1,11 +1,32 @@
-udoo-web-conf (0.3.0) trusty; urgency=medium
+udoo-web-conf (0.3.0-6) trusty; urgency=medium
 
+  * Remove ardublockly shortcut for non-supported platforms
+
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Thu, 07 Apr 2016 12:59:37 +0000
+
+udoo-web-conf (0.3.0-5) trusty; urgency=medium
+
+  * Fixed desktop shortcuts and added images
+  * Added /usr/sbin to PATH
+  * Building release
+
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Thu, 07 Apr 2016 12:59:37 +0000
+
+udoo-web-conf (0.3.0-3) trusty; urgency=medium
+
+  * Building release
+
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Thu, 24 Mar 2016 14:52:10 +0000
+
+udoo-web-conf (0.3.0-2) trusty; urgency=medium
+
+  [ Francesco Montefoschi ]
   * New UI
   * Improved WiFi selection
   * Added regional settings, password management, video and M4 core selection
   * Integrated Ardublockly
 
- -- Francesco Montefoschi <francesco.monte@gmail.com>  Thu, 14 Mar 2015 13:00:00 +0100
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Thu, 17 Mar 2016 16:37:46 +0000
 
 udoo-web-conf (0.2.1-1) trusty; urgency=medium
 
