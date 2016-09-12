@@ -1,3 +1,16 @@
+udoo-web-conf (0.3.2-1) trusty; urgency=medium
+
+  * solox: updated arduino examples binaries
+
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Mon, 12 Sep 2016 18:16:45 +0000
+
+udoo-web-conf (0.3.1-1) trusty; urgency=medium
+
+  * Corrected captions
+  * Fixed Tutorial link for QDL
+
+ -- Ettore Chimenti <ek5.chimenti@gmail.com>  Thu, 07 Apr 2016 12:59:37 +0000
+
 udoo-web-conf (0.3.0-6) trusty; urgency=medium
 
   * Remove ardublockly shortcut for non-supported platforms
