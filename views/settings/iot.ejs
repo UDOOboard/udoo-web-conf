@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ../partials/header.ejs %>
+        <title>UDOO - Network configuration</title>
+</head>
+
+<body>
+    <%- include ../partials/top.ejs %>
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <p class="title_sections1">IoT PANEL</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="iot-status-panel">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <p class="dashtitles">IoT Client</p>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-exchange fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div id="iotstatus">&nbsp;</div>
+                                <button type="button" id="button-iot" class="btn"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row hidden" id="login-panel">
+            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <p class="title_sections2">Register your client</p>
+                    </div>
+                    <!--action="http://enterprise.media.unisi.it/auth/start/?client_id=<%= boardId %>&response_type=code&scope=view_account&redirect_uri=http://google.com" -->
+                    <div class="form-horizontal" style="margin: 30px 50px 0 30px;">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Board Id</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="boardId" name="boardId" value="<%= boardId %>" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input id="email" type="text" class="form-control" name="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="buttonLogin" type="button" class="btn btn-primary">Login</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br style="clear:both;">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12 hidden" id="login-progress">
+            <img src="http://www.andrewdavidson.com/articles/spinning-wait-icons/wait30trans.gif" alt="alt text" />
+        </div>
+        <div class="row hidden" id="company-panel">
+            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <p class="title_sections2">Choose company</p>
+                    </div>
+                    <form id="company-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
+                        <div class="company-ct">
+                            <div class="list-group company">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Display Name</label>
+                            <div class="col-sm-10">
+                                <input id="displayName" type="text" class="form-control" name="displayName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="buttonSaveDisplayName" type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br style="clear:both;">
+                </div>
+            </div>
+        </div>
+
+        <div class="row hidden" id="code-panel">
+            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <p class="title_sections2">Insert grant code</p>
+                    </div>
+                    <form id="code-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Save Code</label>
+                            <div class="col-sm-10">
+                                <input id="grantCode" type="text" class="form-control" name="grantCode">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="buttonSaveGrantCode" type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br style="clear:both;">
+                </div>
+            </div>
+        </div>
+
+        <%- include ../partials/bottom.ejs %>
+            <script type="text/javascript" src="/js/settings-iot.js"></script>
+
+</body>
+</html>

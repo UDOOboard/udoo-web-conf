@@ -222,6 +222,41 @@ router.get('/advanced', function(req, res, next) {
   }
 });
 
+router.get('/iot', function(req, res, next) {
+     res.render('settings/iot', {
+         boardId : req.app.locals.boardId
+     });
+});
+
+router.get('/iot/redis/:redisCode', function(req,res){
+    var grantCode = req.params.redisCode;
+    var redis = require('redis');
+    client = redis.createClient();
+    client.set('grant_code',grantCode, function(err){
+        if(err){
+            return res.json({status:false, err:err});
+        }
+        res.json({status: true})
+    });
+});
+
+router.get('/iot/service/:command', function(req,res){
+    var command = req.params.command;
+    var service = "sudo service udoo-iot-client ";
+    execAsync(service + command).then(function(out){
+        console.log('exec ' , out);
+        res.json({status: true, response:out});
+    });
+    // var redis = require('redis');
+    // client = redis.createClient();
+    // client.set('grant_code',grantCode, function(err){
+    //     if(err){
+    //         return res.json({status:false, err:err});
+    //     }
+    //     res.json({status: true})
+    // });
+});
+
 router.post('/set-video', function (req, res) {
     var video = req.body.video.trim();
 
