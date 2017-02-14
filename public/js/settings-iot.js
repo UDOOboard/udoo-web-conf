@@ -5,10 +5,11 @@ var email, password;
 var isIoTServiceRunning;
 
 $(document).ready(function () {
-    $('#buttonLogin').on('click', onLoginClick);
+    $('#btn-login').on('click', onLoginClick);
     $('#company-form').on('submit', onSaveDiplayNameSubmit);
     $('#code-form').on('submit', onSaveCodeSubmit);
-    $('#button-iot').on('click', onButtonIoTServiceClick);
+    $('#btn-iot').on('click', onButtonIoTServiceClick);
+    $('#btn-iot-install').on('click', onButtonIoTServiceInstallClick);
     initIoTPage();
 });
 
@@ -93,6 +94,25 @@ function onSaveCodeSubmit(e) {
 function onButtonIoTServiceClick(e) {
     e.preventDefault();
     setIoTServiceCommand(isIoTServiceRunning ? "stop" : "start");
+}
+
+function onButtonIoTServiceInstallClick(e) {
+    e.preventDefault();
+    var progress = $('#login-progress');
+    progress.removeClass("hidden");
+    $.ajax({
+        type: "GET",
+        url: '/settings/iot/install',
+        success: function (response) {
+            if (!response.err) {
+                setStateIoTPage(response.service);
+            } else {
+                isIoTServiceRunning = false;
+                alert("Error: response getGrantCode not saved");
+            }
+            progress.addClass("hidden");
+        }
+    });
 }
 
 function getCompanyFromUser(email) {
@@ -200,37 +220,11 @@ function setIoTServiceCommand(command) {
         url: '/settings/iot/service/' + command,
         success: function (response) {
             if (!response.err) {
-                if (command === 'start') {
-                    if (response.response.indexOf("start/running") > 0) {
-                        isIoTServiceRunning = true;
-                        $('#iotstatus').text('ON');
-                        $('#code-panel').addClass('hidden');
-                        $('#button-iot').removeClass('btn-success');
-                        $('#button-iot').addClass('btn-danger');
-                    } else {
-                        isIoTServiceRunning = false;
-                        $('#iotstatus').text('OFF');
-                        $('#button-iot').removeClass('btn-danger');
-                        $('#button-iot').addClass('btn-success');
-                    }
-                } else if ("stop") {
-                    if (response.response.indexOf("stop/waiting") > 0) {
-                        isIoTServiceRunning = false;
-                        $('#iotstatus').text('OFF');
-                        $('#button-iot').removeClass('btn-danger');
-                        $('#button-iot').addClass('btn-success');
-
-                    } else {
-                        isIoTServiceRunning = false;
-                        $('#iotstatus').text('ON');
-                        $('#button-iot').removeClass('btn-success');
-                        $('#button-iot').addClass('btn-danger');
-                    }
-                }
+                setStateIoTPage(response.service);
             } else {
                 alert("Error: response getGrantCode not saved");
             }
-        },
+        }
     });
 }
 
@@ -240,23 +234,35 @@ function initIoTPage() {
         url: '/settings/iot/service/status',
         success: function (response) {
             if (!response.err) {
-                if (response.response.indexOf("start/running") > 0) {
-                    isIoTServiceRunning = true;
-                    $('#iotstatus').text('ON');
-                    $('#button-iot').removeClass('btn-success');
-                    $('#button-iot').addClass('btn-danger');
-                }
-                else {
-                    isIoTServiceRunning = false;
-                    $('#iotstatus').text('OFF');
-                    $('#button-iot').removeClass('btn-danger');
-                    $('#button-iot').addClass('btn-success');
-                    $('#login-panel').removeClass('hidden');
-                }
+                setStateIoTPage(response.service);
             } else {
                 isIoTServiceRunning = false;
                 alert("Error: response getGrantCode not saved");
             }
         },
     });
+}
+
+function setStateIoTPage(iotState) {
+    if (iotState) {
+        if (iotState.started) {
+            isIoTServiceRunning = true;
+            $('#iotstatus').text('ON');
+            $('#btn-iot').removeClass('btn-success');
+            $('#btn-iot').addClass('btn-danger');
+        } else {
+            isIoTServiceRunning = false;
+            if (!iotState.installed) {
+                $('#install-panel').removeClass('hidden');
+            }
+            else {
+                $('#iotstatus').text('OFF');
+                $('#btn-iot').removeClass('btn-danger');
+                $('#btn-iot').addClass('btn-success');
+                $('#login-panel').removeClass('hidden');
+            }
+        }
+    } else {
+        isIoTServiceRunning = false;
+    }
 }
