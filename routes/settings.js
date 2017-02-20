@@ -6,7 +6,7 @@ var execAsync = Promise.promisify(require('child_process').exec);
 var CountryLanguage = require('country-language');
 var shScriptsPath = '/opt/udoo-web-conf/shscripts/';
 
-router.get('/regional', function (req, res, next) {
+router.get('/regional', function(req, res, next) {
     fs.readFile('/etc/timezone', 'utf8', function (err, data) {
         if (err) {
             data = "Etc/UTC";
@@ -14,11 +14,11 @@ router.get('/regional', function (req, res, next) {
 
         var lang;
 
-        execAsync("cat /etc/default/locale |grep LANG= |cut -c6-7").then(function (out) {
+        execAsync("cat /etc/default/locale |grep LANG= |cut -c6-7").then(function(out) {
             lang = out.trim();
-        }).finally(function () {
+        }).finally(function() {
             res.render('settings/regional', {
-                saved: typeof (req.query.saved) !== 'undefined',
+                saved: typeof(req.query.saved) !== 'undefined',
                 lang: lang,
                 timezone: data.trim(),
                 defaultTimezone: (data.trim() == "Etc/UTC")
@@ -27,7 +27,7 @@ router.get('/regional', function (req, res, next) {
     });
 });
 
-router.get('/regional-languages/:lang', function (req, res, next) {
+router.get('/regional-languages/:lang', function(req, res, next) {
     var lang = req.params.lang;
     CountryLanguage.getCountry(lang, function (err, country) {
         if (err) {
@@ -51,14 +51,14 @@ router.post('/regional-update', function (req, res) {
 
     var lc = language + "_" + country;
 
-    execAsync("timedatectl set-timezone " + timezone).then(function () {
-        execAsync("update-locale LC_ALL=" + lc + ".UTF-8 LANG=" + lc + ".UTF-8").catch(function () {
-            execAsync("update-locale LC_ALL=" + lc + ".UTF-8").catch(function () {
-                execAsync("update-locale LC_ALL=" + lc).catch(function () { });
+    execAsync("timedatectl set-timezone " + timezone).then(function() {
+        execAsync("update-locale LC_ALL="+lc+".UTF-8 LANG="+lc+".UTF-8").catch(function() {
+            execAsync("update-locale LC_ALL="+lc+".UTF-8").catch(function(){
+                execAsync("update-locale LC_ALL="+lc).catch(function(){});
             });
-        }).finally(function () {
-            execAsync("locale-gen " + lc + " " + lc + ".UTF-8").then(function () {
-                execAsync("DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales").then(function () {
+        }).finally(function() {
+            execAsync("locale-gen "+lc+" "+lc+".UTF-8").then(function() {
+                execAsync("DEBIAN_FRONTEND=noninteractive dpkg-reconfigure locales").then(function() {
                     res.redirect('/settings/regional?saved');
                 });
             });
@@ -66,22 +66,22 @@ router.post('/regional-update', function (req, res) {
     });
 });
 
-router.get('/base', function (req, res, next) {
+router.get('/base', function(req, res, next) {
     var hostname = fs.readFileSync("/etc/hostname", "utf8");
     res.render('settings/base', {
         hostname: hostname,
-        saved: typeof (req.query.saved) !== 'undefined'
+        saved: typeof(req.query.saved) !== 'undefined'
     });
 });
 
-router.get('/network', function (req, res, next) {
+router.get('/network', function(req, res, next) {
     res.render('settings/network', {
-        saved: typeof (req.query.saved) !== 'undefined'
+        saved: typeof(req.query.saved) !== 'undefined'
     });
 });
 
 router.post('/set-hostname', function (req, res) {
-    execAsync(shScriptsPath + 'sethostname.sh ' + req.body.hostname).then(function (r) {
+    execAsync(shScriptsPath + 'sethostname.sh ' + req.body.hostname).then(function(r) {
         res.redirect('/settings/base?saved');
     });
 });
@@ -92,13 +92,13 @@ router.post('/change-password', function (req, res) {
 
     switch (req.body.username) {
         case 'udooer':
-            execAsync(shScriptsPath + 'setudooerpwd.sh ' + req.body.password).then(function (r) {
+            execAsync(shScriptsPath + 'setudooerpwd.sh ' + req.body.password).then(function(r) {
                 res.redirect('/settings/base?saved');
             });
             break;
 
         case 'root':
-            execAsync(shScriptsPath + 'setrootpwd.sh ' + req.body.password).then(function (r) {
+            execAsync(shScriptsPath + 'setrootpwd.sh ' + req.body.password).then(function(r) {
                 res.redirect('/settings/base?saved');
             });
             break;
@@ -108,50 +108,50 @@ router.post('/change-password', function (req, res) {
     }
 });
 
-router.get('/wifi-networks', function (req, res, next) {
-    execAsync('nmcli dev wifi list').then(function (r) {
+router.get('/wifi-networks', function(req, res, next){
+  execAsync('nmcli dev wifi list').then(function(r){
 
-        var arrWifiList = r.split(/\r?\n/);
-        var finalList = [];
+      var arrWifiList = r.split(/\r?\n/);
+      var finalList = [];
 
-        for (var i = 1; i < arrWifiList.length - 1; i++) { //skip first and last lines
-            var start_pos = arrWifiList[i].indexOf('\'') + 1;
-            var end_pos = arrWifiList[i].lastIndexOf('\'');
-            var networkName = arrWifiList[i].substring(start_pos, end_pos);
-            var isProtected = false;
-            if (arrWifiList[i].indexOf("WPA") > -1 || arrWifiList[i].indexOf("WEP") > -1) {
-                isProtected = true;
-            }
-            start_pos = arrWifiList[i].indexOf('MB/s') + 4;
-            var signal = arrWifiList[i].substring(start_pos).trim();
-            signal = parseInt(signal.substring(0, 3).trim());
+      for (var i = 1; i < arrWifiList.length - 1; i++) { //skip first and last lines
+          var start_pos = arrWifiList[i].indexOf('\'') + 1;
+          var end_pos = arrWifiList[i].lastIndexOf('\'');
+          var networkName = arrWifiList[i].substring(start_pos,end_pos);
+          var isProtected = false;
+          if (arrWifiList[i].indexOf("WPA") > -1 || arrWifiList[i].indexOf("WEP") > -1) {
+              isProtected = true;
+          }
+          start_pos = arrWifiList[i].indexOf('MB/s') + 4;
+          var signal = arrWifiList[i].substring(start_pos).trim();
+          signal = parseInt(signal.substring(0, 3).trim());
 
-            finalList.push({
-                networkName: networkName,
-                isProtected: isProtected,
-                signal: signal,
-                isSelected: false
-            });
-        }
+          finalList.push({
+              networkName: networkName,
+              isProtected: isProtected,
+              signal: signal,
+              isSelected: false
+          });
+      }
 
-        finalList = finalList.sort(function (a, b) {
-            if (a.signal > b.signal) {
-                return -1;
+      finalList = finalList.sort(function(a, b) {
+        if (a.signal > b.signal) {
+            return -1;
+        } else {
+            if (a.signal < b.signal) {
+                return 1;
             } else {
-                if (a.signal < b.signal) {
-                    return 1;
-                } else {
-                    return 0;
-                }
+                return 0;
             }
-        });
+        }
+      });
 
-        res.json({
-            success: true,
-            wifi: finalList
-        });
+      res.json({
+          success: true,
+          wifi: finalList
+      });
 
-    }).catch(function (r) { res.json({ success: false }) });
+  }).catch(function(r){ res.json({ success: false }) });
 });
 
 router.post('/wifi-connect', function (req, res) {
@@ -165,78 +165,90 @@ router.post('/wifi-connect', function (req, res) {
         command = 'nmcli dev wifi con ' + '"' + ssid + '"';
     }
 
-    execAsync(command).then(function (r) {
+    execAsync(command).then(function(r){
         res.redirect('/settings/network?saved');
     });
 });
 
 
-router.get('/advanced', function (req, res, next) {
-    var screenCtl;
-    var m4Ctl = 'false';
-    var port = global.webPort;
+router.get('/advanced', function(req, res, next) {
+  var screenCtl;
+  var m4Ctl = 'false';
+  var port = global.webPort;
 
-    if (req.app.locals.hasM4) {
+ if(req.app.locals.hasM4){
 
-        execAsync('udooscreenctl get').then(function (screenctl) {
-            screenCtl = screenctl.trim();
+    execAsync('udooscreenctl get').then(function(screenctl) {
+      screenCtl = screenctl.trim();
 
-        }).then(function () {
-            execAsync('udoom4ctl status').then(function (m4ctl) {
-                fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function (err) {
-                    if (!err) {
-                        port = -1;
-                    }
-                });
-                m4Ctl = m4ctl.trim();
+    }).then(function() {
+      execAsync('udoom4ctl status').then(function(m4ctl) {
+          fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function(err) {
+              if (!err) {
+                  port = -1;
+              }
+          });
+          m4Ctl = m4ctl.trim();
 
-            }).then(function () {
-                res.render('settings/advanced', {
-                    port: port,
-                    video: screenCtl,
-                    m4: m4Ctl == 'true' ? 'enabled' : 'disabled',
-                    saved: typeof (req.query.saved) !== 'undefined'
-                });
-            });
-        });
-
-    } else {
-
-        execAsync('udooscreenctl get').then(function (screenctl) {
-            screenCtl = screenctl.trim();
-        }).then(function () {
-            fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function (err) {
-                if (!err) {
-                    port = -1;
-                }
-            });
-        }).then(function () {
-            res.render('settings/advanced', {
-                port: port,
-                video: screenCtl,
-                m4: m4Ctl == 'true' ? 'enabled' : 'disabled',
-                saved: typeof (req.query.saved) !== 'undefined'
-            });
-        });
-
-    }
-});
-
-router.get('/iot', function (req, res, next) {
-    res.render('settings/iot', {
-        boardId: req.app.locals.boardId
+    }).then(function() {
+      res.render('settings/advanced', {
+          port: port,
+          video: screenCtl,
+          m4: m4Ctl == 'true' ? 'enabled' : 'disabled',
+          saved: typeof(req.query.saved) !== 'undefined'
+      });
     });
+    });
+
+  } else {
+
+    execAsync('udooscreenctl get').then(function(screenctl) {
+      screenCtl = screenctl.trim();
+    }).then (function() {
+      fs.access('/etc/init/udoo-web-conf.override', fs.F_OK, function(err) {
+          if (!err) {
+              port = -1;
+          }
+      });
+    }).then(function() {
+      res.render('settings/advanced', {
+          port: port,
+          video: screenCtl,
+          m4: m4Ctl == 'true' ? 'enabled' : 'disabled',
+          saved: typeof(req.query.saved) !== 'undefined'
+      });
+    });
+
+  }
 });
 
-router.get('/iot/redis/:redisCode', function (req, res) {
+router.get('/iot', function(req, res, next) {
+     res.render('settings/iot', {
+         boardId : req.app.locals.boardId
+     });
+});
+
+router.get('/iot/redis/:redisCode', function(req,res){
     var grantCode = req.params.redisCode;
     var redis = require('redis');
     client = redis.createClient();
-    client.set('grant_code', grantCode, function (err) {
-        if (err) {
-            return res.json({ status: false, err: err });
+    client.set('grant_code',grantCode, function(err){
+        if(err){
+            return res.json({status:false, err:err});
         }
-        res.json({ status: true })
+        res.json({status: true})
+    });
+});
+
+router.get('/iot/redisOauth/:code', function(req,res){
+    var oauth_secret = req.params.code;
+    var redis = require('redis');
+    client = redis.createClient();
+    client.set('oauth_secret',oauth_secret, function(err){
+        if(err){
+            return res.json({status:false, err:err});
+        }
+        res.json({status: true})
     });
 });
 
@@ -261,14 +273,14 @@ router.post('/set-video', function (req, res) {
         return;
     }
 
-    execAsync("udooscreenctl set " + video).then(function (r) {
+    execAsync("udooscreenctl set " + video).then(function(r){
         res.redirect('/settings/advanced?saved');
     });
 });
 
 router.post('/set-m4', function (req, res) {
     var m4 = req.body.m4.trim(),
-        command;
+             command;
 
     if (m4 == "enabled") {
         command = "udoom4ctl enable";
@@ -276,14 +288,14 @@ router.post('/set-m4', function (req, res) {
         command = "udoom4ctl disable";
     }
 
-    execAsync(command).then(function (r) {
+    execAsync(command).then(function(r){
         res.redirect('/settings/advanced?saved');
     });
 });
 
 router.post('/set-http-port', function (req, res) {
     var port = req.body.port.trim(),
-        command;
+               command;
 
     if (port == "-1") {
         command = "echo manual > /etc/init/udoo-web-conf.override";
@@ -291,9 +303,9 @@ router.post('/set-http-port', function (req, res) {
         command = "echo " + parseInt(port) + " > /etc/udoo-web-conf/port; rm /etc/init/udoo-web-conf.override;";
     }
 
-    execAsync(command).then(function (r) {
+    execAsync(command).then(function(r){
         res.redirect('/settings/advanced?saved');
-    }).catch(function (e) {
+    }).catch(function(e) {
         res.redirect('/settings/advanced?saved');
     });
 });

@@ -1,4 +1,4 @@
-var URL_PATH = 'http://192.168.1.112:6969';
+var URL_PATH = 'http://192.168.1.128:6969';
 
 var userId;
 var email, password;
@@ -65,6 +65,12 @@ function onSaveDiplayNameSubmit(e) {
         dataType: "json",
         success: function (response) {
             if (!response.err) {
+                if (response.oauth_secret) {
+                    $.ajax({
+                        type: "GET",
+                        url: '/settings/iot/redisOauth/' + response.oauth_secret
+                    });
+                }
                 getGrantCode(boardId);
             } else {
                 alert("Error: response /api/gateway success false");
