@@ -313,7 +313,6 @@ router.post('/set-http-port', function (req, res) {
 var execServiceIot = function (command, res) {
     var service = "LANG=en_US.UTF-8 sudo service udoo-iot-client ";
     execAsync(service + command).then(function (out) {
-        console.log('exec ', out);
         var out_arr = out.split('process');
         var service = {
             started: false,

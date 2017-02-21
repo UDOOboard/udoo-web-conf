@@ -201,7 +201,7 @@ function addCompaniesToView(error, companies) {
 
     for (var i = 0; i < companies.length; i++) {
         var company = companies[i];
-        var html = ['<input type="radio" name="companyId" class="list-group-item" value="' + company.company_id + '">' + company.displayName + '</input>'];
+        var html = ['<div class="radio"><input type="radio" name="companyId" class="list-group-item" value="' + company.company_id + '">' + company.displayName + '</input></div>'];
         $(".list-group.company").append(html.join(''));
     }
 }
