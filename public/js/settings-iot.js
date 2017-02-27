@@ -1,4 +1,4 @@
-var URL_PATH = 'http://192.168.1.128:6969';
+var URL_PATH = 'http://enterprise.media.unisi.it';
 
 var userId;
 var email, password;
@@ -90,6 +90,7 @@ function onSaveCodeSubmit(e) {
         success: function (response) {
             if (!response.err) {
                 setIoTServiceCommand('start');
+                retryStatus();
             } else {
                 alert("Error: response getGrantCode not saved");
             }
@@ -156,6 +157,12 @@ function getGateway(companies) {
             }
             if (found) {
                 getGrantCode(boardId);
+                if (response.oauth_secret) {
+                    $.ajax({
+                        type: "GET",
+                        url: '/settings/iot/redisOauth/' + response.oauth_secret
+                    });
+                }
             } else {
                 addCompaniesToView(null, companies);
             }
@@ -252,23 +259,43 @@ function initIoTPage() {
 function setStateIoTPage(iotState) {
     if (iotState) {
         if (iotState.started) {
-            isIoTServiceRunning = true;
             $('#iotstatus').text('ON');
             $('#btn-iot').removeClass('btn-success');
             $('#btn-iot').addClass('btn-danger');
+            if(iotState.state.init){
+                $('#login-panel').addClass('hidden');
+                $('#code-panel').addClass("hidden");
+                retryStatus();
+                isIoTServiceRunning = true;
+            }
+            else if (iotState.state.wait) {
+                $('#login-panel').removeClass('hidden');
+                isIoTServiceRunning = true;
+            } else {
+                isIoTServiceRunning = true;
+                $('#login-panel').addClass('hidden');
+                $('#code-panel').addClass("hidden");
+            }
         } else {
             isIoTServiceRunning = false;
             if (!iotState.installed) {
                 $('#install-panel').removeClass('hidden');
+                // $('#iot-status-panel').addClass('hidden');
             }
             else {
                 $('#iotstatus').text('OFF');
                 $('#btn-iot').removeClass('btn-danger');
                 $('#btn-iot').addClass('btn-success');
-                $('#login-panel').removeClass('hidden');
+                $('#iot-status-panel').removeClass('hidden');
             }
         }
     } else {
         isIoTServiceRunning = false;
     }
+}
+
+function retryStatus(){
+    setTimeout(function(){
+        setIoTServiceCommand('status');
+    }, 5000);
 }
