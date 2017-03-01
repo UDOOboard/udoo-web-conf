@@ -8,6 +8,30 @@
 
 <body>
     <%- include ../partials/top.ejs %>
+
+
+
+   <div class="modal fade" id="waitDialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">UDOO IoT Client</h4>
+            </div>
+            <div class="modal-body">
+                <div class="loading">Please wait, install iot package.<br> This can take up to a minute...
+                    <br><br><br>
+                    <div style="text-align:center;"><img src="/images/loader-small.gif"></div>
+                    <br><br>
+                </div>
+                <div class="loaded hidden">The package has been installed!</div>
+                <div class="error hidden">The package hasn't been installed!</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+   </div>
         <div class="row">
             <div class="col-lg-12">
                 <div>
@@ -26,9 +50,11 @@
                                 <i class="fa fa-exchange fa-4x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div id="iotstatus">&nbsp;</div>
-                                <button type="button" id="btn-iot" class="btn"></button>
-                                <p id="label-iot-status">status : </p>
+                                <!--<div id="iotstatus">&nbsp;</div>-->
+                                 <div class="huge">
+                                    <input type="checkbox" id="toogle-iot" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"/>
+                                 </div>
+                                <!--<p id="label-iot-status">status : </p>-->
                             </div>
                         </div>
                     </div>
@@ -45,7 +71,9 @@
                                 <i class="fa fa-exchange fa-4x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <button type="button" id="btn-iot-install" class="btn btn-primary">Install</button>
+                                <div class="huge">
+                                    <button type="button" id="btn-iot-install" class="btn btn-primary">Install</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -148,6 +176,8 @@
 
         <%- include ../partials/bottom.ejs %>
             <script type="text/javascript" src="/js/settings-iot.js"></script>
+            <link href="/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+            <script src="/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
 
 </body>
 </html>

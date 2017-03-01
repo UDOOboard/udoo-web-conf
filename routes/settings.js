@@ -264,19 +264,36 @@ router.get('/iot/service/:command', function (req, res) {
 });
 
 router.get('/iot/install', function (req, res) {
-    var command = "dpkg -l udoo-iot-cloud-client | grep -c ^i";
     var service = {
-            installed: false
+        installed: false
     }
+    var command = 'apt-get -qq update > /dev/null';
     execAsync(command).then(function (out) {
-        if (out && out.trim() === '1') {
-            service.installed = true;
-            res.json({ status: true, service });
-        } else {
-            res.json({ status: true, service });
-        }
-    }, function(err){
-        res.json({ status: true, service });
+        const spawn = require('child_process').spawn;
+        const child = spawn('apt-get', ['-qq', 'install', 'udoo-iot-cloud-client'], {
+            detached: false,
+            stdio: ['ignore', 'inherit', 'pipe']
+        });
+
+        child.stderr.on('data', (data) => {
+            console.log('error ' + data);
+        });
+
+        child.on('close', (code) => {
+            if (code == '0') {
+                setTimeout(function () {
+                    controlIoTService(false, res);
+                }, 2000);
+            } else {
+                res.json({ status: false, service });
+            }
+        });
+
+        child.on('error', function (error) {
+            res.json({ status: false, service });
+        });
+    }, function (err) {
+        res.json({ status: false, service });
     });
 });
 
@@ -349,7 +366,7 @@ var controlIoTService = function (all, res) {
     execAsync(isInstalled).then(function (out) {
         if (out && out.trim() === '1') {
             service.installed = true;
-            var startedCommand = "pgrep -u udoo-iot -f udoo-iot-client -c";
+            var startedCommand = "pgrep -F /run/udoo-iot-client.pid -c";
             execAsync(startedCommand).then(function (out) {
                 if (out && out.trim() === '1') {
                     service.started = true;

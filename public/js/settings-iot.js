@@ -8,7 +8,7 @@ $(document).ready(function () {
     $('#btn-login').on('click', onLoginClick);
     $('#company-form').on('submit', onSaveDiplayNameSubmit);
     $('#code-form').on('submit', onSaveCodeSubmit);
-    $('#btn-iot').on('click', onButtonIoTServiceClick);
+    $('#toogle-iot').change(onButtonIoTServiceClick);
     $('#btn-iot-install').on('click', onButtonIoTServiceInstallClick);
     initIoTPage();
 });
@@ -83,12 +83,15 @@ function onSaveDiplayNameSubmit(e) {
 function onSaveCodeSubmit(e) {
     e.preventDefault();
     var grantCode = $("#grantCode").val();
-
+    var loginPanel = $('#login-panel');
+    var codePanel = $('#code-panel');
     $.ajax({
         type: "GET",
         url: '/settings/iot/redis/' + grantCode,
         success: function (response) {
             if (!response.err) {
+                loginPanel.addClass('hidden');
+                codePanel.addClass("hidden");
                 setIoTServiceCommand('start');
                 retryStatus();
             } else {
@@ -105,21 +108,35 @@ function onButtonIoTServiceClick(e) {
 
 function onButtonIoTServiceInstallClick(e) {
     e.preventDefault();
-    var progress = $('#login-progress');
-    progress.removeClass("hidden");
+    $('#waitDialog div.loading').removeClass("hidden");
+    $('#waitDialog div.loaded').addClass("hidden");
+    $('#waitDialog div.error').addClass("hidden");
+    $('#waitDialog').modal('show');
+
     $.ajax({
         type: "GET",
         url: '/settings/iot/install',
         success: function (response) {
-            if (!response.err) {
+            $('#waitDialog div.loading').addClass("hidden");
+            if (response.status) {
+                $('#waitDialog div.loaded').removeClass("hidden");
                 setStateIoTPage(response.service);
             } else {
-                isIoTServiceRunning = false;
-                alert("Error: response getGrantCode not saved");
+                $('#waitDialog div.error').html(response.message).removeClass("hidden");
             }
-            progress.addClass("hidden");
         }
     });
+
+    // success: function (response) {
+    //     if (!response.err) {
+    //         setStateIoTPage(response.service);
+    //     } else {
+    //         isIoTServiceRunning = false;
+    //         alert("Error: response getGrantCode not saved");
+    //     }
+    //     progress.addClass("hidden");
+    // }
+
 }
 
 function getCompanyFromUser(email) {
@@ -259,10 +276,10 @@ function initIoTPage() {
 function setStateIoTPage(iotState) {
     if (iotState) {
         if (iotState.started) {
-            $('#iotstatus').text('ON');
-            $('#btn-iot').removeClass('btn-success');
-            $('#btn-iot').addClass('btn-danger');
+            // $('#toogle-iot').bootstrapToggle('on');            
             if(iotState.state.init){
+                $('#install-panel').addClass('hidden');
+                $('#iot-status-panel').removeClass('hidden');
                 $('#login-panel').addClass('hidden');
                 $('#code-panel').addClass("hidden");
                 retryStatus();
@@ -280,12 +297,10 @@ function setStateIoTPage(iotState) {
             isIoTServiceRunning = false;
             if (!iotState.installed) {
                 $('#install-panel').removeClass('hidden');
-                // $('#iot-status-panel').addClass('hidden');
+                $('#iot-status-panel').addClass('hidden');
             }
             else {
-                $('#iotstatus').text('OFF');
-                $('#btn-iot').removeClass('btn-danger');
-                $('#btn-iot').addClass('btn-success');
+                // $('#toogle-iot').bootstrapToggle('off');            
                 $('#iot-status-panel').removeClass('hidden');
             }
         }
