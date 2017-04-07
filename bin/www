@@ -68,6 +68,24 @@ fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
     });
 });
 
+fs.readFile('/sys/fsl_otp/HW_OCOTP_CFG0', 'utf8', function (err, data) {
+  var H = '';
+  var L = '';
+  if (err) {
+    console.log("Unknown boardId!");
+  }
+  else {
+    H = data.replace('0x', '').trim();
+    fs.readFile('/sys/fsl_otp/HW_OCOTP_CFG1', 'utf8', function (err, data) {
+      if (err) {
+        console.log("Unknown boardId!");
+      } else {
+        L = data.replace('0x', '').trim();
+        app.locals.boardId = L+H;
+      }
+    });
+  }
+});
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
