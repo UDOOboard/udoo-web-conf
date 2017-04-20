@@ -5,6 +5,7 @@ var Promise = require('bluebird');
 var execAsync = Promise.promisify(require('child_process').exec);
 var CountryLanguage = require('country-language');
 var shScriptsPath = '/opt/udoo-web-conf/shscripts/';
+var http = require('http');
 
 router.get('/regional', function(req, res, next) {
     fs.readFile('/etc/timezone', 'utf8', function (err, data) {
@@ -26,6 +27,8 @@ router.get('/regional', function(req, res, next) {
         });
     });
 });
+
+
 
 router.get('/regional-languages/:lang', function(req, res, next) {
     var lang = req.params.lang;
@@ -73,6 +76,7 @@ router.get('/base', function(req, res, next) {
         saved: typeof(req.query.saved) !== 'undefined'
     });
 });
+
 
 router.get('/network', function(req, res, next) {
     res.render('settings/network', {
@@ -222,6 +226,87 @@ router.get('/advanced', function(req, res, next) {
   }
 });
 
+router.get('/iot', function(req, res, next) {
+	var hostname = fs.readFileSync("/etc/hostname", "utf8").replace(/\0/g, '').trim();
+	var url_server = fs.readFileSync("/etc/udoo-web-conf/url_iot", "utf8").replace(/\0/g, '').trim(); 	
+	
+	
+     res.render('settings/iot', {
+         boardId : req.app.locals.boardId,
+         hostname: hostname,
+         boardType: req.app.locals.boardModel,
+     	 server_url: url_server
+	});
+});
+
+router.get('/iot/redis/:codes', function(req,res){
+    var codes = req.params.codes;
+    var jsonReq = {
+        codes : codes
+    }
+    postToIoT(jsonReq, 'boardcodes', function(err){
+        if(!err){
+            return res.json({status: true})
+        }else{
+            return res.json({status:false, err:err});
+        }
+    });
+});
+
+/*router.get('/iot/redisOauth/:code', function(req,res){
+    var oauthSecret = req.params.code;
+    var jsonReq = {
+        oauthsecret : oauthSecret
+    }
+    postToIoT(jsonReq, 'oauth', function(err){
+        if(!err){
+            return res.json({status: true})
+        }else{
+            return res.json({status:false, err:err});
+        }
+    });
+});*/
+
+router.get('/iot/service/:command', function (req, res) {
+    var command = req.params.command;
+    if(command === "status") controlIoTService(true, res);
+    else execServiceIot(command, res);
+});
+
+router.get('/iot/install', function (req, res) {
+    var service = {
+        installed: false
+    }
+    var command = 'apt-get -qq update > /dev/null';
+    execAsync(command).then(function (out) {
+        const spawn = require('child_process').spawn;
+        const child = spawn('apt-get', ['-qq', 'install', 'udoo-iot-cloud-client'], {
+            detached: false,
+            stdio: ['ignore', 'inherit', 'pipe']
+        });
+
+        child.stderr.on('data', (data) => {
+            console.log('error ' + data);
+        });
+
+        child.on('close', (code) => {
+            if (code == '0') {
+                setTimeout(function () {
+                    controlIoTService(false, res);
+                }, 2000);
+            } else {
+                res.json({ status: false, service });
+            }
+        });
+
+        child.on('error', function (error) {
+            res.json({ status: false, service });
+        });
+    }, function (err) {
+        res.json({ status: false, service });
+    });
+});
+
 router.post('/set-video', function (req, res) {
     var video = req.body.video.trim();
 
@@ -266,5 +351,135 @@ router.post('/set-http-port', function (req, res) {
         res.redirect('/settings/advanced?saved');
     });
 });
+
+var execServiceIot = function (command, res) {
+    var serviceCommand = "sudo service udoo-iot-cloud-client ";
+    execAsync(serviceCommand + command).then(function (out) {
+        controlIoTService(false, res);
+    }, function (err) {
+        controlIoTService(true, res);
+    });
+}
+
+var controlIoTService = function (all, res) {
+    var isInstalled = "dpkg -l udoo-iot-cloud-client | grep -c ^i";
+    var service = {
+        installed: false,
+        started: false,
+        state: {
+            init : false,
+            wait: false,
+            running: false,
+            message: ''
+        }
+    }
+    execAsync(isInstalled).then(function (out) {
+        if (out && out.trim() === '1') {
+            service.installed = true;
+            var startedCommand = "pgrep -F /run/udoo-iot-client.pid -c";
+            execAsync(startedCommand).then(function (out) {
+                if (out && out.trim() === '1') {
+                    service.started = true;
+                    if (all) {
+                        getToIoT('status', function (err, data) {
+                            if (!err && data) {
+                                data = JSON.parse(data);
+                                if(data.code == '0'){
+                                    service.state.init = true;
+                                }
+                                else if (data.code == '1') {
+                                    service.state.wait = true;
+                                } else {
+                                    service.state.running = true;
+                                }
+                                service.state.message = data.message;
+                                return res.json({ status: true, service })
+                            } else {
+                                return res.json({ status: false, service });
+                            }
+                        });
+                    }else{
+                        service.state.init = true;
+                        res.json({ status: true, service });
+                    }
+                } else {
+                    res.json({ status: true, service });
+                }
+            }, function (err) {
+                res.json({ status: true, service });
+            });
+        } else {
+            res.json({ status: true, service });
+        }
+    }, function (err) {
+        res.json({ status: true, service });
+    });
+}
+
+
+function postToIoT(jsonReq, pathReq, callback) {
+    jsonReq = JSON.stringify(jsonReq);
+    var options = {
+        hostname: 'localhost',
+        port: 16969,
+        path: '/'+pathReq,
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': Buffer.byteLength(jsonReq)
+        }
+    };
+
+    var req = http.request(options, (res) => {
+        res.setEncoding('utf8');
+        if(res.statusCode=== 200){
+            callback(null);
+        }else{
+            callback('error');
+        }
+    });
+
+    if (req) {
+        
+        req.on('error', function(error) {
+            console.log('connectio '+error);
+        });
+
+        req.write(jsonReq);
+        req.end();
+    }
+}
+
+function getToIoT(pathReq, callback) {
+    var options = {
+        hostname: 'localhost',
+        port: 16969,
+        path: '/' + pathReq,
+        method: 'GET',
+    };
+
+    var req = http.request(options, (res) => {
+        res.setEncoding('utf8');
+        if (res.statusCode === 200) {
+            var body = "";
+            res.on('data', function (data) {
+                body += data;
+            });
+            res.on('end', function () {
+                callback(null, body);
+            });
+        } else {
+            callback('error');
+        }
+    });
+
+    if (req) {
+        req.on('error', function(error) {
+            console.log('connectio '+error);
+            callback(error);
+        });
+        req.end();
+    }
+}
 
 module.exports = router;

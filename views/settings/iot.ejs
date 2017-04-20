@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include ../partials/header.ejs %>
+        <title>UDOO - Network configuration</title>
+	<script>
+		var URL_CONFIG = '<%= server_url %>';	
+	</script>
+</head>
+
+<body>
+    <%- include ../partials/top.ejs %>
+
+
+
+   <div class="modal fade" id="waitDialog" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">UDOO IoT Client</h4>
+            </div>
+            <div class="modal-body">
+                <div class="loading">Please wait, install iot package.<br> This can take up to a minute...
+                    <br><br><br>
+                    <div style="text-align:center;"><img src="/images/loader-small.gif"></div>
+                    <br><br>
+                </div>
+                <div class="loaded hidden">The package has been installed!</div>
+                <div class="error hidden">The package hasn't been installed!</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+   </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div>
+                    <p class="title_sections1">IoT PANEL</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="iot-status-panel">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <p class="dashtitles">IoT Client</p>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-exchange fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <!--<div id="iotstatus">&nbsp;</div>-->
+                                 <div class="huge">
+                                    <input type="checkbox" id="toogle-iot" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"/>
+                                 </div>
+                                <!--<p id="label-iot-status">status : </p>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row hidden" id="install-panel">
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <p class="dashtitles">Install IoT client</p>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-exchange fa-4x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge">
+                                    <button type="button" id="btn-iot-install" class="btn btn-primary">Install</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row " id="register-panel hidden">
+			<div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12  text-center" id="register-box">
+				The board is not registered on Cloud	
+				<br><br>
+				<a id="iot-start-login" class="btn btn-primary">Register now</a>
+			</div>
+			
+			<div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12 hidden" id="code-box">
+
+					<div class="panel panel-blue2">
+						<div class="panel-heading">
+							<p class="title_sections2">Insert grant code</p>
+						</div>
+						<form id="code-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
+							<div class="form-group">
+								<label class="col-sm-2 control-label">Save Code</label>
+								<div class="col-sm-10">
+									<input id="codes" type="text" class="form-control" name="codes">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-offset-2 col-sm-10">
+									<button id="btn-save-grant-code" type="submit" class="btn btn-primary">Save</button>
+								</div>
+							</div>
+						</form>
+						<a class="btn btn-link" id="iot-external-link">Open register page</a>
+
+						<br style="clear:both;">
+					</div>
+				</div>
+		</div>
+		        
+<!--
+        <div class="row hidden" id="login-panel">
+            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <p class="title_sections2">Register your client</p>
+                    </div>
+                    <!--action="http://enterprise.media.unisi.it/auth/start/?client_id=<%= boardId %>&response_type=code&scope=view_account&redirect_uri=http://google.com" 
+                    <div class="form-horizontal" style="margin: 30px 50px 0 30px;">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Board Id</label>
+                            <div class="col-sm-10">
+                                
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-10">
+                                <input id="email" type="text" class="form-control" name="email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="password" id="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="btn-login" type="button" class="btn btn-primary">Login</button>
+                                <button id="btn-login" type="button" onclick="window.open('http://192.168.1.128:6969/signup');" class="btn btn-primary">Sign up</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br style="clear:both;">
+                </div>
+            </div>
+        </div>
+-->
+<!--
+        <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12 hidden" id="login-progress">
+            <img src="http://www.andrewdavidson.com/articles/spinning-wait-icons/wait30trans.gif" alt="alt text" />
+        </div>
+        <div class="row hidden" id="company-panel">
+            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <p class="title_sections2">Choose company</p>
+                    </div>
+                    <form id="company-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
+                            <div class="company-ct">
+                                <div class="list-group company">
+                                </div>
+                            </div>
+                        <div class="form-group">
+                            <label for="displayName">Display Name</label>
+                            <div>
+                                <input id="displayName" type="text" class="form-control" name="displayName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <button id="btn-save-display-name" type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br style="clear:both;">
+                </div>
+            </div>
+        </div>
+-->
+
+<!--
+        <div class="row hidden" id="code-panel">
+            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                <div class="panel panel-blue2">
+                    <div class="panel-heading">
+                        <p class="title_sections2">Insert grant code</p>
+                    </div>
+                    <form id="code-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Save Code</label>
+                            <div class="col-sm-10">
+                                <input id="grantCode" type="text" class="form-control" name="grantCode">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button id="btn-save-grant-code" type="submit" class="btn btn-primary">Save</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <br style="clear:both;">
+                </div>
+            </div>
+        </div>
+-->
+
+        <%- include ../partials/bottom.ejs %>
+            <script type="text/javascript" src="/js/settings-iot.js"></script>
+            <link href="/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+            <script src="/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@ var debug = require('debug')('udoo-cfg:server');
 var http = require('http');
 var server = http.createServer(app);
 var fs = require('fs');
+var getmac = require('getmac');
 var port;
 
 fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
@@ -66,6 +67,11 @@ fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
         io = require('socket.io')(server);
         require('../controllers/index');
     });
+});
+
+getmac.getMac(function(err, macAddress){
+	if(err) console.log('MAC Address:', macAddress);
+	app.locals.macAddress= macAddress.toString().replace(/:/g,'').trim();
 });
 
 fs.readFile('/sys/fsl_otp/HW_OCOTP_CFG0', 'utf8', function (err, data) {
