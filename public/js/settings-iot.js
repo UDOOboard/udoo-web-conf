@@ -55,12 +55,12 @@ function getTokenFromServer(){
 function onSaveCodeSubmit(e) {
     e.preventDefault();
     var code = $("#codes").val();
+    var codePanel = $("#code-box");
     $.ajax({
 	type: "get",
 	url: '/settings/iot/redis/' + code,
 	success: function (response) {
 		if (!response.err) {
-			loginPanel.addClass('hidden');
 			codePanel.addClass("hidden");
 			setIoTServiceCommand('start');
 			retryStatus();
@@ -140,14 +140,6 @@ function onSaveDiplayNameSubmit(e) {
     });
 }
 
-function getGrantCode(boardId) {
-    $('#code-panel').removeClass("hidden");
-    $('#login-panel').addClass("hidden");
-    $('#company-panel').addClass("hidden");
-    var url = URL_PATH + "/auth/start?client_id=" + boardId + "&response_type=code&scope=view_account&redirect_uri=" + URL_PATH + "/auth/board-login/finish";
-    window.open(url, '_blank');
-}
-
 function onButtonIoTServiceClick(e) {
     e.preventDefault();
     setIoTServiceCommand(isIoTServiceRunning ? "stop" : "start");
@@ -174,35 +166,6 @@ function onButtonIoTServiceInstallClick(e) {
         }
     });
 
-    // success: function (response) {
-    //     if (!response.err) {
-    //         setStateIoTPage(response.service);
-    //     } else {
-    //         isIoTServiceRunning = false;
-    //         alert("Error: response getGrantCode not saved");
-    //     }
-    //     progress.addClass("hidden");
-    // }
-
-}
-
-function getCompanyFromUser(email) {
-    $.ajax({
-        type: "GET",
-        url: URL_PATH + '/api/company/' + email,
-        success: function (response) {
-            if (!response.err) {
-                if (response.length > 0) {
-                    getGateway(response);
-                } else {
-                    alert("Error: companys not found");
-                }
-
-            } else {
-                alert("Error: response getCompanyFromUser success false");
-            }
-        }
-    });
 }
 
 function getGateway(companies) {
@@ -340,7 +303,6 @@ function setStateIoTPage(iotState) {
                 $('#iot-status-panel').addClass('hidden');
             }
             else {
-                // $('#toogle-iot').bootstrapToggle('off');            
                 $('#iot-status-panel').removeClass('hidden');
             }
         }

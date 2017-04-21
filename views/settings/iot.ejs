@@ -5,7 +5,7 @@
     <%- include ../partials/header.ejs %>
         <title>UDOO - Network configuration</title>
 	<script>
-		var URL_CONFIG = '<%= server_url %>';	
+		var URL_PATH = '<%= server_url %>';	
 	</script>
 </head>
 
@@ -85,7 +85,7 @@
             </div>
         </div>
         
-        <div class="row " id="register-panel hidden">
+        <div class="row hidden" id="register-panel">
 			<div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12  text-center" id="register-box">
 				The board is not registered on Cloud	
 				<br><br>
@@ -118,105 +118,7 @@
 				</div>
 		</div>
 		        
-<!--
-        <div class="row hidden" id="login-panel">
-            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
-                <div class="panel panel-blue2">
-                    <div class="panel-heading">
-                        <p class="title_sections2">Register your client</p>
-                    </div>
-                    <!--action="http://enterprise.media.unisi.it/auth/start/?client_id=<%= boardId %>&response_type=code&scope=view_account&redirect_uri=http://google.com" 
-                    <div class="form-horizontal" style="margin: 30px 50px 0 30px;">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Board Id</label>
-                            <div class="col-sm-10">
-                                
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-10">
-                                <input id="email" type="text" class="form-control" name="email">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
-                            <div class="col-sm-10">
-                                <input type="password" class="form-control" name="password" id="password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button id="btn-login" type="button" class="btn btn-primary">Login</button>
-                                <button id="btn-login" type="button" onclick="window.open('http://192.168.1.128:6969/signup');" class="btn btn-primary">Sign up</button>
-                            </div>
-                        </div>
-                    </div>
-                    <br style="clear:both;">
-                </div>
-            </div>
-        </div>
--->
-<!--
-        <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12 hidden" id="login-progress">
-            <img src="http://www.andrewdavidson.com/articles/spinning-wait-icons/wait30trans.gif" alt="alt text" />
-        </div>
-        <div class="row hidden" id="company-panel">
-            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
-                <div class="panel panel-blue2">
-                    <div class="panel-heading">
-                        <p class="title_sections2">Choose company</p>
-                    </div>
-                    <form id="company-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
-                            <div class="company-ct">
-                                <div class="list-group company">
-                                </div>
-                            </div>
-                        <div class="form-group">
-                            <label for="displayName">Display Name</label>
-                            <div>
-                                <input id="displayName" type="text" class="form-control" name="displayName">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div>
-                                <button id="btn-save-display-name" type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
-                    </form>
 
-                    <br style="clear:both;">
-                </div>
-            </div>
-        </div>
--->
-
-<!--
-        <div class="row hidden" id="code-panel">
-            <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
-                <div class="panel panel-blue2">
-                    <div class="panel-heading">
-                        <p class="title_sections2">Insert grant code</p>
-                    </div>
-                    <form id="code-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Save Code</label>
-                            <div class="col-sm-10">
-                                <input id="grantCode" type="text" class="form-control" name="grantCode">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button id="btn-save-grant-code" type="submit" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <br style="clear:both;">
-                </div>
-            </div>
-        </div>
--->
 
         <%- include ../partials/bottom.ejs %>
             <script type="text/javascript" src="/js/settings-iot.js"></script>
