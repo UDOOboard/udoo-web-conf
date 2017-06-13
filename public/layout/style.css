@@ -34,6 +34,10 @@
     border-bottom: 1px solid #eee;
 }
 
+.text-bold{
+    font-weight: bold;
+}
+
 .title_sections1 {
     color: #000000;
     font-family: quicksand;
@@ -476,6 +480,32 @@ pre#editor {
   border-top-color: #e6e9ed;
 }
 
+.log-iot {
+    background-color: #0f0f0f;
+    color: #FFF;
+    font-weight: bold;
+    width: 102%;
+    height: 100%;
+    margin: -15px;
+    padding: 10px;
+    overflow: hidden;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+.panel-gray{
+    background-color: #e6e9ed;
+}
 
+.panel-gray > .panel-heading > .dashtitles{
+    color: #0f0f0f;
+    border-bottom: 1px solid #0f0f0f;
+}
+
+#register-alert > .alert-link {
+    text-decoration: underline !important;
+}
+
+#register-done-alert > .alert-link {
+    text-decoration: underline !important;
+}
 
 

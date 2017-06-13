@@ -5,66 +5,73 @@ var debug = require('debug')('udoo-cfg:server');
 var http = require('http');
 var server = http.createServer(app);
 var fs = require('fs');
+var getmac = require('getmac');
 var port;
 
-fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err, data) {
-  if (err) {
-    port = 80;
-  } else {
-    port = normalizePort(data);
-  }
-
-  fs.readFile('/proc/device-tree/model', 'utf8', function (err, data) {
+fs.readFile('/etc/udoo-web-conf/port', 'utf8', function (err,data) {
     if (err) {
-      console.log("Unknown board model!");
-    }
-    //set global static props for the app
-    app.locals.boardModel = data.replace(/\0/g, '').trim();
-
-    switch (app.locals.boardModel) {
-      case 'UDOO Quad Board':
-        app.locals.boardImage = 'quad.png';
-        app.locals.hasArduinoMenu = false;
-        app.locals.hasM4 = false;
-        app.locals.hasLvds15 = true;
-        break;
-      case 'UDOO Dual-lite Board':
-        app.locals.boardImage = 'dual.png';
-        app.locals.hasArduinoMenu = false;
-        app.locals.hasM4 = false;
-        app.locals.hasLvds15 = true;
-        break;
-      case 'UDOO Neo Extended':
-        app.locals.boardImage = 'neo_extended.png';
-        app.locals.hasArduinoMenu = true;
-        app.locals.hasM4 = true;
-        app.locals.hasLvds15 = false;
-        break;
-      case 'UDOO Neo Full':
-        app.locals.boardImage = 'neo_full.png';
-        app.locals.hasArduinoMenu = true;
-        app.locals.hasM4 = true;
-        app.locals.hasLvds15 = false;
-        break;
-      case 'UDOO Neo Basic Kickstarter':
-      case 'UDOO Neo Basic':
-        app.locals.boardImage = 'neo_basic.png';
-        app.locals.hasArduinoMenu = true;
-        app.locals.hasM4 = true;
-        app.locals.hasLvds15 = false;
-        break;
+        port = 80;
+    } else {
+        port = normalizePort(data);
     }
 
-    global.webPort = port;
+    fs.readFile('/proc/device-tree/model', 'utf8', function (err, data) {
+        if (err) {
+            console.log("Unknown board model!");
+        }
+        //set global static props for the app
+        app.locals.boardModel = data.replace(/\0/g, '').trim();
+        console.log(app.locals.boardModel);
 
-    app.set('port', port);
-    server.listen(port);
-    server.on('error', onError);
-    server.on('listening', onListening);
+        switch (app.locals.boardModel) {
+            case 'UDOO Quad Board':
+                app.locals.boardImage = 'quad.png';
+                app.locals.hasArduinoMenu = false;
+                app.locals.hasM4 = false;
+                app.locals.hasLvds15 = true;
+                break;
+            case 'UDOO Dual-lite Board':
+                app.locals.boardImage = 'dual.png';
+                app.locals.hasArduinoMenu = false;
+                app.locals.hasM4 = false;
+                app.locals.hasLvds15 = true;
+                break;
+            case 'UDOO Neo Extended':
+                app.locals.boardImage = 'neo_extended.png';
+                app.locals.hasArduinoMenu = true;
+                app.locals.hasM4 = true;
+                app.locals.hasLvds15 = false;
+                break;
+            case 'UDOO Neo Full':
+                app.locals.boardImage = 'neo_full.png';
+                app.locals.hasArduinoMenu = true;
+                app.locals.hasM4 = true;
+                app.locals.hasLvds15 = false;
+                break;
+            case 'UDOO Neo Basic Kickstarter':
+            case 'UDOO Neo Basic':
+                app.locals.boardImage = 'neo_basic.png';
+                app.locals.hasArduinoMenu = true;
+                app.locals.hasM4 = true;
+                app.locals.hasLvds15 = false;
+                break;
+        }
 
-    io = require('socket.io')(server);
-    require('../controllers/index');
-  });
+        global.webPort = port;
+
+        app.set('port', port);
+        server.listen(port);
+        server.on('error', onError);
+        server.on('listening', onListening);
+
+        io = require('socket.io')(server);
+        require('../controllers/index');
+    });
+});
+
+getmac.getMac(function(err, macAddress){
+	if(err) console.log('MAC Address:', macAddress);
+	app.locals.macAddress= macAddress.toString().replace(/:/g,'').trim();
 });
 
 fs.readFile('/sys/fsl_otp/HW_OCOTP_CFG0', 'utf8', function (err, data) {

@@ -1,3 +1,9 @@
+udoo-web-conf (0.4.1) trusty; urgency=medium
+
+  * IoT
+
+ -- Alessandro Genovese <ale.geno92@gmail.com>  Thu, 20 Apr 2017 15:15:49 +0000
+
 udoo-web-conf (0.3.2-1) trusty; urgency=medium
 
   * solox: updated arduino examples binaries

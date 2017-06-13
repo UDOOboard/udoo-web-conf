@@ -28,6 +28,8 @@ router.get('/regional', function(req, res, next) {
     });
 });
 
+
+
 router.get('/regional-languages/:lang', function(req, res, next) {
     var lang = req.params.lang;
     CountryLanguage.getCountry(lang, function (err, country) {
@@ -74,6 +76,7 @@ router.get('/base', function(req, res, next) {
         saved: typeof(req.query.saved) !== 'undefined'
     });
 });
+
 
 router.get('/network', function(req, res, next) {
     res.render('settings/network', {
@@ -224,17 +227,24 @@ router.get('/advanced', function(req, res, next) {
 });
 
 router.get('/iot', function(req, res, next) {
+	var hostname = fs.readFileSync("/etc/hostname", "utf8").replace(/\0/g, '').trim();
+	var url_server = fs.readFileSync("/etc/udoo-web-conf/url_iot", "utf8").replace(/\0/g, '').trim(); 	
+	
+	
      res.render('settings/iot', {
-         boardId : req.app.locals.boardId
-     });
+         boardId : req.app.locals.boardId,
+         hostname: hostname,
+         boardType: req.app.locals.boardModel,
+     	 server_url: url_server
+	});
 });
 
-router.get('/iot/redis/:redisCode', function(req,res){
-    var grantCode = req.params.redisCode;
+router.get('/iot/redis/:codes', function(req,res){
+    var codes = req.params.codes;
     var jsonReq = {
-        grantcode : grantCode
-    }
-    postToIoT(jsonReq, 'grantcode', function(err){
+        codes : codes
+    };
+    postToIoT(jsonReq, 'boardcodes', function(err){
         if(!err){
             return res.json({status: true})
         }else{
@@ -243,19 +253,6 @@ router.get('/iot/redis/:redisCode', function(req,res){
     });
 });
 
-router.get('/iot/redisOauth/:code', function(req,res){
-    var oauthSecret = req.params.code;
-    var jsonReq = {
-        oauthsecret : oauthSecret
-    }
-    postToIoT(jsonReq, 'oauth', function(err){
-        if(!err){
-            return res.json({status: true})
-        }else{
-            return res.json({status:false, err:err});
-        }
-    });
-});
 
 router.get('/iot/service/:command', function (req, res) {
     var command = req.params.command;
@@ -266,7 +263,7 @@ router.get('/iot/service/:command', function (req, res) {
 router.get('/iot/install', function (req, res) {
     var service = {
         installed: false
-    }
+    };
     var command = 'apt-get -qq update > /dev/null';
     execAsync(command).then(function (out) {
         const spawn = require('child_process').spawn;
