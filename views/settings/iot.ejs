@@ -3,25 +3,24 @@
 
 <head>
     <%- include ../partials/header.ejs %>
-        <title>UDOO - Network configuration</title>
-	<script>
-		var URL_PATH = '<%= server_url %>';	
-	</script>
+    <title>UDOO - Network configuration</title>
+    <script>
+        var URL_PATH = '<%= server_url %>';
+    </script>
 </head>
 
 <body>
-    <%- include ../partials/top.ejs %>
+<%- include ../partials/top.ejs %>
 
 
-
-   <div class="modal fade" id="waitDialog" tabindex="-1" role="dialog">
+<div class="modal fade" id="waitDialog" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">UDOO IoT Client</h4>
             </div>
             <div class="modal-body">
-                <div class="loading">Please wait, install iot package.<br> This can take up to a minute...
+                <div class="loading">Please wait, install IoT package.<br> This can take up to a minute...
                     <br><br><br>
                     <div style="text-align:center;"><img src="/images/loader-small.gif"></div>
                     <br><br>
@@ -34,96 +33,154 @@
             </div>
         </div>
     </div>
-   </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div>
-                    <p class="title_sections1">IoT PANEL</p>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div>
+            <p class="title_sections1">IoT PANEL</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div id="internet-alert" class="alert alert-warning hidden">
+            <b> <i class="fa fa-warning"></i>  You don't have any internet connection on your UDOO Board.</b>
+        </div>
+
+        <div id="register-alert" class="alert alert-warning hidden">
+            <b> <i class="fa fa-warning"></i>  Unregistered Board!</b> Click <a id="iot-start-login" class="alert-link" href="#" > here </a>to register your board.
+        </div>
+
+        <div id="register-done-alert" class="alert alert-success hidden">
+            <b>Board Connected to the UDOO IoT Service!</b> Now click <a class="alert-link" href="<%= server_url %>/login" target="_blank"> here </a>to manage your board(s).
+        </div>
+    </div>
+</div>
+
+<div class="row" id="iot-status-panel">
+    <div class="col-lg-4 col-md-6">
+        <div class="panel panel-yellow"  id="internet-panel">
+            <div class="panel-heading">
+                <p class="dashtitles">Board Internet Status</p>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i id="internet-icon" class="fa fa-warning fa-4x"></i>
+                    </div>
+                    <div id="internet-text" class="col-xs-9">
+
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="row" id="iot-status-panel">
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <p class="dashtitles">IoT Client</p>
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-exchange fa-4x"></i>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <p class="dashtitles">IoT Client</p>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-exchange fa-4x"></i>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <!--<div id="iotstatus">&nbsp;</div>-->
+                        <div class="huge">
+                            <div id="toggle-iot-div" class="bootstrap-switch-on bootstrap-switch-id-switch-state bootstrap-switch-wrapper bootstrap-switch-animate">
+                                <input id="toggle-iot" type="checkbox" data-on-color="success" data-off-color="danger" checked="checked"/>
                             </div>
-                            <div class="col-xs-9 text-right">
-                                <!--<div id="iotstatus">&nbsp;</div>-->
-                                 <div class="huge">
-                                    <input type="checkbox" id="toogle-iot" checked data-toggle="toggle" data-onstyle="success" data-offstyle="danger"/>
-                                 </div>
-                                <!--<p id="label-iot-status">status : </p>-->
+                            <button type="button" id="btn-iot-install" class="hidden btn btn-primary">Install</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6">
+        <div class="panel panel-gray"  id="gateway-status">
+            <div class="panel-heading">
+                <p class="dashtitles">Gateway Status</p>
+                <div class="row">
+                    <div class="col-xs-3">
+                        <i class="fa fa-desktop fa-4x"></i>
+                    </div>
+                    <div class="col-xs-9">
+                        <div class="row">
+                            <div class="row">
+                                <div class="col-xs-6 text-bold">Board Id:</div>
+                                <div class="col-xs-6 text-uppercase"><%= boardId %></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6 text-bold">Service Status:</div>
+                                <div class="col-xs-6" id="service-status"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="row hidden" id="install-panel">
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <p class="dashtitles">Install IoT client</p>
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-exchange fa-4x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">
-                                    <button type="button" id="btn-iot-install" class="btn btn-primary">Install</button>
-                                </div>
-                            </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="code-panel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">UDOO IoT Client</h4>
+            </div>
+            <form id="code-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-4 control-label">Save Code</label>
+                        <div class="col-sm-8">
+                            <input id="codes" type="text" class="form-control" name="codes">
                         </div>
+                    </div>
+
+                <a class="btn btn-link" id="iot-external-link">Reopen register page</a>
+                <br>
+                Once you have inserted the code, the IoT service will start automatically.
+            </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id="btn-save-grant-code" type="submit" class="btn btn-default">Save</button>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
-        
-        <div class="row hidden" id="register-panel">
-			<div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12  text-center" id="register-box">
-				The board is not registered on Cloud	
-				<br><br>
-				<a id="iot-start-login" class="btn btn-primary">Register now</a>
-			</div>
-			
-			<div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12 hidden" id="code-box">
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-terminal fa-fw"></i> <b>UDOO IoT CLOUD CLIENT LOG</b>
+                <div class="pull-right">
+                    <div class="btn-group">
+                        <button type="button" id="btn-log-collapse" class="btn btn-default btn-xs" aria-expanded="false">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body panel-collapse collapse" id="log-collapse">
+        <textarea id="log-iot" class="log-iot" rows="20"
+                  cols="100"></textarea>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+    </div>
+</div>
 
-					<div class="panel panel-blue2">
-						<div class="panel-heading">
-							<p class="title_sections2">Insert grant code</p>
-						</div>
-						<form id="code-form" class="form-horizontal" style="margin: 30px 50px 0 30px;">
-							<div class="form-group">
-								<label class="col-sm-2 control-label">Save Code</label>
-								<div class="col-sm-10">
-									<input id="codes" type="text" class="form-control" name="codes">
-								</div>
-							</div>
-							<div class="form-group">
-								<div class="col-sm-offset-2 col-sm-10">
-									<button id="btn-save-grant-code" type="submit" class="btn btn-primary">Save</button>
-								</div>
-							</div>
-						</form>
-						<a class="btn btn-link" id="iot-external-link">Open register page</a>
-
-						<br style="clear:both;">
-					</div>
-				</div>
-		</div>
-		        
-
-
-        <%- include ../partials/bottom.ejs %>
-            <script type="text/javascript" src="/js/settings-iot.js"></script>
-            <link href="/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
-            <script src="/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+<%- include ../partials/bottom.ejs %>
+<script type='text/javascript' src='/socket.io/socket.io.js'></script>
+<script type="text/javascript" src="/js/settings-iot.js"></script>
+<link href="/layout/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" rel="stylesheet">
+<script src="/layout/bootstrap-switch/js/bootstrap-switch.min.js"></script>
 
 </body>
 </html>
