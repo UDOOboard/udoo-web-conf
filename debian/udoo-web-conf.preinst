@@ -11,6 +11,9 @@ case "$1" in
     if [ ! -f /etc/udoo-web-conf/port ]; then
       echo 80 > /etc/udoo-web-conf/port
     fi
+    if [ ! -f /etc/udoo-web-conf/url_iot ]; then
+      echo "http://udoo.cloud" > /etc/udoo-web-conf/url_iot
+    fi
     ;;
 
   abort-upgrade)
