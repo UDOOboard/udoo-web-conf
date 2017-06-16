@@ -183,7 +183,6 @@ function readLogIoT() {
     });
 
     iotLogFile.stdout.on('data', function(data){
-        console.log('data ' + data);
        io.emit('iot-log', {
            data: data.toString()
        })

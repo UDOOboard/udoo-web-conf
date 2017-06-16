@@ -57,13 +57,13 @@ socket.on('online', function(msg){
 function onIotStartLoginClick() {
 
     var url = URL_PATH + "/board-login/" + token;
-    window.open(url);
-   // $('#code-panel').removeClass('hidden');
-    $('#code-panel').modal('show');
+    $('#code-panel').removeClass('hidden');
+
     $('#register-alert').addClass('hidden');
     $('#iot-external-link').attr('target', '_blank');
     $('#iot-external-link').attr('href', url);
 
+    window.open(url);
 }
 
 function getTokenFromServer() {
@@ -98,8 +98,7 @@ function onSaveCodeSubmit(e) {
         url: '/settings/iot/redis/' + code,
         success: function (response) {
             if (!response.err) {
-                $('#code-panel').modal('hide');
-                //codePanel.addClass("hidden");
+                $('#code-panel').addClass("hidden");
                 setIoTServiceCommand('start');
                 retryStatus();
             } else {
