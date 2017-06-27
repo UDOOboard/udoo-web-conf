@@ -7,7 +7,6 @@ $(document).ready(function () {
     $('#toggle-iot').on('switchChange.bootstrapSwitch', function (event, state) {
         onButtonIoTServiceClick(event)
     });
-    $('#btn-iot-install').on('click', onButtonIoTServiceInstallClick);
     $('#iot-start-login').on('click', onIotStartLoginClick);
     $('#code-form').on('submit', onSaveCodeSubmit);
     $('#btn-log-collapse').on('click', collapseBox);
@@ -113,31 +112,6 @@ function onButtonIoTServiceClick(e) {
     setIoTServiceCommand(isIoTServiceRunning ? "stop" : "start");
 }
 
-function onButtonIoTServiceInstallClick(e) {
-    e.preventDefault();
-    $('#waitDialog div.loading').removeClass("hidden");
-    $('#waitDialog div.loaded').addClass("hidden");
-    $('#waitDialog div.error').addClass("hidden");
-    $('#waitDialog').modal('show');
-
-    $.ajax({
-        type: "GET",
-        url: '/settings/iot/install',
-        success: function (response) {
-            $('#waitDialog div.loading').addClass("hidden");
-            if (response.status) {
-                $('#waitDialog div.loaded').removeClass("hidden");
-                $('#btn-iot-install').addClass('hidden');
-                $('#toggle-iot-div').removeClass('hidden');
-                setStateIoTPage(response.service);
-            } else {
-                $('#waitDialog div.error').html(response.message).removeClass("hidden");
-            }
-        }
-    });
-
-}
-
 function setIoTServiceCommand(command) {
     $.ajax({
         type: "GET",
@@ -182,8 +156,7 @@ function setStateIoTPage(iotState) {
             }
         } else {
             if (!iotState.installed) {
-                $('#btn-iot-install').removeClass('hidden');
-                $('#toggle-iot-div').addClass('hidden');
+                showInstall();
             }
             showStop();
         }
@@ -197,12 +170,15 @@ function showInit() {
     isIoTServiceRunning = true;
     $('#toggle-iot').bootstrapSwitch('state', true, true);
     $('#btn-iot-install').addClass('hidden');
+    $('#iot-install-alert').addClass('hidden');
     $('#toggle-iot-div').removeClass('hidden');
     $('#iot-status-panel').removeClass('hidden');
     $('#code-panel').addClass("hidden");
     $('#service-status').text('Connecting...');
     $('#gateway-status').addClass('panel-yellow');
     $('#gateway-status').removeClass('panel-green panel-gray');
+    $('#client-status').addClass('panel-info');
+    $('#client-status').removeClass('panel-yellow');
 }
 
 function showStop() {
@@ -213,6 +189,8 @@ function showStop() {
     $('#gateway-status').removeClass('panel-green panel-yellow');
     $('#gateway-status').addClass('panel-gray');
     $('#register-done-alert').addClass('hidden');
+    $('#client-status').addClass('panel-info');
+    $('#client-status').removeClass('panel-yellow');
 
 }
 
@@ -224,6 +202,8 @@ function showOn() {
     $('#gateway-status').addClass('panel-green');
     $('#gateway-status').removeClass('panel-yellow panel-gray');
     $('#register-done-alert').removeClass('hidden');
+    $('#client-status').addClass('panel-info');
+    $('#client-status').removeClass('panel-yellow');
 }
 
 function showWait() {
@@ -233,6 +213,17 @@ function showWait() {
     $('#service-status').text('Offline');
     $('#gateway-status').removeClass('panel-green panel-yellow');
     $('#gateway-status').addClass('panel-gray');
+    $('#client-status').addClass('panel-info');
+    $('#client-status').removeClass('panel-yellow');
+
+}
+
+function showInstall(){
+    $('#btn-iot-install').removeClass('hidden');
+    $('#iot-install-alert').removeClass('hidden');
+    $('#toggle-iot-div').addClass('hidden');
+    $('#client-status').removeClass('panel-info');
+    $('#client-status').addClass('panel-yellow');
 
 }
 
