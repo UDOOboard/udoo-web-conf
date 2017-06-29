@@ -1,4 +1,10 @@
-udoo-web-conf (0.4.1) trusty; urgency=medium
+udoo-web-conf (0.4.5) trusty; urgency=medium
+
+  * IoT : Added installation instruction
+
+ -- Alessandro Genovese <ale.geno92@gmail.com>  Thu, 29 Jun 2017 11:57:05 +0000
+
+ udoo-web-conf (0.4.1) trusty; urgency=medium
 
   * IoT
 
