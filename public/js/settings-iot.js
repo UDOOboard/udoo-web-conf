@@ -10,6 +10,7 @@ $(document).ready(function () {
     $('#iot-start-login').on('click', onIotStartLoginClick);
     $('#code-form').on('submit', onSaveCodeSubmit);
     $('#btn-log-collapse').on('click', collapseBox);
+    $("#remote-terminal").attr("href", "http://" + location.hostname + ":8000");
     initIoTPage();
     initIoTSocket();
 

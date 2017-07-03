@@ -38,9 +38,11 @@
         </div>
 
         <div id="iot-install-alert" class="alert alert-warning hidden">
-            <b>Package not installed!</b> <br>Please open a terminal and launch the following commands:<br>
+            <b>Package not installed!</b> <br> Please open a terminal in the board or the
+            <a id="remote-terminal" target="_blank">remote terminal</a>
+            and launch the following commands:<br>
             <pre>sudo apt update <br>sudo apt install -y udoo-iot-cloud-client</pre>
-
+            If you are using the remote terminal <b> DO NOT LAUNCH</b> 'sudo apt upgrade' it could corrupt the udoo web confing package.
         </div>
     </div>
 </div>
