@@ -1,6 +1,6 @@
 {
   "name": "udoo-web-conf",
-  "version": "0.4.2",
+  "version": "0.4.6",
   "private": true,
   "description": "UDOO Neo Web Configurator",
   "author": "UDOO Team <social@udoo.org>",
