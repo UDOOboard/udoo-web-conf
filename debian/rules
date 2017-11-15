@@ -1,0 +1,20 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+%:
+	dh $@ --with=systemd
+
+override_dh_install:
+	dh_install
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublocklyserver
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/closure-library
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/package
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/demos
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/tests
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/generators
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/appengine
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/msg/json
+	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/blockly/*_uncompressed.js

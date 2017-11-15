@@ -1,0 +1,11 @@
+app                   /opt/udoo-web-conf
+bin                   /opt/udoo-web-conf
+bootstrap             /opt/udoo-web-conf
+public                /opt/udoo-web-conf
+resources             /opt/udoo-web-conf
+storage               /opt/udoo-web-conf
+vendor                /opt/udoo-web-conf
+.env                  /opt/udoo-web-conf
+
+debian/*.desktop      /usr/share/applications
+debian/pixmaps/*.png  /usr/share/pixmaps

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=ArduBlockly
+GenericName=Visual programming editor for Arduino based on Blockly
+Type=Application
+Exec=x-www-browser http://127.0.0.1/arduino/ardublockly
+Categories=Development;Electronics;
+Terminal=false
+Icon=ardublockly

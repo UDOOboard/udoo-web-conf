@@ -1,0 +1,166 @@
+.boardinfo, .boardinfo table {
+    margin-bottom: 0 !important;
+}
+
+.boardimg {
+    margin-bottom: 0 !important;
+}
+
+.boardimg img {
+    margin: 0 auto;
+}
+
+.card.equalheight {
+	height: 264px;
+}
+
+@media (min-width: 992px) and (max-width: 1184px) {
+    div.info-box .content .number {
+        font-size: 1.7vw;
+    }
+}
+
+@media (min-width: 1185px) {
+    div.info-box .content .number {
+        font-size: 1.4vw;
+    }
+}
+
+
+/* 9 Axis Sensors */
+
+.sensors-padding {
+    padding-bottom: 0 !important;
+}
+
+.sensors-bars {
+    margin-top: 4px;
+}
+
+#motionsensors .col-xs-2, #motionsensors .col-xs-10 {
+	margin-bottom: 18px !important;
+}
+
+#motionsensorsmod .col-xs-2, #motionsensorsmod .col-xs-10 {
+	margin-bottom: 8px !important;
+}
+
+#motionsensorsmod.sensors-bars .progress {
+    height: 27px;
+    margin-top: 6px;
+}
+
+#motionsensors.sensors-bars .progress {
+    height: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+#motionsensors.sensors-bars .progress:first-child {
+    margin-top: 4px;
+}
+
+
+
+/* WiFi connections */
+.wifibars {
+    position: relative;
+    top: 2px;
+}
+.wifibar {
+    width: 3px;
+    background-color: #3498db;
+    float:left;
+}
+.wifibar1 {
+    position: relative;
+    height: 3px;
+    top: 12px;
+}
+.wifibar2 {
+    position: relative;
+    height: 6px;
+    top: 9px;
+}
+.wifibar3 {
+    position: relative;
+    height: 9px;
+    top: 6px;
+}
+.wifibar4 {
+    position: relative;
+    height: 12px;
+    top: 3px;
+}
+.wifibar5 {
+    position: relative;
+    height: 15px;
+    top: 0px;
+}
+.wifibar-empty {
+    background-color: #c0c0c0;
+}
+
+.wifi-ct {
+    max-height: 600px;
+    overflow-y: scroll;
+}
+
+.list-group.wifi {
+    padding: 0;
+    margin: 0;
+}
+
+
+/* IoT */
+.iot-login .login-box .msg {
+    color: #555;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+/* Misc */
+
+#timezone-picker .timezone-picker {
+    margin: 10px auto;
+}
+
+.sidebar .menu .list .ml-menu li.active a.toggled:not(.menu-toggle):before {
+    top: -1px;
+}
+
+.theme-pink nav.navbar {
+    background-color: #EC008C;
+}
+
+#sdcard_chart, #ram_chart {
+    height: 165px;
+}
+
+#terminal {
+    border: 0;
+    width: 100%;
+}
+
+.terminal-preloader {
+    margin: auto;
+}
+
+.terminal-preloader .preloader {
+    top: 30%;
+}
+
+.alert a {
+    color: white;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.home-tips {
+    padding-bottom: 1px !important;
+}
+
+.noborders {
+    border: none !important;
+}

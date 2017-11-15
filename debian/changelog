@@ -1,0 +1,5 @@
+udoo-web-conf (2.0) trusty; urgency=medium
+
+  * Application rewritten in PHP.
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Thu, 24 Oct 2017 15:30:01 +0000

@@ -1,0 +1,21 @@
+
+#
+# udoo-web-conf - start script
+#
+
+description "UDOO Neo Web Configurator"
+author "UDOO Team <social@udoo.org>"
+
+start on local-filesystems
+stop on [06]
+
+respawn
+respawn limit 4 20
+
+script
+  chdir /opt/udoo-web-conf/public
+  exec start-stop-daemon --chdir /opt/udoo-web-conf/public \
+    --chuid root \
+    --start \
+    --exec /usr/bin/php -- -S 0.0.0.0:$(cat /etc/udoo-web-conf/port)
+end script
