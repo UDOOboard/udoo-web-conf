@@ -9,6 +9,7 @@ export DH_VERBOSE=1
 
 override_dh_install:
 	dh_install
+	ln -s /boot/docs debian/udoo-web-conf/opt/udoo-web-conf/public/docs
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublocklyserver
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/closure-library
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/package
