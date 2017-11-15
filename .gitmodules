@@ -1,0 +1,3 @@
+[submodule "public/ardublockly"]
+	path = public/ardublockly
+	url = https://github.com/carlosperate/ardublockly.git
