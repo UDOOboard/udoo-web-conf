@@ -25,9 +25,15 @@ class IotController extends Controller
         $ini = new IniFile("/etc/udoo-iot-client/config.ini");
         $conf = $ini->get();
 
+        $base = $conf['server']['protocol'] . '://' . $conf['server']['ip'];
+        if ($conf['server']['port'] != 80) {
+            $base .= ':' . $conf['server']['port'];
+        }
+
         return view('iot/index', [
             'status' => $iot->getStatus(),
             'server' => $conf['server']['ip'],
+            'iotbaseurl' => $base,
         ]);
     }
 

@@ -49,7 +49,7 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-xs-offset-4 col-xs-4">
+                                <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4">
                                     <button class="btn btn-block bg-pink waves-effect" type="button" id="iotlogin">SIGN IN</button>
                                 </div>
                             </div>

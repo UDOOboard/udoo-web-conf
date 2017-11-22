@@ -141,6 +141,25 @@
     font-size: 16px;
 }
 
+.iot-welcome-sphere {
+    border-radius: 50%;
+    background-color: #f1f1f1;
+    height: 400px;
+    width: 400px;
+    margin: 40px auto;
+}
+
+.iot-welcome-sphere i {
+    color: #c5c5c5;
+    font-size: 190px;
+    margin-top: 50px;
+}
+
+.iot-welcome-sphere .text {
+    color: #909090;
+    font-size: 24px;
+}
+
 
 /* Misc */
 

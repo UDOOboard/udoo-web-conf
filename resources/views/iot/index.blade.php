@@ -73,6 +73,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <div class="iot-welcome-sphere">
+                <div class="icon"><i class="material-icons">cloud</i></div>
+                <div class="text">Manage your board from<br><a target="_blank" href="{{$iotbaseurl}}">UDOO IoT Cloud</a></div>
+            </div>
+        </div>
+    </div>
+
 @endsection
 
 @section('scripts')
