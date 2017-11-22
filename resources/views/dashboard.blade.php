@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box bg-orange hover-zoom-effect">
+            <div class="info-box bg-orange hover-zoom-effect infobox-iot">
                 <div class="icon">
                     <i class="material-icons">cloud</i>
                 </div>
@@ -79,7 +79,10 @@
                                         <td class="text-right">{{ $board['model'] }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Serial Number</td>
+                                        <td>
+                                            <span class="board-info-long-text">Serial&nbsp;Number</span>
+                                            <span class="board-info-short-text">Serial&nbsp;No</span>
+                                        </td>
                                         <td class="text-right">{{ $board['id'] }}</td>
                                     </tr>
                                     <tr>
@@ -97,14 +100,17 @@
                                     <tbody>
                                     <tr>
                                         <td>Uptime</td>
-                                        <td class="text-right">{{ $board['uptime'] }}</td>
+                                        <td class="text-right">{{ str_replace(" ", "&nbsp;", $board['uptime']) }}</td>
                                     </tr>
                                     <tr>
                                         <td>Display</td>
                                         <td class="text-right">{{ $board['display'] }}</td>
                                     </tr>
                                     <tr>
-                                        <td>CPU Temperature</td>
+                                        <td>
+                                            <span class="board-info-long-text">CPU&nbsp;Temperature</span>
+                                            <span class="board-info-short-text">CPU&nbsp;Temp</span>
+                                        </td>
                                         <td class="text-right">{{ $board['temp'] }} °C</td>
                                     </tr>
                                     <tr>

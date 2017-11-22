@@ -14,6 +14,10 @@
 	height: 264px;
 }
 
+.infobox-iot .number {
+    white-space: nowrap;
+}
+
 @media (min-width: 992px) and (max-width: 1184px) {
     div.info-box .content .number {
         font-size: 1.7vw;
@@ -23,6 +27,24 @@
 @media (min-width: 1185px) {
     div.info-box .content .number {
         font-size: 1.4vw;
+    }
+}
+
+.board-info-long-text {
+    display: block;
+}
+
+.board-info-short-text {
+    display: none;
+}
+
+@media (min-width: 1180px) and (max-width: 1300px) {
+    .board-info-long-text {
+        display: none;
+    }
+
+    .board-info-short-text {
+        display: block;
     }
 }
 
