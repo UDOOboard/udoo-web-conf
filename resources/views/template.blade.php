@@ -13,6 +13,7 @@
     <link href="/plugins/node-waves/waves.min.css" rel="stylesheet" />
     <link href="/plugins/animate-css/animate.min.css" rel="stylesheet" />
     <link href="/plugins/morrisjs/morris.css" rel="stylesheet" />
+    <link href="/css/BootstrapXL.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/udoo.css" rel="stylesheet">
     <link href="/css/themes/theme-pink.min.css" rel="stylesheet" />

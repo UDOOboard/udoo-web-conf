@@ -11,7 +11,7 @@
 
     @if ($online)
     <div class="row iot-login m-t-100">
-        <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-6">
+        <div class="col-xl-offset-4 col-xl-4 col-lg-offset-3 col-lg-6 col-sm-offset-2 col-sm-8">
             <div class="login-box">
                 <div class="card">
                     <div class="header noborders">
