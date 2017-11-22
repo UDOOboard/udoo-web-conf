@@ -38,11 +38,19 @@ class IotController extends Controller
     }
 
     public function service() {
-        return '^_^';
+        $iot = new IoT();
+        $isinstalled = $iot->isInstalled();
+
+        if ($isinstalled) {
+            exec("service udoo-iot-cloud-client start &");
+        }
+
+        return view('iot/service', [
+            'isinstalled' => $isinstalled,
+        ]);
     }
 
     public function login() {
-        $iot = new IoT();
         $online = new Online();
 
         $ini = new IniFile("/etc/udoo-iot-client/config.ini");
@@ -113,5 +121,15 @@ class IotController extends Controller
     public function logserver() {
         $bs = new BackgroundService();
         return $bs->run("iot-log");
+    }
+
+    public function servicestatus() {
+        $iot = new IoT();
+        $isavailable = $iot->isClientAvailable();
+
+        return response()->json([
+            'success' => true,
+            'isavailable' => $isavailable,
+        ]);
     }
 }

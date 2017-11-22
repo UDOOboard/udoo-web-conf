@@ -123,6 +123,11 @@ class IoT
         return false;
     }
 
+    public function isInstalled() {
+        exec("dpkg-query -l udoo-iot-cloud-client", $out, $status);
+        return $status === 0;
+    }
+
     private function initStatus() {
         if (!$this->status) {
             $url = 'http://127.0.0.1/status';

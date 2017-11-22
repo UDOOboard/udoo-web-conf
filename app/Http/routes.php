@@ -160,6 +160,14 @@ $app->get('/iot/log-server', [
     'as' => 'iot-logserver', 'uses' => 'IotController@logserver'
 ]);
 
+$app->post('/iot/servicestatus', [
+    'as' => 'iot-servicestatus', 'uses' => 'IotController@servicestatus'
+]);
+
+$app->post('/iot/rescani2c', [
+    'as' => 'iot-rescani2c', 'uses' => 'IotController@rescani2c'
+]);
+
 
 /* POWER */
 $app->get('/power/reboot', [
