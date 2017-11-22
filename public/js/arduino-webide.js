@@ -15,9 +15,9 @@
 
         $.ajax({
             type: "POST",
-            url: '/arduino/compilesketch/',
+            url: '/arduino/ardublocklycompile/',
             data: {
-                sketch: ace.edit("editor").getValue().replace(/[^\040-\176\200-\377]/gi, "\n")
+                sketch_code: ace.edit("editor").getValue().replace(/[^\040-\176\200-\377]/gi, "\n")
             },
             success: function(response) {
                 $('#waitDialog div.loading').addClass("hidden");
