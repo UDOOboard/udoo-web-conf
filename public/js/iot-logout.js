@@ -9,8 +9,8 @@ function logout() {
         type: "POST",
         url: '/iot/unregister/',
         data: {
-            username: $("[name=username]").val(),
-            password: $("[name=password]").val()
+            username: $("[name=udooiot_username]").val(),
+            password: $("[name=udooiot_password]").val()
         },
         success: function(response) {
             if (response.success) {

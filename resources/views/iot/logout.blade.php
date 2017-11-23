@@ -22,7 +22,7 @@
                                     <i class="material-icons">person</i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="text" class="form-control" name="username" placeholder="Username" required value="">
+                                    <input type="text" class="form-control" name="udooiot_username" placeholder="Username" required value="">
                                 </div>
                             </div>
                             <div class="input-group">
@@ -30,7 +30,7 @@
                                     <i class="material-icons">lock</i>
                                 </span>
                                 <div class="form-line">
-                                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                    <input type="password" class="form-control" name="udooiot_password" placeholder="Password" required>
                                 </div>
                             </div>
 
