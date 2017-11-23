@@ -1,3 +1,9 @@
+udoo-web-conf (2.0.4) trusty; urgency=medium
+
+  * IoT service restart
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Thu, 23 Nov 2017 12:03:53 +0100
+
 udoo-web-conf (2.0.3) trusty; urgency=medium
 
   * Bug fix
