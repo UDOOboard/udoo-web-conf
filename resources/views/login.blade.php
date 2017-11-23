@@ -66,6 +66,11 @@
 <script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="/plugins/node-waves/waves.min.js"></script>
 <script src="/js/admin.js"></script>
+<script>
+    $(function() {
+        $(".form-line.focused").removeClass("focused");
+    });
+</script>
 </body>
 
 </html>
