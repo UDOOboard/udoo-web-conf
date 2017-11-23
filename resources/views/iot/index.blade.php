@@ -15,9 +15,11 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="/iot/log">Show debug log</a></li>
+                                <li><a href="/iot/restart">Restart service</a></li>
+                                {{--<li><a id="i2crescan" href="#">Rescan UDOO Bricks</a></li>--}}
+                                <li><a href="/iot/log">Show service log</a></li>
                                 <li role="seperator" class="divider"></li>
-                                <li><a href="/iot/logout">Logout</a></li>
+                                <li><a href="/iot/logout">Change account</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -52,11 +54,18 @@
         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
             <div class="info-box bg-green hover-zoom-effect">
                 <div class="icon">
-                    <i class="material-icons">compare_arrows</i>
+                    <i class="material-icons">more</i>
                 </div>
                 <div class="content">
-                    <div class="text">Requests</div>
-                    <div class="number">Unknown</div>
+                    <div class="text">Client Version</div>
+                    @if (strpos($version, 'nightly') === false)
+                        <div class="number">{{ $version }}</div>
+                    @else
+                        @php
+                        $parts = explode('-nightly-', $version);
+                        echo "<div class=\"number\">$parts[0] <abbr title=\"$parts[1]\">nightly</abbr></div>";
+                        @endphp
+                    @endif
                 </div>
             </div>
         </div>
@@ -66,7 +75,7 @@
                     <i class="material-icons">toys</i>
                 </div>
                 <div class="content">
-                    <div class="text">Sensors monitored</div>
+                    <div class="text">Sensors</div>
                     <div class="number">Unknown</div>
                 </div>
             </div>

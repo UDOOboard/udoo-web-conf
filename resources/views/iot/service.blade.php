@@ -16,6 +16,19 @@
                     @else
                         <p>The UDOO IoT Cloud Client is not installed in your board. Install it now to join the Cloud!</p>
                     @endif
+
+                    <div class="iotservice-preloader text-center">
+                        <div class="preloader pl-size-xl">
+                            <div class="spinner-layer pl-pink">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

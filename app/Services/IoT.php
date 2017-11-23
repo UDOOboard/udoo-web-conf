@@ -128,6 +128,14 @@ class IoT
         return $status === 0;
     }
 
+    public function getInstalledVersion() {
+        exec("dpkg -s udoo-iot-cloud-client | grep '^Version:' |awk '{print $2}'", $out, $retval);
+        if ($retval === 0) {
+            return trim($out[0]);
+        }
+        return 'Unknown';
+    }
+
     private function initStatus() {
         if (!$this->status) {
             $url = 'http://127.0.0.1/status';

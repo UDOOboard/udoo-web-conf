@@ -168,6 +168,10 @@ $app->post('/iot/rescani2c', [
     'as' => 'iot-rescani2c', 'uses' => 'IotController@rescani2c'
 ]);
 
+$app->get('/iot/restart', [
+    'as' => 'iot-restart', 'uses' => 'IotController@restart'
+]);
+
 
 /* POWER */
 $app->get('/power/reboot', [

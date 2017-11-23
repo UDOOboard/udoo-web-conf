@@ -160,6 +160,10 @@
     font-size: 24px;
 }
 
+.info-box .number abbr {
+    border: none;
+}
+
 
 /* Misc */
 
@@ -190,6 +194,10 @@
 
 .terminal-preloader .preloader {
     top: 30%;
+}
+
+.iotservice-preloader {
+    margin: 80px auto 100px auto;
 }
 
 .alert a {

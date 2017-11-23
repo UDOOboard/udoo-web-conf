@@ -34,6 +34,7 @@ class IotController extends Controller
             'status' => $iot->getStatus(),
             'server' => $conf['server']['ip'],
             'iotbaseurl' => $base,
+            'version' => $iot->getInstalledVersion(),
         ]);
     }
 
@@ -52,7 +53,6 @@ class IotController extends Controller
 
     public function login() {
         $online = new Online();
-
         $ini = new IniFile("/etc/udoo-iot-client/config.ini");
         $conf = $ini->get();
 
@@ -74,6 +74,11 @@ class IotController extends Controller
         return view('iot/logout', [
             'online' => $online->isOnline(),
         ]);
+    }
+
+    public function restart() {
+        exec("service udoo-iot-cloud-client restart");
+        return redirect(route('iot-index'));
     }
 
     public function register(Request $request) {
