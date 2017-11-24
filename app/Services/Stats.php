@@ -51,6 +51,14 @@ class Stats
         }
     }
 
+    public function getWebConfVersion() {
+        exec("dpkg -s udoo-web-conf | grep '^Version:' |awk '{print $2}'", $out, $retval);
+        if ($retval === 0 && count($out)>0) {
+            return trim($out[0]);
+        }
+        return 'Unknown';
+    }
+
     private function secondsToTime($inputSeconds) {
         $secondsInAMinute = 60;
         $secondsInAnHour = 60 * $secondsInAMinute;

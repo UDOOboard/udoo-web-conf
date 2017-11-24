@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Services\Stats;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 
@@ -84,6 +85,11 @@ class BoardServiceProvider extends ServiceProvider
         $version = trim($version[1]);
         $is1604 = version_compare($version, "16.04", ">=");
 
+        $stats = new Stats();
+
+        $_SESSION['webconf'] = [
+            'version' => $stats->getWebConfVersion(),
+        ];
         $_SESSION['board'] = [
             'arch' => $arch,
             'is1604' => $is1604,

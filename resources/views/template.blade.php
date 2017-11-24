@@ -153,6 +153,11 @@
                 </li>
             </ul>
         </div>
+        <div class="legal">
+            <div class="version">
+                Version <b>{{$_SESSION['webconf']['version']}}</b>
+            </div>
+        </div>
     </aside>
 </section>
 

@@ -48,6 +48,10 @@
     }
 }
 
+.sidebar .version {
+    opacity: 0.6;
+}
+
 
 /* 9 Axis Sensors */
 

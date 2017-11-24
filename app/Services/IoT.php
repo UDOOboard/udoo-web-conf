@@ -130,7 +130,7 @@ class IoT
 
     public function getInstalledVersion() {
         exec("dpkg -s udoo-iot-cloud-client | grep '^Version:' |awk '{print $2}'", $out, $retval);
-        if ($retval === 0) {
+        if ($retval === 0 && count($out)>0) {
             return trim($out[0]);
         }
         return 'Unknown';

@@ -1,3 +1,9 @@
+udoo-web-conf (2.0.5) trusty; urgency=medium
+
+  * Fixed logout status code
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Fri, 24 Nov 2017 10:22:38 +0100
+
 udoo-web-conf (2.0.4) trusty; urgency=medium
 
   * IoT service restart
