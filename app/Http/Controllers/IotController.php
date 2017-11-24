@@ -15,6 +15,7 @@ class IotController extends Controller
         $iot = new IoT();
 
         if (!$iot->isClientAvailable()) {
+            // Service is not installed or started
             return redirect(route('iot-service'));
         }
 

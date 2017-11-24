@@ -110,7 +110,7 @@ class IoT
 
         $code = $this->status['code'];
 
-        if ($code == 1 || $code == 9) return false;
+        if ($code == 1 || $code == 10) return false;
         return true;
     }
 
