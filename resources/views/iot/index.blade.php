@@ -15,11 +15,10 @@
                                 <i class="material-icons">more_vert</i>
                             </a>
                             <ul class="dropdown-menu pull-right">
-                                <li><a href="/iot/restart">Restart service</a></li>
-                                {{--<li><a id="i2crescan" href="#">Rescan UDOO Bricks</a></li>--}}
-                                <li><a href="/iot/log">Show service log</a></li>
+                                <li><a href="/iot/restart"><i class="material-icons">settings_backup_restore</i>Restart service</a></li>
+                                <li><a href="/iot/log"><i class="material-icons">reorder</i>Show service log</a></li>
                                 <li role="seperator" class="divider"></li>
-                                <li><a href="/iot/logout">Change account</a></li>
+                                <li><a href="/iot/logout"><i class="material-icons">input</i>Change account</a></li>
                             </ul>
                         </li>
                     </ul>

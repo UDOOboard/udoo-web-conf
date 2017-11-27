@@ -21,7 +21,10 @@
                                     <i class="material-icons">more_vert</i>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
-                                    <li><a href="javascript:void(0);" id="setIoTserver">Set IoT Server</a></li>
+                                    <li><a href="/iot/restart"><i class="material-icons">settings_backup_restore</i>Restart service</a></li>
+                                    <li><a href="/iot/log"><i class="material-icons">reorder</i>Show service log</a></li>
+                                    <li role="seperator" class="divider"></li>
+                                    <li><a href="javascript:void(0);" id="setIoTserver"><i class="material-icons">settings</i>Set IoT Server</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -159,7 +162,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="iotserver_ip" id="iotserver_ip" class="form-control" placeholder="udoo.cloud" value="{{ $iotserver['ip'] }}">
+                                        <input type="text" name="iotserver_ip" id="iotserver_ip" class="form-control" placeholder="{{ $iotserver['ip'] }}" value="{{ $iotserver['ip'] }}">
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +174,7 @@
                             <div class="col-lg-9 col-md-9 col-sm-8 col-xs-7">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input type="text" name="iotserver_port" id="iotserver_port" class="form-control" placeholder="80" value="{{ $iotserver['port'] }}">
+                                        <input type="text" name="iotserver_port" id="iotserver_port" class="form-control" placeholder="{{ $iotserver['port'] }}" value="{{ $iotserver['port'] }}">
                                     </div>
                                 </div>
                             </div>
