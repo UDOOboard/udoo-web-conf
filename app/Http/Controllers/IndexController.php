@@ -58,13 +58,6 @@ class IndexController extends Controller
     }
 
     public function startwebsocket() {
-        if (array_key_exists('websocketservice', $_SESSION)) {
-            return response()->json([
-                'success' => true
-            ]);
-        }
-
-        $_SESSION['websocketservice'] = true;
         $bs = new BackgroundService();
         return $bs->run("wsserver");
     }
