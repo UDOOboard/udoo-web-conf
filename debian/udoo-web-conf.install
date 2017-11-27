@@ -1,4 +1,5 @@
 app                   /opt/udoo-web-conf
+arduino               /opt/udoo-web-conf
 bin                   /opt/udoo-web-conf
 bootstrap             /opt/udoo-web-conf
 public                /opt/udoo-web-conf
