@@ -1,3 +1,9 @@
+udoo-web-conf (2.0.6) trusty; urgency=medium
+
+  * Fixes
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Mon, 27 Nov 2017 17:03:39 +0100
+
 udoo-web-conf (2.0.5) trusty; urgency=medium
 
   * Fixed logout status code

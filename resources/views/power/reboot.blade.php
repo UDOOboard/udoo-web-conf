@@ -45,14 +45,17 @@
     $(function() {
         $.ajax({
             type: "GET",
-            url: '/power/reboot-action'
+            url: '/power/reboot-action',
+            success: function() {
+                setTimeout(function() {
+                    setInterval(checkConnection, 10000);
+                }, 25000);
+            }
         });
-        setTimeout(function() {
-            setInterval(checkConnection, 10000);
-        }, 25000);
     });
 
     function checkConnection() {
+        console.log("checkConnection");
         $.ajax({
             type: "GET",
             url: '/login',
