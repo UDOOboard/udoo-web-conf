@@ -42,6 +42,7 @@ class BoardServiceProvider extends ServiceProvider
                 $hasArduinoMenu = false;
                 $hasM4 = false;
                 $hasLvds15 = true;
+                $has9Axis = false;
                 break;
             case 'UDOO Dual-lite Board':
                 $shortModel = 'UDOO Dual';
@@ -49,6 +50,7 @@ class BoardServiceProvider extends ServiceProvider
                 $hasArduinoMenu = false;
                 $hasM4 = false;
                 $hasLvds15 = true;
+                $has9Axis = true;
                 break;
             case 'UDOO Neo Extended':
                 $shortModel = 'UDOO Neo';
@@ -56,6 +58,7 @@ class BoardServiceProvider extends ServiceProvider
                 $hasArduinoMenu = true;
                 $hasM4 = true;
                 $hasLvds15 = false;
+                $has9Axis = true;
                 break;
             case 'UDOO Neo Full':
                 $shortModel = 'UDOO Neo';
@@ -63,6 +66,7 @@ class BoardServiceProvider extends ServiceProvider
                 $hasArduinoMenu = true;
                 $hasM4 = true;
                 $hasLvds15 = false;
+                $has9Axis = true;
                 break;
             case 'UDOO Neo Basic Kickstarter':
             case 'UDOO Neo Basic':
@@ -71,6 +75,7 @@ class BoardServiceProvider extends ServiceProvider
                 $hasArduinoMenu = true;
                 $hasM4 = true;
                 $hasLvds15 = false;
+                $has9Axis = true;
                 break;
             default:
                 $shortModel = $boardModel;
@@ -78,6 +83,7 @@ class BoardServiceProvider extends ServiceProvider
                 $hasArduinoMenu = false;
                 $hasM4 = false;
                 $hasLvds15 = false;
+                $has9Axis = false;
         }
 
         exec("lsb_release -r", $out, $ret);
@@ -97,6 +103,7 @@ class BoardServiceProvider extends ServiceProvider
             'shortmodel' => $shortModel,
             'id' => $cpuID,
             'image' => $boardImage,
+            'has9Axis' => $has9Axis,
             'supports' => [
                 'arduino' => $hasArduinoMenu,
                 'm4' => $hasM4,

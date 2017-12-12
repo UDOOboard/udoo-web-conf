@@ -179,7 +179,7 @@
 
     <div class="row clearfix">
 
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card equalheight">
                 <div class="header">
                     <h2>SD CARD</h2>
@@ -190,7 +190,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <div class="card equalheight">
                 <div class="header">
                     <h2>RAM MEMORY</h2>
@@ -201,6 +201,7 @@
             </div>
         </div>
 
+        @if ($board['has9Axis'])
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
             <div class="card equalheight">
                 <div class="body">
@@ -312,6 +313,7 @@
                 </div>
             </div>
         </div>
+        @endif
     </div>
 
 @endsection

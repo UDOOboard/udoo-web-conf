@@ -48,6 +48,7 @@ class IndexController extends Controller
                 'temp' => $stats->getCpuTemperature(),
                 'disk' => $stats->getDiskUsage(),
                 'ram' => $stats->getRamUsage(),
+                'has9Axis' => $_SESSION['board']['has9Axis'],
             ],
             'default_password' => array_key_exists('default_password', $_SESSION) && $_SESSION['default_password'] === true,
         ]);
