@@ -21,16 +21,15 @@ class BoardServiceProvider extends ServiceProvider
     public function boot()
     {
         if (array_key_exists('board', $_SESSION)) {
-            return;
+           // return;
         }
 
         if (file_exists("/proc/device-tree/model")) {
-            $model = file_get_contents("/proc/device-tree/model");
-            $boardModel = trim($model);
+            $boardModel = trim(file_get_contents("/proc/device-tree/model"));
             $cpuID = $this->getIMXCpuID();
             $arch = 'arm';
         } else {
-            $boardModel = file_get_contents("/sys/class/dmi/id/board_name");
+            $boardModel = trim(file_get_contents("/sys/class/dmi/id/board_name"));
             $cpuID = file_get_contents("/sys/class/dmi/id/board_serial");
             $arch = 'x86';
         }
@@ -76,6 +75,14 @@ class BoardServiceProvider extends ServiceProvider
                 $hasM4 = true;
                 $hasLvds15 = false;
                 $has9Axis = true;
+                break;
+            case 'UDOO x86':
+                $shortModel = 'UDOO x86';
+                $boardImage = 'x86.png';
+                $hasArduinoMenu = false;
+                $hasM4 = false;
+                $hasLvds15 = false;
+                $has9Axis = false;
                 break;
             default:
                 $shortModel = $boardModel;
