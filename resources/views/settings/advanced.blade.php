@@ -21,6 +21,7 @@
 
     <div class="row clearfix">
 
+        @if ($_SESSION['board']['arch'] == 'arm')
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="card">
                 <div class="header">
@@ -75,6 +76,7 @@
                 </div>
             </div>
         </div>
+        @endif
 
         @if ($hasM4)
         <div class="col-xs-12 col-sm-12 col-md-6">

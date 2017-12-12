@@ -1,3 +1,10 @@
+@php
+    if ($_SESSION['board']['arch'] == 'arm') {
+        $docs = '/docs/Introduction/Introduction.html';
+    } else {
+        $docs = 'https://www.udoo.org/docs-x86/';
+    }
+@endphp
 <!DOCTYPE html>
 <html>
 
@@ -57,6 +64,7 @@
                     </a>
                 </li>
 
+                @if ($_SESSION['board']['supports']['arduino'])
                 <li>
                     <a href="javascript:void(0);" class="menu-toggle">
                         <i class="material-icons">all_inclusive</i>
@@ -77,6 +85,7 @@
                         </li>
                     </ul>
                 </li>
+                @endif
 
                 <li>
                     <a href="/terminal">
@@ -100,6 +109,7 @@
 
                 <li class="header">SETTINGS</li>
 
+                @if ($_SESSION['board']['arch'] === 'arm')
                 <li>
                     <a href="/settings/base">
                         <i class="material-icons">vpn_key</i>
@@ -112,18 +122,21 @@
                         <span>Connect to Wi-Fi</span>
                     </a>
                 </li>
+                @endif
                 <li>
                     <a href="/iot">
                         <i class="material-icons">cloud</i>
                         <span>UDOO IoT Cloud</span>
                     </a>
                 </li>
+                @if ($_SESSION['board']['arch'] === 'arm')
                 <li>
                     <a href="/settings/regional">
                         <i class="material-icons">language</i>
                         <span>Region and Language</span>
                     </a>
                 </li>
+                @endif
                 <li>
                     <a href="/settings/advanced">
                         <i class="material-icons">settings</i>
@@ -134,7 +147,7 @@
                 <li class="header">SUPPORT</li>
 
                 <li>
-                    <a href="/docs/Introduction/Introduction.html" target="_blank">
+                    <a href="{{ $docs }}" target="_blank">
                         <i class="material-icons">help</i>
                         <span>Documentation</span>
                     </a>
