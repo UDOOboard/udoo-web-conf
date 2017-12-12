@@ -21,9 +21,9 @@ UDOO Quad/Dual are also able to run this application, but it is not officially s
 ## Change TCP port
 By default, this tool uses port TCP 80. If you want to change the port run the following command as root:
 
-    echo 8080 > /etc/udoo-wcp/port
+    echo 8080 > /etc/udoo-web-conf/port
 
 If you want to totally disable this tool:
 
-    echo manual > /etc/init/udoo-wcp.override
+    echo manual > /etc/init/udoo-web-conf.override
 

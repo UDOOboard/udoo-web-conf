@@ -151,7 +151,7 @@
                 <div class="body">
                     <p>Move this tool to a different port before installing a web server.<br>
                         You need to reboot your UDOO board to apply the changes.<br>
-                        If you disable Web Control Panel, remove <code>/etc/init/udoo-wcp.override</code> to re-enable it.</p>
+                        If you disable Web Control Panel, remove <code>/etc/init/udoo-web-conf.override</code> to re-enable it.</p>
 
                     <form class="form-horizontal m-t-20">
                         <div class="row clearfix">

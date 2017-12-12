@@ -193,11 +193,11 @@ class SettingsController extends Controller
             }
         }
 
-        if (file_exists("/etc/init/udoo-wcp.override")) {
+        if (file_exists("/etc/init/udoo-web-conf.override")) {
             $port = -1;
         } else {
-            if (file_exists("/etc/udoo-wcp/port")) {
-                $port = (int)trim(file_get_contents("/etc/udoo-wcp/port"));
+            if (file_exists("/etc/udoo-web-conf/port")) {
+                $port = (int)trim(file_get_contents("/etc/udoo-web-conf/port"));
             } else {
                 $port = 80;
             }
@@ -244,12 +244,12 @@ class SettingsController extends Controller
 
     public function sethttpport(Request $request) {
         $port = $request->request->get("port");
-        $override = "/etc/init/udoo-wcp.override";
+        $override = "/etc/init/udoo-web-conf.override";
 
         if ($port == "-1") {
             file_put_contents($override, "manual");
         } else {
-            file_put_contents("/etc/udoo-wcp/port", (int)$port);
+            file_put_contents("/etc/udoo-web-conf/port", (int)$port);
             if (file_exists($override)) {
                 unlink($override);
             }
