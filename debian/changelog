@@ -1,3 +1,9 @@
+udoo-web-conf (2.1.0) trusty; urgency=medium
+
+  * UDOO X86 support
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Tue, 12 Dec 2017 17:19:39 +0100
+
 udoo-web-conf (2.0.6) trusty; urgency=medium
 
   * Fixes

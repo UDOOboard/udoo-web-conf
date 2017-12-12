@@ -3,6 +3,7 @@
 /debian/udoo-web-conf.debhelper.log
 /debian/udoo-web-conf.*.debhelper
 /debian/udoo-web-conf.substvars
+/debian/.debhelper/
 /vendor
 .idea
 
