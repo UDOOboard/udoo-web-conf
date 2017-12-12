@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\BackgroundService;
+use App\Services\Hardware;
 use App\Services\IoT;
 use App\Services\Online;
 use App\Services\Stats;
@@ -22,13 +23,8 @@ class IndexController extends Controller
         $stats = new Stats();
         $iot = new IoT();
         $online = new Online();
+        $hardware = new Hardware();
 
-        exec("udooscreenctl get", $screen, $status);
-        if ($status === 0) {
-            $screen = strtoupper(trim($screen[0]));
-        } else {
-            $screen = "Unknown";
-        }
 
         return view('dashboard', [
             'ethernet' => str_replace(" ", "&nbsp;", $connections->getEthernetAddress()),
@@ -46,7 +42,7 @@ class IndexController extends Controller
                 'image' => $_SESSION['board']['image'],
                 'model' => $_SESSION['board']['model'],
                 'online' => $online->toString(),
-                'display' => $screen,
+                'display' => $hardware->getConnectedScreen(),
                 'os' => $stats->getOS(),
                 'uptime' => $stats->getUptime(),
                 'temp' => $stats->getCpuTemperature(),
