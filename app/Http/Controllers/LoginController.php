@@ -23,6 +23,7 @@ class LoginController extends Controller
 
         if ($ret === 0) {
             $_SESSION['auth'] = true;
+            $_SESSION['username'] = $username;
             if ($username === $password && $password === 'udooer') {
                 $_SESSION['default_password'] = true;
             }
