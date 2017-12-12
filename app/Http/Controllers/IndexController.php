@@ -55,7 +55,14 @@ class IndexController extends Controller
     }
 
     public function startwebsocket() {
-        $bs = new BackgroundService();
-        return $bs->run("wsserver");
+        if ($_SESSION['board']['has9Axis']) {
+            $bs = new BackgroundService();
+            return $bs->run("wsserver");
+        } else {
+            return response()->json([
+                'success' => true,
+                'started' => false,
+            ]);
+        }
     }
 }
