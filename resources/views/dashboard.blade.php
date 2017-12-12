@@ -4,12 +4,28 @@
 
 @section('content')
 
+@php
+    if ($_SESSION['board']['arch'] == 'arm') {
+        $usbotg = true;
+        $infoboxsize = 'col-lg-3 col-md-3 col-sm-6 col-xs-12';
+    } else {
+        $usbotg = false;
+        $infoboxsize = 'col-lg-4 col-md-4 col-sm-6 col-xs-12';
+    }
+
+    if ($board['has9Axis']) {
+        $graphsize = 'col-xs-12 col-sm-6 col-md-4 col-lg-4';
+    } else {
+        $graphsize = 'col-xs-12 col-sm-6 col-md-6 col-lg-6';
+    }
+@endphp
+
     <div class="block-header">
         <h2>DASHBOARD</h2>
     </div>
 
     <div class="row clearfix">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="{{ $infoboxsize }}">
             <div class="info-box bg-light-blue hover-zoom-effect">
                 <div class="icon">
                     <i class="material-icons">wifi</i>
@@ -20,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div class="{{ $infoboxsize }}">
             <div class="info-box bg-green hover-zoom-effect">
                 <div class="icon">
                     <i class="material-icons">swap_horiz</i>
@@ -31,7 +47,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        @if ($usbotg)
+        <div class="{{ $infoboxsize }}">
             <div class="info-box bg-amber hover-zoom-effect">
                 <div class="icon">
                     <i class="material-icons">usb</i>
@@ -42,7 +59,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        @endif
+        <div class="{{ $infoboxsize }}">
             <div class="info-box bg-orange hover-zoom-effect infobox-iot">
                 <div class="icon">
                     <i class="material-icons">cloud</i>
@@ -179,7 +197,7 @@
 
     <div class="row clearfix">
 
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="{{ $graphsize }}">
             <div class="card equalheight">
                 <div class="header">
                     <h2>SD CARD</h2>
@@ -190,7 +208,7 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+        <div class="{{ $graphsize }}">
             <div class="card equalheight">
                 <div class="header">
                     <h2>RAM MEMORY</h2>
@@ -202,7 +220,7 @@
         </div>
 
         @if ($board['has9Axis'])
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="{{ $graphsize }}">
             <div class="card equalheight">
                 <div class="body">
                     <ul class="nav nav-tabs tab-nav-right" role="tablist">
