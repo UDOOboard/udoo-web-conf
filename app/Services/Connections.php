@@ -17,20 +17,36 @@ class Connections
 
     public function getEthernetAddress()
     {
-        return $this->getInterfaceAddress($this->devices['eth']);
+        if ($this->devices['eth']) {
+            return $this->getInterfaceAddress($this->devices['eth']);
+        }
+
+        return 'Not available';
     }
 
     public function getWirelessAddress()
     {
-        return $this->getInterfaceAddress($this->devices['wlan']);
+        if ($this->devices['wlan']) {
+            return $this->getInterfaceAddress($this->devices['wlan']);
+        }
+
+        return 'Not available';
     }
 
     public function getUsbAddress()
     {
-        return $this->getInterfaceAddress($this->devices['usb']);
+        if ($this->devices['usb']) {
+            return $this->getInterfaceAddress($this->devices['usb']);
+        }
+
+        return 'Not available';
     }
 
     public function getSSID() {
+        if (!$this->devices['wlan']) {
+            return;
+        }
+
         $ssid = trim(exec("iw dev " . $this->devices['wlan'] . " link | grep SSID"));
         if ($ssid) {
             $ssid = explode("SSID:", $ssid);
