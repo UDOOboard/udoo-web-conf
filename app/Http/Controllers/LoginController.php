@@ -8,7 +8,9 @@ use Laravel\Lumen\Routing\Controller;
 class LoginController extends Controller
 {
     public function index() {
-        return view('login');
+        return view('login', [
+            'defaultUser' => $_SESSION['board']['arch'] == 'arm' ? 'udooer' : '',
+        ]);
     }
 
     public function login(Request $request) {
@@ -27,6 +29,7 @@ class LoginController extends Controller
             return redirect(route('index'));
         } else {
             return view('login', [
+                'defaultUser' => $username,
                 'message' => 'Invalid password.'
             ]);
         }
