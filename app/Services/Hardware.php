@@ -8,9 +8,9 @@ class Hardware
         if ($_SESSION['board']['arch'] == 'arm') {
             exec("udooscreenctl get", $screen, $status);
             if ($status === 0) {
-                $screen = strtoupper(trim($screen[0]));
+                return strtoupper(trim($screen[0]));
             } else {
-                $screen = "Unknown";
+                return "Unknown";
             }
         } else {
             return 'HDMI';
