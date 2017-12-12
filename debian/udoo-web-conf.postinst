@@ -5,6 +5,8 @@
 
 set -e
 
+ARCH=$(dpkg --print-architecture)
+
 case "$1" in
   install|upgrade)
     ;;
@@ -14,6 +16,13 @@ case "$1" in
     then
       echo "removing ardublockly" >&2
       rm -f /usr/share/applications/ardublockly.desktop 
+    fi
+
+    if expr "$ARCH" == "amd64"
+    then
+      if [ ! -f /etc/udoo-web-conf/port ]; then
+        echo 60666 > /etc/udoo-web-conf/port
+      fi
     fi
     ;;
 

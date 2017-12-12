@@ -136,13 +136,13 @@
                         <span>Region and Language</span>
                     </a>
                 </li>
-                @endif
                 <li>
                     <a href="/settings/advanced">
                         <i class="material-icons">settings</i>
                         <span>Advanced</span>
                     </a>
                 </li>
+                @endif
 
                 <li class="header">SUPPORT</li>
 
