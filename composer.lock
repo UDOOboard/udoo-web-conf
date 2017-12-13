@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "6060155810c75148de95a5c97704696a",
+    "content-hash": "c783b5e68616dc16ab5d62b3364b5650",
     "packages": [
         {
             "name": "cboden/ratchet",
-            "version": "v0.4",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ratchetphp/Ratchet.git",
-                "reference": "c03b1b0f56d1732a4bffcdbef5eae444f8c9e73b"
+                "reference": "0d31f3a8ad4795fd48397712709e55cd07f51360"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ratchetphp/Ratchet/zipball/c03b1b0f56d1732a4bffcdbef5eae444f8c9e73b",
-                "reference": "c03b1b0f56d1732a4bffcdbef5eae444f8c9e73b",
+                "url": "https://api.github.com/repos/ratchetphp/Ratchet/zipball/0d31f3a8ad4795fd48397712709e55cd07f51360",
+                "reference": "0d31f3a8ad4795fd48397712709e55cd07f51360",
                 "shasum": ""
             },
             "require": {
@@ -25,8 +25,8 @@
                 "php": ">=5.4.2",
                 "ratchet/rfc6455": "^0.2",
                 "react/socket": "^1.0 || ^0.8 || ^0.7 || ^0.6 || ^0.5",
-                "symfony/http-foundation": "^2.2|^3.0",
-                "symfony/routing": "^2.2|^3.0"
+                "symfony/http-foundation": "^2.6|^3.0|^4.0",
+                "symfony/routing": "^2.6|^3.0|^4.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4.8"
@@ -57,7 +57,7 @@
                 "sockets",
                 "websocket"
             ],
-            "time": "2017-09-14T12:18:28+00:00"
+            "time": "2017-12-12T00:49:31+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1466,7 +1466,7 @@
         },
         {
             "name": "mtdowling/cron-expression",
-            "version": "v1.2.0",
+            "version": "v1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mtdowling/cron-expression.git",
@@ -2021,16 +2021,16 @@
         },
         {
             "name": "react/socket",
-            "version": "v0.8.5",
+            "version": "v0.8.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/socket.git",
-                "reference": "d169d1ed24e39bf182781d72ddd224dbbd449aa8"
+                "reference": "2e8660111d14df908a913a058bce4a1786de489f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/socket/zipball/d169d1ed24e39bf182781d72ddd224dbbd449aa8",
-                "reference": "d169d1ed24e39bf182781d72ddd224dbbd449aa8",
+                "url": "https://api.github.com/repos/reactphp/socket/zipball/2e8660111d14df908a913a058bce4a1786de489f",
+                "reference": "2e8660111d14df908a913a058bce4a1786de489f",
                 "shasum": ""
             },
             "require": {
@@ -2044,7 +2044,7 @@
             },
             "require-dev": {
                 "clue/block-react": "^1.2",
-                "phpunit/phpunit": "^5.0 || ^4.8"
+                "phpunit/phpunit": "^6.4 || ^5.7 || ^4.8.35"
             },
             "type": "library",
             "autoload": {
@@ -2064,20 +2064,20 @@
                 "reactphp",
                 "stream"
             ],
-            "time": "2017-10-23T21:45:58+00:00"
+            "time": "2017-11-18T16:47:56+00:00"
         },
         {
             "name": "react/stream",
-            "version": "v0.7.4",
+            "version": "v0.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/reactphp/stream.git",
-                "reference": "5c7db5261b3cc7e11b8ba765bed8ba31ee745f5c"
+                "reference": "a41bbffdda5e3f4282012f8e346cef48ecb28b24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/reactphp/stream/zipball/5c7db5261b3cc7e11b8ba765bed8ba31ee745f5c",
-                "reference": "5c7db5261b3cc7e11b8ba765bed8ba31ee745f5c",
+                "url": "https://api.github.com/repos/reactphp/stream/zipball/a41bbffdda5e3f4282012f8e346cef48ecb28b24",
+                "reference": "a41bbffdda5e3f4282012f8e346cef48ecb28b24",
                 "shasum": ""
             },
             "require": {
@@ -2087,7 +2087,7 @@
             },
             "require-dev": {
                 "clue/stream-filter": "~1.2",
-                "phpunit/phpunit": "^5.0 || ^4.8.10"
+                "phpunit/phpunit": "^6.4 || ^5.7 || ^4.8.35"
             },
             "suggest": {
                 "react/event-loop": "^0.4"
@@ -2113,7 +2113,7 @@
                 "stream",
                 "writable"
             ],
-            "time": "2017-10-11T17:58:46+00:00"
+            "time": "2017-11-20T11:55:48+00:00"
         },
         {
             "name": "symfony/console",
@@ -2234,16 +2234,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v3.3.10",
+            "version": "v3.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "d7ba037e4b8221956ab1e221c73c9e27e05dd423"
+                "reference": "ca20b8f9ef149f40ff656d52965f240d85f7a8e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/d7ba037e4b8221956ab1e221c73c9e27e05dd423",
-                "reference": "d7ba037e4b8221956ab1e221c73c9e27e05dd423",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/ca20b8f9ef149f40ff656d52965f240d85f7a8e4",
+                "reference": "ca20b8f9ef149f40ff656d52965f240d85f7a8e4",
                 "shasum": ""
             },
             "require": {
@@ -2254,10 +2254,10 @@
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~2.8|~3.0",
-                "symfony/dependency-injection": "~3.3",
-                "symfony/expression-language": "~2.8|~3.0",
-                "symfony/stopwatch": "~2.8|~3.0"
+                "symfony/config": "~2.8|~3.0|~4.0",
+                "symfony/dependency-injection": "~3.3|~4.0",
+                "symfony/expression-language": "~2.8|~3.0|~4.0",
+                "symfony/stopwatch": "~2.8|~3.0|~4.0"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -2266,7 +2266,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -2293,7 +2293,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2017-10-02T06:42:24+00:00"
+            "time": "2017-11-09T14:14:31+00:00"
         },
         {
             "name": "symfony/finder",
@@ -2697,35 +2697,35 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v3.3.10",
+            "version": "v4.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "2e26fa63da029dab49bf9377b3b4f60a8fecb009"
+                "reference": "82c0de9bfc4b295e11a172d5f98b60b88611e0e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/2e26fa63da029dab49bf9377b3b4f60a8fecb009",
-                "reference": "2e26fa63da029dab49bf9377b3b4f60a8fecb009",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/82c0de9bfc4b295e11a172d5f98b60b88611e0e7",
+                "reference": "82c0de9bfc4b295e11a172d5f98b60b88611e0e7",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.5.9|>=7.0.8"
+                "php": "^7.1.3"
             },
             "conflict": {
-                "symfony/config": "<2.8",
-                "symfony/dependency-injection": "<3.3",
-                "symfony/yaml": "<3.3"
+                "symfony/config": "<3.4",
+                "symfony/dependency-injection": "<3.4",
+                "symfony/yaml": "<3.4"
             },
             "require-dev": {
                 "doctrine/annotations": "~1.0",
                 "doctrine/common": "~2.2",
                 "psr/log": "~1.0",
-                "symfony/config": "~2.8|~3.0",
-                "symfony/dependency-injection": "~3.3",
-                "symfony/expression-language": "~2.8|~3.0",
-                "symfony/http-foundation": "~2.8|~3.0",
-                "symfony/yaml": "~3.3"
+                "symfony/config": "~3.4|~4.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/expression-language": "~3.4|~4.0",
+                "symfony/http-foundation": "~3.4|~4.0",
+                "symfony/yaml": "~3.4|~4.0"
             },
             "suggest": {
                 "doctrine/annotations": "For using the annotation loader",
@@ -2738,7 +2738,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.3-dev"
+                    "dev-master": "4.0-dev"
                 }
             },
             "autoload": {
@@ -2771,7 +2771,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-10-02T07:25:00+00:00"
+            "time": "2017-11-24T14:34:08+00:00"
         },
         {
             "name": "symfony/translation",
@@ -2932,7 +2932,117 @@
             "time": "2017-04-18T01:49:14+00:00"
         }
     ],
-    "packages-dev": [],
+    "packages-dev": [
+        {
+            "name": "matthiasmullie/minify",
+            "version": "1.3.57",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matthiasmullie/minify.git",
+                "reference": "7559ac0806f39f89f949c917e6612dda8154488b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matthiasmullie/minify/zipball/7559ac0806f39f89f949c917e6612dda8154488b",
+                "reference": "7559ac0806f39f89f949c917e6612dda8154488b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "matthiasmullie/path-converter": "~1.1",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "~2.0",
+                "matthiasmullie/scrapbook": "~1.0",
+                "phpunit/phpunit": "~4.8"
+            },
+            "suggest": {
+                "psr/cache-implementation": "Cache implementation to use with Minify::cache"
+            },
+            "bin": [
+                "bin/minifycss",
+                "bin/minifyjs"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MatthiasMullie\\Minify\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Mullie",
+                    "email": "minify@mullie.eu",
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CSS & JavaScript minifier, in PHP. Removes whitespace, strips comments, combines files (incl. @import statements and small assets in CSS files), and optimizes/shortens a few common programming patterns.",
+            "homepage": "http://www.minifier.org",
+            "keywords": [
+                "JS",
+                "css",
+                "javascript",
+                "minifier",
+                "minify"
+            ],
+            "time": "2017-12-06T12:46:42+00:00"
+        },
+        {
+            "name": "matthiasmullie/path-converter",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/matthiasmullie/path-converter.git",
+                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/matthiasmullie/path-converter/zipball/08551ec1b156e923c242a10ab484bd4d6ead6631",
+                "reference": "08551ec1b156e923c242a10ab484bd4d6ead6631",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pcre": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MatthiasMullie\\PathConverter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Matthias Mullie",
+                    "email": "pathconverter@mullie.eu",
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Relative path converter",
+            "homepage": "http://github.com/matthiasmullie/path-converter",
+            "keywords": [
+                "converter",
+                "path",
+                "paths",
+                "relative"
+            ],
+            "time": "2017-01-26T08:54:49+00:00"
+        }
+    ],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {

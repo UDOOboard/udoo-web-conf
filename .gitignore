@@ -6,4 +6,5 @@
 /debian/.debhelper/
 /vendor
 .idea
-
+public/css/app.min.css
+public/js/app.min.js

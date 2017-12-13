@@ -12,6 +12,7 @@
         "youssman/country-language": "*@dev"
     },
     "require-dev": {
+        "matthiasmullie/minify": "*"
     },
     "autoload": {
         "psr-4": {

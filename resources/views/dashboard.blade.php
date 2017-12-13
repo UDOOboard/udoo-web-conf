@@ -337,7 +337,6 @@
 @endsection
 
 @section('scripts')
-    <script src="/plugins/reconnecting-websocket.js"></script>
     <script src="/js/dashboard.js"></script>
     <script>
         $(function() {

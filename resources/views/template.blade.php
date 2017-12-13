@@ -4,6 +4,7 @@
     } else {
         $docs = 'https://www.udoo.org/docs-x86/';
     }
+    $assetsManager = new \App\Http\Middleware\AssetsManager();
 @endphp
 <!DOCTYPE html>
 <html>
@@ -14,16 +15,20 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>@yield('title')</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link href="/fonts/roboto/roboto.css" rel="stylesheet" type="text/css">
-    <link href="/fonts/iconfont/material-icons.css" rel="stylesheet" type="text/css">
-    <link href="/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/plugins/node-waves/waves.min.css" rel="stylesheet" />
-    <link href="/plugins/animate-css/animate.min.css" rel="stylesheet" />
-    <link href="/plugins/morrisjs/morris.css" rel="stylesheet" />
-    <link href="/css/BootstrapXL.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/udoo.css" rel="stylesheet">
-    <link href="/css/themes/theme-pink.min.css" rel="stylesheet" />
+    @php
+    echo $assetsManager->includeStyles([
+        "/fonts/roboto/roboto.css",
+        "/fonts/iconfont/material-icons.css",
+        "/plugins/bootstrap/css/bootstrap.min.css",
+        "/plugins/node-waves/waves.min.css",
+        "/plugins/animate-css/animate.min.css",
+        "/plugins/morrisjs/morris.css",
+        "/css/BootstrapXL.css",
+        "/css/style.css",
+        "/css/udoo.css",
+        "/css/themes/theme-pink.min.css",
+    ]);
+    @endphp
 </head>
 
 <body class="theme-pink">
@@ -180,14 +185,19 @@
     </div>
 </section>
 
+@php
+    echo $assetsManager->includeScripts([
+        "/plugins/jquery/jquery.min.js",
+        "/plugins/bootstrap/js/bootstrap.min.js",
+        "/plugins/jquery-slimscroll/jquery.slimscroll.js",
+        "/plugins/node-waves/waves.min.js",
+        "/plugins/morrisjs/morris.min.js",
+        "/plugins/raphael/raphael.min.js",
+        "/plugins/reconnecting-websocket.js",
+        "/js/admin.js",
+    ]);
+@endphp
 
-<script src="/plugins/jquery/jquery.min.js"></script>
-<script src="/plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
-<script src="/plugins/node-waves/waves.min.js"></script>
-<script src="/plugins/morrisjs/morris.min.js"></script>
-<script src="/plugins/raphael/raphael.min.js"></script>
-<script src="/js/admin.js"></script>
 @yield('scripts')
 </body>
 
