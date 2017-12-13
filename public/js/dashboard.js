@@ -1,10 +1,11 @@
 ﻿$(function() {
-    $.ajax({
-        type: "GET",
-        url: '/startwebsocket/'
-    });
-
-    setTimeout(startWS, 1000);
+    if ($("#motionsensorsmod").length > 0) {
+        $.ajax({
+            type: "GET",
+            url: '/startwebsocket/'
+        });
+        setTimeout(startWS, 1000);
+    }
 
     checkUpdates();
     window.UDOO.updatesTask = setInterval(function() {
