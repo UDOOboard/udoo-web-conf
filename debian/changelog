@@ -1,3 +1,9 @@
+udoo-web-conf (2.2.0) trusty; urgency=medium
+
+  * Minify CSS and JS
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Wed, 13 Dec 2017 10:04:28 +0100
+
 udoo-web-conf (2.1.0) trusty; urgency=medium
 
   * UDOO X86 support
