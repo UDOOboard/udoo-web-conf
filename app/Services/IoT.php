@@ -94,8 +94,8 @@ class IoT
         if ($code == 2 || $code == 3) return 'Connecting';
         if ($code == 4 || $code == 5 || $code == 6) return 'Connected';
         if ($code == 7) return 'Requests terminated';
-        if ($code == 8 || $code == 9) return 'No network';
-        if ($code == 10) return 'Logged out';
+        if ($code == 8 || $code == 10) return 'No network';
+        if ($code == 9) return 'Logged out';
 
         return "Unknown ($code)";
     }
