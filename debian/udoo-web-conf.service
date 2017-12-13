@@ -3,8 +3,7 @@ Description=UDOO Web Conf
 
 [Service]
 WorkingDirectory=/opt/udoo-web-conf/public
-ExecStart=/usr/bin/php -S 0.0.0.0:80
+ExecStart=/opt/udoo-web-conf/bin/webserver
 SyslogIdentifier=udoo-web-conf
-
 [Install]
 WantedBy=local-fs.target

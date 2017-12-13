@@ -1,0 +1,6 @@
+#!/bin/bash
+
+PORT=$(cat /etc/udoo-web-conf/port | tr -d '[:space:]')
+PORT=${PORT:=80}
+
+exec /usr/bin/php -S 0.0.0.0:$PORT

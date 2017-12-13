@@ -2,7 +2,7 @@
 Name=UDOO Web Control Panel
 GenericName=Web Based UDOO Board Configuration Tool
 Type=Application
-Exec=/opt/udoo-web-conf/bin/browser.sh
+Exec=/opt/udoo-web-conf/bin/browser
 Categories=Settings;HardwareSettings;
 Terminal=false
 Icon=udoo-web-conf
