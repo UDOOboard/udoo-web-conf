@@ -8,10 +8,10 @@ export DH_VERBOSE=1
 	dh $@ --with=systemd
 
 override_dh_auto_build:
-	composer install
+	composer install --ignore-platform-reqs
 	dh_auto_build
 	php bin/assetsbuilder.php
-	composer update --no-dev
+	composer update --no-dev --ignore-platform-reqs
 
 override_dh_install:
 	dh_install
