@@ -17,5 +17,5 @@ script
   exec start-stop-daemon --chdir /opt/udoo-web-conf/public \
     --chuid root \
     --start \
-    --exec /usr/bin/php -- -S 0.0.0.0:$(cat /etc/udoo-web-conf/port)
+    --exec /opt/udoo-web-conf/bin/webserver
 end script

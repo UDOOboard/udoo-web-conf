@@ -7,9 +7,18 @@ export DH_VERBOSE=1
 %:
 	dh $@
 
+override_dh_auto_build:
+	composer install --ignore-platform-reqs
+	dh_auto_build
+	php bin/assetsbuilder.php
+	composer update --no-dev --ignore-platform-reqs
+
 override_dh_install:
 	dh_install
 	ln -s /boot/docs debian/udoo-web-conf/opt/udoo-web-conf/public/docs
+	sed -i 's/APP_ENV=local/APP_ENV=production/' debian/udoo-web-conf/opt/udoo-web-conf/.env
+	#cleanup
+	find debian/udoo-web-conf/opt/udoo-web-conf/vendor/ -iname tests -type d -exec rm -r "{}" \; || true
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublocklyserver
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/closure-library
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/package
