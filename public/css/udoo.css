@@ -201,7 +201,7 @@
 }
 
 .iotservice-preloader {
-    margin: 80px auto 100px auto;
+    margin: 83px auto;
 }
 
 .alert a {
@@ -216,4 +216,17 @@
 
 .noborders {
     border: none !important;
+}
+
+.centered-button {
+    padding: 6px 12px;
+    margin: 100px auto;
+}
+
+.centered-button span {
+    font-size: 14px;
+}
+
+.iot-service-installer {
+    min-height: 250px;
 }

@@ -14,9 +14,14 @@ class IotController extends Controller
     public function index() {
         $iot = new IoT();
 
+        if (!$iot->isInstalled()) {
+            // Ask to install
+            return redirect(route('iot-service-missing'));
+        }
+
         if (!$iot->isClientAvailable()) {
-            // Service is not installed or started
-            return redirect(route('iot-service'));
+            // Service is installed, but not started
+            return redirect(route('iot-service-start'));
         }
 
         if (!$iot->isLoggedIn()) {
@@ -39,17 +44,43 @@ class IotController extends Controller
         ]);
     }
 
-    public function service() {
+    public function servicestart() {
         $iot = new IoT();
-        $isinstalled = $iot->isInstalled();
 
-        if ($isinstalled) {
+        if (!$iot->isInstalled()) {
+            // Ask to install
+            return redirect(route('iot-service-missing'));
+        }
+
+        if (!$iot->isClientAvailable()) {
             exec("service udoo-iot-cloud-client start &");
         }
 
-        return view('iot/service', [
-            'isinstalled' => $isinstalled,
-        ]);
+        return view('iot/service');
+    }
+
+    public function servicemissing() {
+        $iot = new IoT();
+
+        if ($iot->isInstalled()) {
+            return redirect(route('iot-index'));
+        }
+
+        return view('iot/servicemissing');
+    }
+
+    public function serviceinstall() {
+        $iot = new IoT();
+
+        if ($iot->isInstalled()) {
+            return response()->json([
+                'success' => false,
+                'message' => "IoT service already installed",
+            ]);
+        }
+
+        $bs = new BackgroundService();
+        return $bs->run("iot-install");
     }
 
     public function login() {

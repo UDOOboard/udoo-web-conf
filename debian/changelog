@@ -1,3 +1,9 @@
+udoo-web-conf (2.2.2) trusty; urgency=medium
+
+  * IoT service installer
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Fri, 15 Dec 2017 15:10:08 +0000
+
 udoo-web-conf (2.2.1) trusty; urgency=medium
 
   * IoT fix

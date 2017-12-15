@@ -162,7 +162,7 @@
                         <div class="alert bg-teal alert-dismissible" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                             UDOO IoT Cloud service is not ready.
-                            <a href="{{ route('iot-service') }}">Install the service</a> to manage your board remotely.
+                            <a href="{{ route('iot-service-missing') }}">Install the service</a> to manage your board remotely.
                         </div>
                     @else
                         @if (!$iot['loggedin'])

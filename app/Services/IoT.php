@@ -124,7 +124,7 @@ class IoT
     }
 
     public function isInstalled() {
-        exec("dpkg-query -l udoo-iot-cloud-client", $out, $status);
+        exec("dpkg-query -W -f='\${Status}' udoo-iot-cloud-client |grep \"install ok installed\"", $out, $status);
         return $status === 0;
     }
 

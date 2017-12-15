@@ -148,8 +148,16 @@ $app->post('/iot/set-server', [
     'as' => 'iot-setserver', 'uses' => 'IotController@setserver'
 ]);
 
-$app->get('/iot/service', [
-    'as' => 'iot-service', 'uses' => 'IotController@service'
+$app->get('/iot/service-start', [
+    'as' => 'iot-service-start', 'uses' => 'IotController@servicestart'
+]);
+
+$app->get('/iot/service-missing', [
+    'as' => 'iot-service-missing', 'uses' => 'IotController@servicemissing'
+]);
+
+$app->get('/iot/service-install', [
+    'as' => 'iot-service-install', 'uses' => 'IotController@serviceinstall'
 ]);
 
 $app->get('/iot/log', [
