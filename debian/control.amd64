@@ -1,0 +1,17 @@
+Source: udoo-web-conf
+Section: utils
+Priority: optional
+Maintainer: Francesco Montefoschi <francesco.montefoschi@udoo.org>
+Build-Depends: debhelper (>= 9.0.0), dh-systemd
+Standards-Version: 3.9.5
+Homepage: https://www.udoo.org
+Vcs-Browser: https://github.com/UDOOboard/udoo-web-conf/
+
+Package: udoo-web-conf
+Architecture: amd64
+Breaks: udoo-web-conf-modules
+Replaces: udoo-web-conf-modules
+Depends: ${misc:Depends}, php-cli, php-curl, php-mbstring, ttyd, python-pam, tmux (>= 2.2)
+Description: UDOO Web Control Panel
+ This tool is designed to allow easy configuration and act as an handy web-based
+ control panel for UDOO boards.
