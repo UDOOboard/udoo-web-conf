@@ -19,6 +19,8 @@ override_dh_install:
 	sed -i 's/APP_ENV=local/APP_ENV=production/' debian/udoo-web-conf/opt/udoo-web-conf/.env
 	#cleanup
 	find debian/udoo-web-conf/opt/udoo-web-conf/vendor/ -iname tests -type d -exec rm -r "{}" \; || true
+	find debian/udoo-web-conf/opt/udoo-web-conf/storage/ -name "*.php" -exec rm -r "{}" \; || true
+	find debian/udoo-web-conf/opt/udoo-web-conf/storage/ -name "*.log" -exec rm -r "{}" \; || true
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/ardublocklyserver
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/closure-library
 	rm -rf debian/udoo-web-conf/opt/udoo-web-conf/public/ardublockly/package

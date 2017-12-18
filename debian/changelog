@@ -1,4 +1,10 @@
-udoo-web-conf (2.2.2) trusty; urgency=medium
+udoo-web-conf (2.3.0) artful; urgency=medium
+
+  * Fixed pre/post install/rm scripts
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Mon, 18 Dec 2017 11:41:25 +0100
+
+udoo-web-conf (2.2.2) artful; urgency=medium
 
   * IoT service installer
 

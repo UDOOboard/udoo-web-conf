@@ -21,7 +21,7 @@ class BoardServiceProvider extends ServiceProvider
     public function boot()
     {
         if (array_key_exists('board', $_SESSION)) {
-           // return;
+            return;
         }
 
         if (file_exists("/proc/device-tree/model")) {
