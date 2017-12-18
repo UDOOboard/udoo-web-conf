@@ -144,7 +144,7 @@ class IotController extends Controller
         $ini->set('server', 'protocol', $protocol);
         $ini->update();
 
-        exec("service udoo-iot-cloud-client stop && rm /var/lib/udoo-iot/udoo-iot-client.rdb && service udoo-iot-cloud-client start");
+        exec("service udoo-iot-cloud-client stop; rm -rf /var/lib/udoo-iot/udoo-iot-client.rdb; service udoo-iot-cloud-client start");
 
         return response()->json([
             'success' => true,
