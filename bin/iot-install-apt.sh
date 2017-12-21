@@ -1,12 +1,23 @@
 #!/bin/bash
 
-echo "Waiting APT to be ready..."
 PID=`ps aux | grep "[a]pt.* update" |awk '{print $2}'`
-while [ -e /proc/$PID ]
-do
-    sleep 1
-done
+if [ -n "$PID" ]; then
+    echo "Waiting APT to be ready..."
+    while [ -e /proc/$PID ]
+    do
+        sleep 1
+    done
+fi
 
+echo "Installing UDOO IoT Cloud Client..."
 DEBIAN_FRONTEND=noninteractive apt -y install udoo-iot-cloud-client
-sync
-sleep 3
+RES=$?
+
+if [ $RES -eq 0 ]; then
+    echo "Installation complete!"
+    sync
+    sleep 3
+else
+    echo "Installation failed!"
+    sleep 15
+fi
