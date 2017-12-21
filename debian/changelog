@@ -1,3 +1,9 @@
+udoo-web-conf (2.3.1) artful; urgency=medium
+
+  * APT semaphore on IoT install
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Thu, 21 Dec 2017 12:24:04 +0100
+
 udoo-web-conf (2.3.0) artful; urgency=medium
 
   * Fixed pre/post install/rm scripts
