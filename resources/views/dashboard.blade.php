@@ -174,7 +174,17 @@
                         @endif
                     @endif
 
-                    <div class="alert alert-warning alert-dismissible updates-checking" role="alert">
+                    <div class="alert alert-warning alert-dismissible updates-offline hidden" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        Connect your board to the Internet to check the updates for {{ $board['os'] }}.
+                    </div>
+
+                    <div class="alert bg-green alert-dismissible updates-online hidden" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                        <a href="javascript:;" id="checkupdates">Check the updates</a> for {{ $board['os'] }}.
+                    </div>
+
+                    <div class="alert alert-warning alert-dismissible updates-checking hidden" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
                         Checking updates for {{ $board['os'] }}...
                     </div>
@@ -337,6 +347,11 @@
 @endsection
 
 @section('scripts')
+    @if ($board['online'] === 'Connected')
+    <script>window.hasInternet = true; window.nUpdates = {{ $board['updates'] }};</script>
+    @else
+    <script>window.hasInternet = false;</script>
+    @endif
     <script src="/js/dashboard.js"></script>
     <script>
         $(function() {

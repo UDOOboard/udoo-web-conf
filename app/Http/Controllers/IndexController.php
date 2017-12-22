@@ -25,6 +25,11 @@ class IndexController extends Controller
         $online = new Online();
         $hardware = new Hardware();
 
+        if (array_key_exists('updates', $_SESSION)) {
+            $updates = $_SESSION['updates'];
+        } else {
+            $updates = -1;
+        }
 
         return view('dashboard', [
             'ethernet' => str_replace(" ", "&nbsp;", $connections->getEthernetAddress()),
@@ -49,6 +54,7 @@ class IndexController extends Controller
                 'disk' => $stats->getDiskUsage(),
                 'ram' => $stats->getRamUsage(),
                 'has9Axis' => $_SESSION['board']['has9Axis'],
+                'updates' => $updates,
             ],
             'default_password' => array_key_exists('default_password', $_SESSION) && $_SESSION['default_password'] === true,
         ]);

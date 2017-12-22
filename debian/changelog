@@ -1,3 +1,9 @@
+udoo-web-conf (2.4.0) artful; urgency=medium
+
+  * Improved updates management
+
+ -- Francesco Montefoschi <francesco.montefoschi@udoo.org>  Fri, 22 Dec 2017 11:20:21 +0100
+
 udoo-web-conf (2.3.2) artful; urgency=medium
 
   * apt update before IoT installation

@@ -20,6 +20,7 @@ class UpdatesController extends Controller
                 if (!array_key_exists('updates', $_SESSION)) {
                     $_SESSION['updates'] = $this->getNumberOfUpdates();
                 }
+                unset($_SESSION['updateservice']);
                 return response()->json([
                     'success' => true,
                     'pending' => false,

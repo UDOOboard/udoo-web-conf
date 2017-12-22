@@ -12,6 +12,8 @@
                 </div>
                 <div class="body">
                     <p>The <code>udoo-iot-cloud-client</code> package is required to access UDOO IoT Client.</p>
+
+                    @if ($online)
                     <p>Do you want to install the package now?</p>
 
                     <div class="iotservice-installer text-center">
@@ -35,6 +37,14 @@
                     </div>
 
                     <iframe id="terminal" class="hidden"></iframe>
+
+                    @else
+                        <div class="text-center m-t-40 m-b-40">
+                            <h2>You are offline!</h2>
+                            <h4>Please connect your board to the Internet to continue.</h4>
+                            <img src="/images/offline.png">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>

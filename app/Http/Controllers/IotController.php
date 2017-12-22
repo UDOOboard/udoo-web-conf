@@ -61,12 +61,15 @@ class IotController extends Controller
 
     public function servicemissing() {
         $iot = new IoT();
+        $online = new Online();
 
         if ($iot->isInstalled()) {
             return redirect(route('iot-index'));
         }
 
-        return view('iot/servicemissing');
+        return view('iot/servicemissing', [
+            'online' => $online->isOnline(),
+        ]);
     }
 
     public function serviceinstall() {
@@ -84,13 +87,34 @@ class IotController extends Controller
     }
 
     public function login() {
+        $iot = new IoT();
+
+        if (!$iot->isInstalled()) {
+            // Ask to install
+            return redirect(route('iot-service-missing'));
+        }
+
+        if (!$iot->isClientAvailable()) {
+            // Service is installed, but not started
+            return redirect(route('iot-service-start'));
+        }
+
         $online = new Online();
         $ini = new IniFile("/etc/udoo-iot-client/config.ini");
         $conf = $ini->get();
 
         $base = $conf['server']['protocol'] . '://' . $conf['server']['ip'];
-        if ($conf['server']['port'] != 80) {
-            $base .= ':' . $conf['server']['port'];
+        switch ($conf['server']['protocol']) {
+            case 'http':
+                if ($conf['server']['port'] != 80) {
+                    $base .= ':' . $conf['server']['port'];
+                }
+                break;
+            case 'https':
+                if ($conf['server']['port'] != 443) {
+                    $base .= ':' . $conf['server']['port'];
+                }
+                break;
         }
 
         return view('iot/login', [

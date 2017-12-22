@@ -7,10 +7,36 @@
         setTimeout(startWS, 1000);
     }
 
-    checkUpdates();
-    window.UDOO.updatesTask = setInterval(function() {
+    if (window.hasInternet) {
+        if (window.nUpdates >= 0) {
+            // show n updates available
+            if (window.nUpdates === 0) {
+                $('.no-updates').removeClass('hidden');
+            } else {
+                $('.updates-available .nr').html(window.nUpdates);
+                $('.updates-available').removeClass('hidden');
+            }
+
+        } else {
+            // show check link
+            $('.updates-offline').addClass('hidden');
+            $('.updates-online').removeClass('hidden');
+        }
+    } else {
+        // show no internet
+        $('.updates-offline').removeClass('hidden');
+        $('.updates-online').addClass('hidden');
+    }
+
+    $('#checkupdates').on('click', function() {
+        $('.updates-online').addClass('hidden');
+        $('.updates-checking').removeClass('hidden');
+
         checkUpdates();
-    }, 10000);
+        window.UDOO.updatesTask = setInterval(function() {
+            checkUpdates();
+        }, 10000);
+    });
 });
 
 function checkUpdates() {
