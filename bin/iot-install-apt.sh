@@ -10,6 +10,7 @@ if [ -n "$PID" ]; then
 fi
 
 echo "Installing UDOO IoT Cloud Client..."
+apt update
 DEBIAN_FRONTEND=noninteractive apt -y install udoo-iot-cloud-client
 RES=$?
 
