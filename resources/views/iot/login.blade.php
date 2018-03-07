@@ -53,7 +53,7 @@
 
                             <div class="row">
                                 <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4">
-                                    <button class="btn btn-block bg-pink waves-effect" type="button" id="iotlogin">SIGN IN</button>
+                                    <input type="submit" class="btn btn-block bg-pink waves-effect" type="button" id="iotlogin" value="SIGN IN">
                                 </div>
                             </div>
 

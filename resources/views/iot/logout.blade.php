@@ -15,7 +15,7 @@
             <div class="login-box">
                 <div class="card">
                     <div class="body">
-                        <form id="sign_in">
+                        <form id="sign_out">
                             <div class="msg m-t-30 m-b-50">To unbind this board from your UDOO IoT Cloud account, enter your details again:</div>
                             <div class="input-group">
                                 <span class="input-group-addon">
@@ -36,7 +36,7 @@
 
                             <div class="row m-t-40">
                                 <div class="col-xs-offset-3 col-xs-6 col-md-offset-4 col-md-4">
-                                    <button class="btn btn-block bg-pink waves-effect" type="button" id="iotlogout">SIGN OUT</button>
+                                    <input type="submit" class="btn btn-block bg-pink waves-effect" type="button" id="iotlogout" value="SIGN OUT">
                                 </div>
                             </div>
                         </form>

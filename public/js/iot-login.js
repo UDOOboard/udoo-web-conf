@@ -1,4 +1,8 @@
 ﻿$(function() {
+    $("form#sign_in").on("submit", function() {
+        login();
+        return false;
+    });
     $("#iotlogin").on("click", login);
     $("#setIoTserver").on("click", showIoTserverDialog);
     $("#change-iotserver").on("click", saveIoTserver);

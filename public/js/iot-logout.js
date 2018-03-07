@@ -1,4 +1,8 @@
 ﻿$(function() {
+    $("form#sign_out").on("submit", function() {
+        logout();
+        return false;
+    });
     $("#iotlogout").on("click", logout);
 });
 
