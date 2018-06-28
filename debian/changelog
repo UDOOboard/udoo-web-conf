@@ -1,4 +1,10 @@
-udoo-web-conf (2.4.1) artful; urgency=medium
+udoo-web-conf (2.5.0) artful; urgency=medium
+
+  * Bug fix on Arduino web editor
+
+ -- Alessandro Genovese <alessandro.genovese@udoo.org>  Thu, 28 Jun 2018 11:33:53 +0200
+
+ udoo-web-conf (2.4.1) artful; urgency=medium
 
   * Use enter to submit IoT forms
 
