@@ -17,11 +17,11 @@ class ArduinoController extends Controller
             $last = file_get_contents($this->getSketchPath());
         } else {
             $last = "void setup() {
-}
-
-void loop() {
-}
-";
+                        }
+                        
+                        void loop() {
+                        }
+                        ";
         }
 
         return view('arduino/webide', [
@@ -47,9 +47,11 @@ void loop() {
     }
 
     public function compilesketch() {
-        exec("export DISPLAY=:0 && /usr/bin/arduino --upload ". $this->getSketchPath(), $out, $status);
 
-        return response()->json([
+        $command = app()->basePath() . "/bin/arduino-headless.sh --upload ". $this->getSketchPath();
+        exec($command, $out, $status);
+
+        return [
             'success' => $status === 0 ? true : false,
             'errors' => [],
             'ide_data' => [
@@ -57,7 +59,7 @@ void loop() {
                 'err_output' => '',
 
             ]
-        ]);
+        ];
     }
 
     public function ardublockly() {
@@ -66,9 +68,13 @@ void loop() {
 
     public function ardublocklycompile(Request $request) {
         $code = $request->request->get("sketch_code");
+
         file_put_contents($this->getSketchPath(), $code);
 
-        return $this->compilesketch();
+        $response = $this->compilesketch();
+
+        return response()->json($response);
+
     }
 
     private function getSketchPath() {
@@ -76,6 +82,7 @@ void loop() {
         if (!is_dir($dir)) {
             mkdir($dir, 0777, true);
         }
+
         return $dir . "/sketch.ino";
     }
 }
