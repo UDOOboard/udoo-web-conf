@@ -50,12 +50,14 @@ class ArduinoController extends Controller
 
         $command = app()->basePath() . "/bin/arduino-headless.sh --upload ". $this->getSketchPath();
         exec($command, $out, $status);
+	$out_string = implode("\n", $out);
+        $success = strpos($out_string, 'Success!!') !== false;
 
         return [
-            'success' => $status === 0 ? true : false,
+            'success' => $status === 0  && $success ? true : false,
             'errors' => [],
             'ide_data' => [
-                'std_output' => "Output from Arduino IDE: " . implode(" ", $out),
+                'std_output' => "Output from Arduino IDE: " . $out_string,
                 'err_output' => '',
 
             ]

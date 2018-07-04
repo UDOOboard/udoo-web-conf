@@ -9,6 +9,7 @@
     $("#upload-ide").on("click", function() {
         $('#waitDialog div.loading').removeClass("hidden");
         $('#waitDialog div.loaded').addClass("hidden");
+        $('#waitDialog div.output').addClass("hidden");
         $('#waitDialog div.error').addClass("hidden");
         $('#waitDialog div.modal-footer').addClass("hidden");
         $('#waitDialog').modal('show');
@@ -25,7 +26,8 @@
                 if (response.success) {
                     $('#waitDialog div.loaded').removeClass("hidden");
                 } else {
-                    $('#waitDialog div.error').html(response.message || "Cannot flash sketch!").removeClass("hidden");
+                    $('#waitDialog div.error').html('<pre><code>' + response['ide_data']['std_output'] + '</code></pre>'
+                        || "Cannot flash sketch!").removeClass("hidden");
                 }
             }
         });

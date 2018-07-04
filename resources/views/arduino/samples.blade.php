@@ -105,6 +105,7 @@ void loop() {
                     </div>
                     <div class="loaded hidden">The sketch has been uploaded!</div>
                     <div class="error hidden"></div>
+                    <div class="output hidden"></div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>

@@ -1,3 +1,9 @@
+udoo-web-conf (2.5.1) artful; urgency=medium
+
+  * Bug fix on Arduino web editor API
+
+ -- Alessandro Genovese <alessandro.genovese@udoo.org>  Wed, 04 Jul 2018 15:08:37 +0200
+
 udoo-web-conf (2.5.0) artful; urgency=medium
 
   * Bug fix on Arduino web editor
