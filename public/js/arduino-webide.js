@@ -26,7 +26,7 @@
                 if (response.success) {
                     $('#waitDialog div.loaded').removeClass("hidden");
                 } else {
-                    $('#waitDialog div.error').html('<pre><code>' + response['ide_data']['std_output'] + '</code></pre>'
+                    $('#waitDialog div.error').html('Cannot flash sketch! <br> <pre><code>' + response['ide_data']['std_output'] + '</code></pre>'
                         || "Cannot flash sketch!").removeClass("hidden");
                 }
             }

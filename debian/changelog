@@ -1,3 +1,9 @@
+udoo-web-conf (2.5.2) artful; urgency=medium
+
+  * Check Arduino status in a simple way, revert Ardublockly to previous view
+
+ -- Alessandro Genovese <alessandro.genovese@udoo.org> Mon, 09 Jul 2018 13:03:28 +0200
+
 udoo-web-conf (2.5.1) artful; urgency=medium
 
   * Bug fix on Arduino web editor API
