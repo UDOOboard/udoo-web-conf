@@ -19,7 +19,7 @@ class LoginController extends Controller
         $quotedPassword = '"' . str_replace('"', '\"', $password) . '"';
         $_SESSION['default_password'] = false;
 
-        exec("python " . app()->basePath() . "/bin/pam.py $username $quotedPassword", $out, $ret);
+        exec("python3 " . app()->basePath() . "/bin/pam.py $username $quotedPassword", $out, $ret);
 
         if ($ret === 0) {
             $_SESSION['auth'] = true;

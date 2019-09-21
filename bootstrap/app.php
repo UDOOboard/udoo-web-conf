@@ -60,7 +60,8 @@ $app->singleton(
 */
 
 $app->middleware([
-   App\Http\Middleware\Authenticate::class
+   App\Http\Middleware\Authenticate::class,
+   App\Http\Middleware\Board::class,
 ]);
 
 /*
@@ -74,7 +75,7 @@ $app->middleware([
 |
 */
 
-$app->register(App\Providers\BoardServiceProvider::class);
+//$app->register();
 
 /*
 |--------------------------------------------------------------------------

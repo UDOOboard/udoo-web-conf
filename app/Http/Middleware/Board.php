@@ -1,36 +1,26 @@
 <?php
 
-namespace App\Providers;
+namespace App\Http\Middleware;
 
 use App\Services\Stats;
-use App\User;
-use Illuminate\Support\ServiceProvider;
+use Closure;
+use Illuminate\Http\Request;
 
-class BoardServiceProvider extends ServiceProvider
+class Board
 {
-    /**
-     * @return void
-     */
-    public function register()
-    {
-    }
-
-    /**
-     * @return void
-     */
-    public function boot()
+    public function handle(Request $request, Closure $next)
     {
         if (array_key_exists('board', $_SESSION)) {
-            return;
+            return $next($request);
         }
 
-        if (file_exists("/proc/device-tree/model")) {
-            $boardModel = trim(file_get_contents("/proc/device-tree/model"));
+        if (file_exists('/proc/device-tree/model')) {
+            $boardModel = trim(file_get_contents('/proc/device-tree/model'));
             $cpuID = $this->getIMXCpuID();
             $arch = 'arm';
         } else {
-            $boardModel = trim(file_get_contents("/sys/class/dmi/id/board_name"));
-            $cpuID = file_get_contents("/sys/class/dmi/id/board_serial");
+            $boardModel = trim(file_get_contents('/sys/class/dmi/id/board_name'));
+            $cpuID = file_get_contents('/sys/class/dmi/id/board_serial');
             $arch = 'x86';
         }
 
@@ -93,10 +83,10 @@ class BoardServiceProvider extends ServiceProvider
                 $has9Axis = false;
         }
 
-        exec("lsb_release -r", $out, $ret);
-        $version = explode(":", $out[0]);
+        exec('lsb_release -r', $out, $ret);
+        $version = explode(':', $out[0]);
         $version = trim($version[1]);
-        $is1604 = version_compare($version, "16.04", ">=");
+        $is1604 = version_compare($version, '16.04', '>=');
 
         $stats = new Stats();
 
@@ -117,14 +107,16 @@ class BoardServiceProvider extends ServiceProvider
                 'lvds15' => $hasLvds15,
             ]
         ];
+
+        return $next($request);
     }
 
     private function getIMXCpuID() {
-        $H = trim(file_get_contents("/sys/fsl_otp/HW_OCOTP_CFG0"));
-        $L = trim(file_get_contents("/sys/fsl_otp/HW_OCOTP_CFG1"));
+        $H = trim(file_get_contents('/sys/fsl_otp/HW_OCOTP_CFG0'));
+        $L = trim(file_get_contents('/sys/fsl_otp/HW_OCOTP_CFG1'));
 
-        $H = str_replace("0x", "", $H);
-        $L = str_replace("0x", "", $L);
+        $H = str_replace('0x', '', $H);
+        $L = str_replace('0x', '', $L);
 
         return strtoupper($L . $H);
     }

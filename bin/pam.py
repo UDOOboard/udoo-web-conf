@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import PAM
@@ -31,9 +31,9 @@ def is_authorized(username, password):
     try:
         pam_auth.authenticate()
         pam_auth.acct_mgmt()
-    except PAM.error, resp:
+    except PAM.error:
         return 1
-    except Exception, e:
+    except Exception as e:
         log.warn("Error with PAM: %s" % str(e))
         return 1
     else:
