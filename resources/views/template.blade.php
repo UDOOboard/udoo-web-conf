@@ -141,6 +141,14 @@
                         <span>Region and Language</span>
                     </a>
                 </li>
+                @if ($_SESSION['board']['hasDtweb'])
+                <li>
+                    <a href="/settings/devicetree">
+                        <i class="material-icons">device_hub</i>
+                        <span>Device Tree Editor</span>
+                    </a>
+                </li>
+                @endif
                 <li>
                     <a href="/settings/advanced">
                         <i class="material-icons">settings</i>

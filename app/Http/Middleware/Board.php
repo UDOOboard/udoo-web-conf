@@ -87,6 +87,9 @@ class Board
         $version = explode(':', $out[0]);
         $version = trim($version[1]);
         $is1604 = version_compare($version, '16.04', '>=');
+        
+        exec('dpkg -s dtweb', $out, $ret);
+        $hasDtweb = $ret === 0;
 
         $stats = new Stats();
 
@@ -96,6 +99,7 @@ class Board
         $_SESSION['board'] = [
             'arch' => $arch,
             'is1604' => $is1604,
+            'hasDtweb' => $hasDtweb,
             'model' => $boardModel,
             'shortmodel' => $shortModel,
             'id' => $cpuID,

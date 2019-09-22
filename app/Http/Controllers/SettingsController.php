@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\BackgroundService;
 use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 use Youssman\CountryLanguage\CountryLanguage;
@@ -269,5 +270,18 @@ class SettingsController extends Controller
         return response()->json([
             'success' => true
         ]);
+    }
+
+    public function devicetree() {
+        $bs = new BackgroundService();
+        $bs->run('dtweb');
+
+        $host = '192.168.7.2';
+        if (isset($_SERVER['HTTP_HOST'])) {
+            $parts = explode(':', $_SERVER['HTTP_HOST']);
+            $host = $parts[0];
+        }
+
+        return redirect("http://$host:7533");
     }
 }

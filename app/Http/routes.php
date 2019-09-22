@@ -122,6 +122,10 @@ $app->post('/settings/set-autostart', [
     'as' => 'settings-setautostart', 'uses' => 'SettingsController@setautostart'
 ]);
 
+$app->get('/settings/devicetree', [
+    'as' => 'settings-devicetree', 'uses' => 'SettingsController@devicetree'
+]);
+
 
 /* IOT */
 $app->get('/iot', [
