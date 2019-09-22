@@ -275,6 +275,7 @@ class SettingsController extends Controller
     public function devicetree() {
         $bs = new BackgroundService();
         $bs->run('dtweb');
+        sleep(2);
 
         $host = '192.168.7.2';
         if (isset($_SERVER['HTTP_HOST'])) {
