@@ -11,7 +11,7 @@ override_dh_auto_build:
 	composer install --ignore-platform-reqs
 	dh_auto_build
 	php bin/assetsbuilder.php
-	composer update --no-dev --ignore-platform-reqs
+	composer install --no-dev --ignore-platform-reqs
 
 override_dh_install:
 	dh_install
