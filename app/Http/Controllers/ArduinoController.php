@@ -48,7 +48,7 @@ class ArduinoController extends Controller
 
     public function compilesketch() {
 
-        $command = app()->basePath() . "/bin/arduino-headless.sh --upload ". $this->getSketchPath();
+        $command = "xvfb-run /usr/bin/arduino --upload ". $this->getSketchPath();
         exec($command, $out, $status);
 	$out_string = implode("\n", $out);
         $success = strpos($out_string, 'Success!!') !== false;
